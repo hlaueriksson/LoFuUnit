@@ -13,6 +13,8 @@ namespace LoFuUnit.Tests.Fakes
 
         public async Task FakeTestAsync()
         {
+            await Task.CompletedTask;
+
             async Task A() => await RecordAsync();
             void B() => Record();
             async Task C() => await RecordAsync();
@@ -74,6 +76,8 @@ namespace LoFuUnit.Tests.Fakes
 
         public async Task FakeTestFailAsync()
         {
+            await Task.CompletedTask;
+
             async void Fail() => await RecordAsync(); // Task
         }
 
