@@ -2,7 +2,8 @@
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 
-[assembly: InternalsVisibleTo("LoFuUnit.Tests")]
+[assembly: InternalsVisibleTo("LoFuUnit.NUnit"),
+           InternalsVisibleTo("LoFuUnit.Tests")]
 
 namespace LoFuUnit
 {
