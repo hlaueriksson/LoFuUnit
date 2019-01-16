@@ -5,6 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\src\LoFoUnit.MSTest\LoFoUnit.MSTest.csproj" />
     <ProjectReference Include="..\..\src\LoFuUnit.NUnit\LoFuUnit.NUnit.csproj" />
     <ProjectReference Include="..\..\src\LoFuUnit.Xunit\LoFuUnit.Xunit.csproj" />
     <ProjectReference Include="..\..\src\LoFuUnit\LoFuUnit.csproj" />
@@ -12,12 +13,14 @@
 
   <ItemGroup>
     <Folder Include="LoFuUnit\" />
+    <Folder Include="MSTest\" />
     <Folder Include="Xunit\" />
     <Folder Include="NUnit\" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="FluentAssertions" Version="5.6.0" />
+    <PackageReference Include="MSTest.TestFramework" Version="1.4.0" />
     <PackageReference Include="NSubstitute" Version="3.1.0" />
     <PackageReference Include="NUnit" Version="3.11.0" />
     <PackageReference Include="ReflectionMagic" Version="4.0.0" />

@@ -2,7 +2,8 @@
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 
-[assembly: InternalsVisibleTo("LoFuUnit.NUnit"),
+[assembly: InternalsVisibleTo("LoFoUnit.MSTest"),
+           InternalsVisibleTo("LoFuUnit.NUnit"),
            InternalsVisibleTo("LoFuUnit.Xunit"),
            InternalsVisibleTo("LoFuUnit.Tests")]
 
