@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoFuUnit.Tests", "tests\LoF
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoFuUnit.NUnit", "src\LoFuUnit.NUnit\LoFuUnit.NUnit.csproj", "{3353C63A-526F-4BCD-AE6C-A81E35E68746}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoFuUnit.Xunit", "src\LoFuUnit.Xunit\LoFuUnit.Xunit.csproj", "{3C10DC34-CDE9-43F2-B4F5-F4D2425E07A5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -31,6 +33,10 @@ Global
 		{3353C63A-526F-4BCD-AE6C-A81E35E68746}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3353C63A-526F-4BCD-AE6C-A81E35E68746}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3353C63A-526F-4BCD-AE6C-A81E35E68746}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3C10DC34-CDE9-43F2-B4F5-F4D2425E07A5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3C10DC34-CDE9-43F2-B4F5-F4D2425E07A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3C10DC34-CDE9-43F2-B4F5-F4D2425E07A5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3C10DC34-CDE9-43F2-B4F5-F4D2425E07A5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -39,6 +45,7 @@ Global
 		{188150DC-B118-48C0-8456-EBB1364BD8AE} = {910E5181-2825-4A3A-AC64-43B8108AE9B7}
 		{839BE64D-747E-4DB8-B7FA-E76E5927AC95} = {11395F75-D3C8-41AA-B33E-BD0B60F44FCD}
 		{3353C63A-526F-4BCD-AE6C-A81E35E68746} = {910E5181-2825-4A3A-AC64-43B8108AE9B7}
+		{3C10DC34-CDE9-43F2-B4F5-F4D2425E07A5} = {910E5181-2825-4A3A-AC64-43B8108AE9B7}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {ABBF2A9B-D3EF-4691-AAF0-E38A66C4A6EF}
