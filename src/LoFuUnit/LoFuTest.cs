@@ -7,8 +7,14 @@ using System.Threading.Tasks;
 
 namespace LoFuUnit
 {
+    /// <summary>
+    /// Base class for test fixtures.
+    /// </summary>
     public abstract class LoFuTest
     {
+        /// <summary>
+        /// Runs the local functions in the containing test method that invoked this method.
+        /// </summary>
         protected void Assert()
         {
             var stackTrace = new StackTrace();
@@ -17,6 +23,10 @@ namespace LoFuUnit
             Assert(this, method);
         }
 
+        /// <summary>
+        /// Runs the local functions in the containing test method that invoked this method.
+        /// </summary>
+        /// <returns>A task that represents the asynchronous operation.</returns>
         protected async Task AssertAsync()
         {
             var stackTrace = new StackTrace();
@@ -88,6 +98,10 @@ namespace LoFuUnit
             }
         }
 
+        /// <summary>
+        /// Writes the specified message, followed by the current line terminator, to the standard output stream.
+        /// </summary>
+        /// <param name="message">The message to write.</param>
         protected virtual void Log(string message) => Console.WriteLine(message);
     }
 }

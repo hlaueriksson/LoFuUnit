@@ -6,8 +6,15 @@ using NUnit.Framework.Internal.Commands;
 
 namespace LoFuUnit.NUnit
 {
+    /// <summary>
+    /// Runs the local functions in the containing test method after the inner command has run.
+    /// </summary>
     public class LoFuCommand : AfterTestCommand
     {
+        /// <summary>
+        /// Constructs a command that runs the local functions in the containing test method derived from the test execution context.
+        /// </summary>
+        /// <param name="innerCommand"></param>
         public LoFuCommand(TestCommand innerCommand) : base(innerCommand)
         {
             AfterTest = (context) =>

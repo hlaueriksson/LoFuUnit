@@ -2,7 +2,7 @@
 
 namespace LoFuUnit
 {
-    internal static class Naming
+    internal static class InternalNamingExtensions
     {
         static readonly Regex QuoteRegex = new Regex(@"(?<quoted>__(?<inner>\w+?)__)", RegexOptions.Compiled | RegexOptions.CultureInvariant);
 
