@@ -2,6 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>net471</TargetFramework>
+    <NoWarn>1701;1702;CS8321</NoWarn>
   </PropertyGroup>
 
   <ItemGroup>
