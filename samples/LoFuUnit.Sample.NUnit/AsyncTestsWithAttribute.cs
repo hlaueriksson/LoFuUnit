@@ -16,7 +16,7 @@ namespace LoFuUnit.Sample.NUnit
             await Task.CompletedTask;
 
             void given_a_HttpClient() => Subject = new HttpClient();
-            async Task when_get_the_GitHub_site() => Response = await Subject.GetAsync("https://github.com");
+            async Task when_getting_the_GitHub_site() => Response = await Subject.GetAsync("https://github.com");
             void then_it_should_have_success_status_code() => Response.EnsureSuccessStatusCode();
             async Task then_it_should_have_proper_content()
             {
