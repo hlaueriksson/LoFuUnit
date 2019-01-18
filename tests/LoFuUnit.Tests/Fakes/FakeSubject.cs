@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace LoFuUnit.Tests.AutoMoq.Fakes
+namespace LoFuUnit.Tests.Fakes
 {
     public class FakeSubject
     {

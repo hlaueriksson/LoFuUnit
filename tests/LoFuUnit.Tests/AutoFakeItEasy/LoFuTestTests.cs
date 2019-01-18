@@ -1,12 +1,12 @@
 ﻿using System;
 using AutoFixture;
+using FakeItEasy;
 using FluentAssertions;
-using LoFuUnit.AutoMoq;
+using LoFuUnit.AutoFakeItEasy;
 using LoFuUnit.Tests.Fakes;
-using Moq;
 using NUnit.Framework;
 
-namespace LoFuUnit.Tests.AutoMoq
+namespace LoFuUnit.Tests.AutoFakeItEasy
 {
     public class LoFuTestTests : LoFuTest<FakeSubject>
     {
@@ -37,38 +37,38 @@ namespace LoFuUnit.Tests.AutoMoq
         [Test]
         public void The_should_return_the_Mock_after_Use()
         {
-            var mock1 = Use<IFakeDependency>();
-            var mock2 = Use<FakeDependencyBase>();
+            var fake1 = Use<IFakeDependency>();
+            var fake2 = Use<FakeDependencyBase>();
 
-            The<IFakeDependency>().Should().Be(mock1);
-            The<FakeDependencyBase>().Should().Be(mock2);
+            The<IFakeDependency>().Should().Be(fake1);
+            The<FakeDependencyBase>().Should().Be(fake2);
         }
 
         [Test]
         public void Subject_should_be_auto_mocked_with_dependencies_from_Use()
         {
-            var mock1 = Use(new Mock<IFakeDependency>());
-            var mock2 = Use<FakeDependencyBase>();
+            var fake1 = Use(new Fake<IFakeDependency>());
+            var fake2 = Use<FakeDependencyBase>();
             var dependency3 = Use(new FakeDependency(Guid.NewGuid()));
 
             var result = Subject;
 
-            result.Dependency1.Should().Be(mock1.Object);
-            result.Dependency2.Should().Be(mock2.Object);
+            result.Dependency1.Should().Be(fake1.FakedObject);
+            result.Dependency2.Should().Be(fake2.FakedObject);
             result.Dependency3.Should().Be(dependency3);
         }
 
         [Test]
         public void Fixture_is_available()
         {
-            var mock1 = Fixture.Freeze<Mock<IFakeDependency>>();
-            var mock2 = Fixture.Freeze<Mock<FakeDependencyBase>>();
+            var fake1 = Fixture.Freeze<Fake<IFakeDependency>>();
+            var fake2 = Fixture.Freeze<Fake<FakeDependencyBase>>();
             var dependency3 = Fixture.Freeze<FakeDependency>();
 
             var result = Subject;
 
-            result.Dependency1.Should().Be(mock1.Object);
-            result.Dependency2.Should().Be(mock2.Object);
+            result.Dependency1.Should().Be(fake1.FakedObject);
+            result.Dependency2.Should().Be(fake2.FakedObject);
             result.Dependency3.Should().Be(dependency3);
         }
     }
