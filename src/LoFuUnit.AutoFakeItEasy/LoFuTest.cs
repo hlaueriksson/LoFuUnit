@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using AutoFixture;
 using AutoFixture.AutoFakeItEasy;
-using FakeItEasy;
 
 namespace LoFuUnit.AutoFakeItEasy
 {
@@ -26,24 +25,16 @@ namespace LoFuUnit.AutoFakeItEasy
             _subject = null;
         }
 
-        protected Fake<TDependency> The<TDependency>() where TDependency : class
+        protected TDependency The<TDependency>() where TDependency : class
         {
             var type = typeof(TDependency);
 
-            return _fakes.ContainsKey(type) ? _fakes[type] as Fake<TDependency> : null;
+            return _fakes.ContainsKey(type) ? _fakes[type] as TDependency : null;
         }
 
-        protected Fake<TDependency> Use<TDependency>() where TDependency : class
+        protected TDependency Use<TDependency>() where TDependency : class
         {
-            var fake = Fixture.Freeze<Fake<TDependency>>();
-            _fakes[typeof(TDependency)] = fake;
-
-            return fake;
-        }
-
-        protected Fake<TDependency> Use<TDependency>(Fake<TDependency> fake) where TDependency : class
-        {
-            Fixture.Inject(fake.FakedObject);
+            var fake = Fixture.Freeze<TDependency>();
             _fakes[typeof(TDependency)] = fake;
 
             return fake;
@@ -52,6 +43,7 @@ namespace LoFuUnit.AutoFakeItEasy
         protected TDependency Use<TDependency>(TDependency instance)
         {
             Fixture.Inject(instance);
+            _fakes[typeof(TDependency)] = instance;
 
             return instance;
         }

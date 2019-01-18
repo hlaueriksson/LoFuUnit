@@ -47,28 +47,28 @@ namespace LoFuUnit.Tests.AutoFakeItEasy
         [Test]
         public void Subject_should_be_auto_mocked_with_dependencies_from_Use()
         {
-            var fake1 = Use(new Fake<IFakeDependency>());
+            var fake1 = Use(A.Fake<IFakeDependency>());
             var fake2 = Use<FakeDependencyBase>();
             var dependency3 = Use(new FakeDependency(Guid.NewGuid()));
 
             var result = Subject;
 
-            result.Dependency1.Should().Be(fake1.FakedObject);
-            result.Dependency2.Should().Be(fake2.FakedObject);
+            result.Dependency1.Should().Be(fake1);
+            result.Dependency2.Should().Be(fake2);
             result.Dependency3.Should().Be(dependency3);
         }
 
         [Test]
         public void Fixture_is_available()
         {
-            var fake1 = Fixture.Freeze<Fake<IFakeDependency>>();
-            var fake2 = Fixture.Freeze<Fake<FakeDependencyBase>>();
+            var fake1 = Fixture.Freeze<IFakeDependency>();
+            var fake2 = Fixture.Freeze<FakeDependencyBase>();
             var dependency3 = Fixture.Freeze<FakeDependency>();
 
             var result = Subject;
 
-            result.Dependency1.Should().Be(fake1.FakedObject);
-            result.Dependency2.Should().Be(fake2.FakedObject);
+            result.Dependency1.Should().Be(fake1);
+            result.Dependency2.Should().Be(fake2);
             result.Dependency3.Should().Be(dependency3);
         }
     }
