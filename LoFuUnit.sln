@@ -19,13 +19,17 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LoFoUnit.MSTest", "src\LoFo
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "samples", "samples", "{5C68D07C-EAA8-4BA1-811D-7DB4A39305D3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoFuUnit.Sample", "samples\LoFuUnit.Sample\LoFuUnit.Sample.csproj", "{D06EB8AA-BA1F-48A4-A06D-428B0688A34B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LoFuUnit.Sample", "samples\LoFuUnit.Sample\LoFuUnit.Sample.csproj", "{D06EB8AA-BA1F-48A4-A06D-428B0688A34B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoFuUnit.Sample.NUnit", "samples\LoFuUnit.Sample.NUnit\LoFuUnit.Sample.NUnit.csproj", "{13195F66-4F54-4C97-BD3A-6CC18FDAEB93}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LoFuUnit.Sample.NUnit", "samples\LoFuUnit.Sample.NUnit\LoFuUnit.Sample.NUnit.csproj", "{13195F66-4F54-4C97-BD3A-6CC18FDAEB93}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoFuUnit.Sample.Xunit", "samples\LoFuUnit.Sample.Xunit\LoFuUnit.Sample.Xunit.csproj", "{ECD3C892-6704-4E6C-B080-AC26B36DB328}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LoFuUnit.Sample.Xunit", "samples\LoFuUnit.Sample.Xunit\LoFuUnit.Sample.Xunit.csproj", "{ECD3C892-6704-4E6C-B080-AC26B36DB328}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoFoUnit.Sample.MSTest", "samples\LoFoUnit.Sample.MSTest\LoFoUnit.Sample.MSTest.csproj", "{C55953D6-5BDD-4EFD-AD8C-29D025B78254}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LoFoUnit.Sample.MSTest", "samples\LoFoUnit.Sample.MSTest\LoFoUnit.Sample.MSTest.csproj", "{C55953D6-5BDD-4EFD-AD8C-29D025B78254}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoFuUnit.AutoMoq", "src\LoFuUnit.AutoMoq\LoFuUnit.AutoMoq.csproj", "{EB291F31-7395-44A1-8678-DB8D17707DA8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoFuUnit.Sample.AutoMoq", "samples\LoFuUnit.Sample.AutoMoq\LoFuUnit.Sample.AutoMoq.csproj", "{E964DADB-124A-486A-85CD-B57A69BDD66C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -69,6 +73,14 @@ Global
 		{C55953D6-5BDD-4EFD-AD8C-29D025B78254}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C55953D6-5BDD-4EFD-AD8C-29D025B78254}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C55953D6-5BDD-4EFD-AD8C-29D025B78254}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EB291F31-7395-44A1-8678-DB8D17707DA8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EB291F31-7395-44A1-8678-DB8D17707DA8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EB291F31-7395-44A1-8678-DB8D17707DA8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EB291F31-7395-44A1-8678-DB8D17707DA8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E964DADB-124A-486A-85CD-B57A69BDD66C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E964DADB-124A-486A-85CD-B57A69BDD66C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E964DADB-124A-486A-85CD-B57A69BDD66C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E964DADB-124A-486A-85CD-B57A69BDD66C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -83,6 +95,8 @@ Global
 		{13195F66-4F54-4C97-BD3A-6CC18FDAEB93} = {5C68D07C-EAA8-4BA1-811D-7DB4A39305D3}
 		{ECD3C892-6704-4E6C-B080-AC26B36DB328} = {5C68D07C-EAA8-4BA1-811D-7DB4A39305D3}
 		{C55953D6-5BDD-4EFD-AD8C-29D025B78254} = {5C68D07C-EAA8-4BA1-811D-7DB4A39305D3}
+		{EB291F31-7395-44A1-8678-DB8D17707DA8} = {910E5181-2825-4A3A-AC64-43B8108AE9B7}
+		{E964DADB-124A-486A-85CD-B57A69BDD66C} = {5C68D07C-EAA8-4BA1-811D-7DB4A39305D3}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {ABBF2A9B-D3EF-4691-AAF0-E38A66C4A6EF}

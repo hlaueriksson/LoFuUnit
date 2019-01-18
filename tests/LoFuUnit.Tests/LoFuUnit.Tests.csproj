@@ -7,6 +7,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\src\LoFoUnit.MSTest\LoFoUnit.MSTest.csproj" />
+    <ProjectReference Include="..\..\src\LoFuUnit.AutoMoq\LoFuUnit.AutoMoq.csproj" />
     <ProjectReference Include="..\..\src\LoFuUnit.NUnit\LoFuUnit.NUnit.csproj" />
     <ProjectReference Include="..\..\src\LoFuUnit.Xunit\LoFuUnit.Xunit.csproj" />
     <ProjectReference Include="..\..\src\LoFuUnit\LoFuUnit.csproj" />
