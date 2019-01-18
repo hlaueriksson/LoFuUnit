@@ -1,0 +1,17 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net471</TargetFramework>
+    <NoWarn>1701;1702;CS8321</NoWarn>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="FluentAssertions" Version="5.6.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\LoFuUnit.AutoNSubstitute\LoFuUnit.AutoNSubstitute.csproj" />
+    <ProjectReference Include="..\..\src\LoFuUnit.NUnit\LoFuUnit.NUnit.csproj" />
+  </ItemGroup>
+
+</Project>
