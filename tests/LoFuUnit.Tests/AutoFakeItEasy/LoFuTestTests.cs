@@ -17,17 +17,6 @@ namespace LoFuUnit.Tests.AutoFakeItEasy
         }
 
         [Test]
-        public void Clear_should_reset_the_Subject()
-        {
-            var result = Subject;
-            Subject.Should().Be(result);
-
-            Clear();
-
-            Subject.Should().NotBe(result);
-        }
-
-        [Test]
         public void The_should_return_null_before_Use()
         {
             The<IFakeDependency>().Should().BeNull();
@@ -58,7 +47,7 @@ namespace LoFuUnit.Tests.AutoFakeItEasy
             result.Dependency3.Should().Be(dependency3);
         }
 
-        [Test, Ignore("Fails")]
+        [Test]
         public void Use_alternative_syntax()
         {
             var fake1 = Use(new Fake<IFakeDependency>());

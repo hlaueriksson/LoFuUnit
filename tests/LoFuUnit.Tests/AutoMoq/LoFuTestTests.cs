@@ -17,17 +17,6 @@ namespace LoFuUnit.Tests.AutoMoq
         }
 
         [Test]
-        public void Clear_should_reset_the_Subject()
-        {
-            var result = Subject;
-            Subject.Should().Be(result);
-
-            Clear();
-
-            Subject.Should().NotBe(result);
-        }
-
-        [Test]
         public void The_should_return_null_before_Use()
         {
             The<Mock<IFakeDependency>>().Should().BeNull();

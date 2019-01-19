@@ -9,17 +9,21 @@ namespace LoFuUnit.Auto
         protected IFixture Fixture { get; }
         protected TSubject Subject => _subject ?? (_subject = Fixture.Create<TSubject>());
 
+        private readonly ICustomization _customization;
         private readonly Dictionary<Type, object> _mocks;
         private TSubject _subject;
 
         protected LoFuTestBase(ICustomization customization)
         {
-            Fixture = new Fixture().Customize(customization);
+            _customization = customization;
+            Fixture = new Fixture().Customize(_customization);
             _mocks = new Dictionary<Type, object>();
         }
 
         protected void Clear()
         {
+            Fixture.Customizations.Clear();
+            Fixture.Customize(_customization);
             _mocks.Clear();
             _subject = null;
         }
