@@ -9,7 +9,14 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\LoFuUnit.Auto\LoFuUnit.Auto.csproj" PrivateAssets="all" />
     <ProjectReference Include="..\LoFuUnit\LoFuUnit.csproj" />
   </ItemGroup>
+
+  <Target Name="CopyProjectReferencesToPackage" DependsOnTargets="ResolveReferences">
+    <ItemGroup>
+      <BuildOutputInPackage Include="@(ReferenceCopyLocalPaths->WithMetadataValue('ReferenceSourceTarget', 'ProjectReference')->WithMetadataValue('PrivateAssets', 'All'))" />
+    </ItemGroup>
+  </Target>
 
 </Project>

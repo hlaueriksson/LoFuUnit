@@ -11,6 +11,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\src\LoFuUnit.AutoNSubstitute\LoFuUnit.AutoNSubstitute.csproj" />
+    <ProjectReference Include="..\..\src\LoFuUnit.Auto\LoFuUnit.Auto.csproj" />
     <ProjectReference Include="..\..\src\LoFuUnit.NUnit\LoFuUnit.NUnit.csproj" />
   </ItemGroup>
 
