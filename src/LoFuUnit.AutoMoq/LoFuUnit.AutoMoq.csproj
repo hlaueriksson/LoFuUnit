@@ -4,6 +4,10 @@
     <TargetFrameworks>net471;netstandard2.0</TargetFrameworks>
   </PropertyGroup>
 
+  <PropertyGroup>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+  </PropertyGroup>
+
   <ItemGroup>
     <PackageReference Include="AutoFixture.AutoMoq" Version="4.6.0" />
   </ItemGroup>
