@@ -35,7 +35,7 @@ namespace LoFuUnit.Tests.AutoNSubstitute
         }
 
         [Test]
-        public void The_should_return_the_Mock_after_Use()
+        public void The_should_return_the_substitute_after_Use()
         {
             var substitute1 = Use<IFakeDependency>();
             var substitute2 = Use<FakeDependencyBase>();

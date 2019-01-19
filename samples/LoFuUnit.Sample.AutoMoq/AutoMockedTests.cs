@@ -13,7 +13,7 @@ namespace LoFuUnit.Sample.AutoMoq
         {
             Clear();
 
-            Use<IFoo>().Setup(x => x.GetFoo()).Returns("Hello");
+            Use<Mock<IFoo>>().Setup(x => x.GetFoo()).Returns("Hello");
             Use(new Mock<IBar>()).Setup(x => x.GetBar()).Returns("World");
             Use("!");
         }
@@ -23,8 +23,8 @@ namespace LoFuUnit.Sample.AutoMoq
         {
             Result = Subject.GetMessage();
 
-            void should_invoke_IFoo_GetMessage() => The<IFoo>().Verify(x => x.GetFoo());
-            void should_invoke_IBar_GetMessage() => The<IBar>().Verify(x => x.GetBar(), Times.Once());
+            void should_invoke_IFoo_GetMessage() => The<Mock<IFoo>>().Verify(x => x.GetFoo());
+            void should_invoke_IBar_GetMessage() => The<Mock<IBar>>().Verify(x => x.GetBar(), Times.Once());
             void should_return_combined_message() => Result.Should().Be("Hello, World!");
         }
 

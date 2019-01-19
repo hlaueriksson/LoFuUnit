@@ -30,25 +30,25 @@ namespace LoFuUnit.Tests.AutoMoq
         [Test]
         public void The_should_return_null_before_Use()
         {
-            The<IFakeDependency>().Should().BeNull();
-            The<FakeDependencyBase>().Should().BeNull();
+            The<Mock<IFakeDependency>>().Should().BeNull();
+            The<Mock<FakeDependencyBase>>().Should().BeNull();
         }
 
         [Test]
-        public void The_should_return_the_Mock_after_Use()
+        public void The_should_return_the_mock_after_Use()
         {
-            var mock1 = Use<IFakeDependency>();
-            var mock2 = Use<FakeDependencyBase>();
+            var mock1 = Use<Mock<IFakeDependency>>();
+            var mock2 = Use<Mock<FakeDependencyBase>>();
 
-            The<IFakeDependency>().Should().Be(mock1);
-            The<FakeDependencyBase>().Should().Be(mock2);
+            The<Mock<IFakeDependency>>().Should().Be(mock1);
+            The<Mock<FakeDependencyBase>>().Should().Be(mock2);
         }
 
         [Test]
         public void Subject_should_be_auto_mocked_with_dependencies_from_Use()
         {
             var mock1 = Use(new Mock<IFakeDependency>());
-            var mock2 = Use<FakeDependencyBase>();
+            var mock2 = Use<Mock<FakeDependencyBase>>();
             var dependency3 = Use(new FakeDependency(Guid.NewGuid()));
 
             var result = Subject;
@@ -56,6 +56,18 @@ namespace LoFuUnit.Tests.AutoMoq
             result.Dependency1.Should().Be(mock1.Object);
             result.Dependency2.Should().Be(mock2.Object);
             result.Dependency3.Should().Be(dependency3);
+        }
+
+        [Test]
+        public void Use_alternative_syntax()
+        {
+            var mock1 = Use(Mock.Of<IFakeDependency>(x => x.Id == Guid.NewGuid()));
+
+            var result = Subject;
+
+            result.Dependency1.Should().Be(The<IFakeDependency>());
+            result.Dependency1.Id.Should().NotBeEmpty();
+            Mock.Get(mock1).Verify(x => x.Id);
         }
 
         [Test]

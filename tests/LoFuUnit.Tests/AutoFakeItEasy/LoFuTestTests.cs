@@ -35,7 +35,7 @@ namespace LoFuUnit.Tests.AutoFakeItEasy
         }
 
         [Test]
-        public void The_should_return_the_Mock_after_Use()
+        public void The_should_return_the_fake_after_Use()
         {
             var fake1 = Use<IFakeDependency>();
             var fake2 = Use<FakeDependencyBase>();
@@ -56,6 +56,19 @@ namespace LoFuUnit.Tests.AutoFakeItEasy
             result.Dependency1.Should().Be(fake1);
             result.Dependency2.Should().Be(fake2);
             result.Dependency3.Should().Be(dependency3);
+        }
+
+        [Test, Ignore("Fails")]
+        public void Use_alternative_syntax()
+        {
+            var fake1 = Use(new Fake<IFakeDependency>());
+            fake1.CallsTo(x => x.Id).Returns(Guid.NewGuid());
+
+            var result = Subject;
+
+            result.Dependency1.Should().Be(The<Fake<IFakeDependency>>().FakedObject);
+            result.Dependency1.Id.Should().NotBeEmpty();
+            fake1.CallsTo(x => x.Id).MustHaveHappened();
         }
 
         [Test]

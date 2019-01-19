@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using AutoFixture;
 using AutoFixture.AutoMoq;
-using Moq;
 
 namespace LoFuUnit.AutoMoq
 {
@@ -11,13 +10,13 @@ namespace LoFuUnit.AutoMoq
         protected IFixture Fixture { get; }
         protected TSubject Subject => _subject ?? (_subject = Fixture.Create<TSubject>());
 
-        private readonly Dictionary<Type, Mock> _mocks;
+        private readonly Dictionary<Type, object> _mocks;
         private TSubject _subject;
 
         protected LoFuTest()
         {
             Fixture = new Fixture().Customize(new AutoMoqCustomization());
-            _mocks = new Dictionary<Type, Mock>();
+            _mocks = new Dictionary<Type, object>();
         }
 
         protected void Clear()
@@ -26,24 +25,16 @@ namespace LoFuUnit.AutoMoq
             _subject = null;
         }
 
-        protected Mock<TDependency> The<TDependency>() where TDependency : class
+        protected TDependency The<TDependency>() where TDependency : class
         {
             var type = typeof(TDependency);
 
-            return _mocks.ContainsKey(type) ? _mocks[type] as Mock<TDependency> : null;
+            return _mocks.ContainsKey(type) ? _mocks[type] as TDependency : null;
         }
 
-        protected Mock<TDependency> Use<TDependency>() where TDependency : class
+        protected TDependency Use<TDependency>() where TDependency : class
         {
-            var mock = Fixture.Freeze<Mock<TDependency>>();
-            _mocks[typeof(TDependency)] = mock;
-
-            return mock;
-        }
-
-        protected Mock<TDependency> Use<TDependency>(Mock<TDependency> mock) where TDependency : class
-        {
-            Fixture.Inject(mock.Object);
+            var mock = Fixture.Freeze<TDependency>();
             _mocks[typeof(TDependency)] = mock;
 
             return mock;
@@ -52,6 +43,7 @@ namespace LoFuUnit.AutoMoq
         protected TDependency Use<TDependency>(TDependency instance)
         {
             Fixture.Inject(instance);
+            _mocks[typeof(TDependency)] = instance;
 
             return instance;
         }
