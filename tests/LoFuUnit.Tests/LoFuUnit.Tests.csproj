@@ -17,17 +17,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="LoFuUnit\" />
-    <Folder Include="MSTest\" />
-    <Folder Include="Xunit\" />
-    <Folder Include="NUnit\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="FluentAssertions" Version="5.6.0" />
     <PackageReference Include="MSTest.TestFramework" Version="1.4.0" />
     <PackageReference Include="NSubstitute" Version="3.1.0" />
     <PackageReference Include="NUnit" Version="3.11.0" />
+    <PackageReference Include="NUnit3TestAdapter" Version="3.12.0" />
     <PackageReference Include="ReflectionMagic" Version="4.0.0" />
     <PackageReference Include="xunit" Version="2.4.1" />
   </ItemGroup>
