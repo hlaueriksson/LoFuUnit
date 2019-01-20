@@ -4,7 +4,17 @@
     <TargetFrameworks>net471;netstandard2.0</TargetFrameworks>
     <Version>1.0.0</Version>
     <Authors>Henrik Lau Eriksson</Authors>
-    <Description></Description>
+    <Description>Auto-mocked Unit Testing with Local Functions 🐯
+
+Use the traditional Unit Testing Frameworks to write TDD or BDD tests:
+
+✔️ Arrange / Act / Assert
+✔️ Given / When / Then
+✔️ Context / Specification
+
+Use FakeItEasy to:
+
+✔️ Mock / Fake / Stub</Description>
     <PackageId>LoFuUnit.AutoFakeItEasy</PackageId>
     <PackageProjectUrl>https://github.com/hlaueriksson/LoFuUnit</PackageProjectUrl>
     <PackageIconUrl>https://raw.githubusercontent.com/hlaueriksson/LoFuUnit/master/icon.png</PackageIconUrl>
