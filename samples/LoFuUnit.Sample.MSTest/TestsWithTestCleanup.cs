@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using FluentAssertions;
-using LoFoUnit.MSTest;
+using LoFuUnit.MSTest;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace LoFoUnit.Sample.MSTest
+namespace LoFuUnit.Sample.MSTest
 {
     [TestClass]
     public class TestsWithTestCleanup

@@ -12,7 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\LoFoUnit.MSTest\LoFoUnit.MSTest.csproj" />
+    <ProjectReference Include="..\..\src\LoFuUnit.MSTest\LoFuUnit.MSTest.csproj" />
   </ItemGroup>
 
 </Project>

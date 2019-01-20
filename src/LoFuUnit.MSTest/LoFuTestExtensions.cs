@@ -1,8 +1,7 @@
 ﻿using System.Threading.Tasks;
-using LoFuUnit;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace LoFoUnit.MSTest
+namespace LoFuUnit.MSTest
 {
     /// <summary>
     /// Extension methods for test fixtures.

@@ -15,7 +15,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LoFuUnit.NUnit", "src\LoFuU
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LoFuUnit.Xunit", "src\LoFuUnit.Xunit\LoFuUnit.Xunit.csproj", "{3C10DC34-CDE9-43F2-B4F5-F4D2425E07A5}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LoFoUnit.MSTest", "src\LoFoUnit.MSTest\LoFoUnit.MSTest.csproj", "{B75B6D88-44BF-490C-9B3C-439FC2DB833D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LoFuUnit.MSTest", "src\LoFuUnit.MSTest\LoFuUnit.MSTest.csproj", "{B75B6D88-44BF-490C-9B3C-439FC2DB833D}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "samples", "samples", "{5C68D07C-EAA8-4BA1-811D-7DB4A39305D3}"
 EndProject
@@ -25,7 +25,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LoFuUnit.Sample.NUnit", "sa
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LoFuUnit.Sample.Xunit", "samples\LoFuUnit.Sample.Xunit\LoFuUnit.Sample.Xunit.csproj", "{ECD3C892-6704-4E6C-B080-AC26B36DB328}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LoFoUnit.Sample.MSTest", "samples\LoFoUnit.Sample.MSTest\LoFoUnit.Sample.MSTest.csproj", "{C55953D6-5BDD-4EFD-AD8C-29D025B78254}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LoFuUnit.Sample.MSTest", "samples\LoFuUnit.Sample.MSTest\LoFuUnit.Sample.MSTest.csproj", "{C55953D6-5BDD-4EFD-AD8C-29D025B78254}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LoFuUnit.AutoMoq", "src\LoFuUnit.AutoMoq\LoFuUnit.AutoMoq.csproj", "{EB291F31-7395-44A1-8678-DB8D17707DA8}"
 EndProject
@@ -37,9 +37,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LoFuUnit.Sample.AutoFakeItE
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LoFuUnit.AutoNSubstitute", "src\LoFuUnit.AutoNSubstitute\LoFuUnit.AutoNSubstitute.csproj", "{35BF8F40-6433-4DFE-85C3-E8A271DC928F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoFuUnit.Sample.AutoNSubstitute", "samples\LoFuUnit.Sample.AutoNSubstitute\LoFuUnit.Sample.AutoNSubstitute.csproj", "{EA4F7031-8E71-4BB3-940C-74B7308C9571}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LoFuUnit.Sample.AutoNSubstitute", "samples\LoFuUnit.Sample.AutoNSubstitute\LoFuUnit.Sample.AutoNSubstitute.csproj", "{EA4F7031-8E71-4BB3-940C-74B7308C9571}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoFuUnit.Auto", "src\LoFuUnit.Auto\LoFuUnit.Auto.csproj", "{F26E6025-AEF6-4851-AB86-F2A77E3A06F5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LoFuUnit.Auto", "src\LoFuUnit.Auto\LoFuUnit.Auto.csproj", "{F26E6025-AEF6-4851-AB86-F2A77E3A06F5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
