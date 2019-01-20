@@ -3,7 +3,7 @@ using NUnit.Framework;
 
 namespace LoFuUnit.Tests.LoFuUnit
 {
-    public class NamingTests
+    public class InternalNamingExtensionsTests
     {
         [Test]
         public void ToFormat_class_name()
