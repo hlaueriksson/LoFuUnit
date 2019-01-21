@@ -2,21 +2,24 @@
 using FluentAssertions;
 using NUnit.Framework;
 
-namespace LoFuUnit.Tests
+namespace LoFuUnit.Tests.Documentation
 {
-    // Compare with https://github.com/machine/machine.specifications#overview
-    public class Authentication : LoFuTest
+    /// <summary>
+    /// Compare with https://github.com/machine/machine.specifications#overview
+    /// </summary>
+    public class AuthenticationTests : LoFuTest
     {
         SecurityService Subject;
         UserToken Token;
 
         [Test]
-        public void When_authenticating_an_admin_user()
+        public void Authenticate_admin_users()
         {
             Subject = new SecurityService();
-            Token = Subject.Authenticate("username", "password");
 
             Assert();
+
+            void when_authenticating_an_admin_user() => Token = Subject.Authenticate("username", "password");
 
             void should_indicate_the_user_s_role() => Token.Role.Should().Be(Roles.Admin);
 
