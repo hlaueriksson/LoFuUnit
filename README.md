@@ -25,7 +25,7 @@
   - [Tests️](#tests-)
   - [Output](#output-)
   - [Limitations](#limitations-)
-  - [Caveats](#caveats-)
+  - [Caveats](#caveats-%EF%B8%8F)
 - [Auto Mocking](#auto-mocking)
   - [Packages](#packages-1)
   - [Mocks](#mocks)
@@ -36,7 +36,7 @@
 
 Use the traditional Unit Testing Frameworks to practice **TDD** or **BDD**.
 
-Use _local functions_ to structure tests cases with patterns like:
+Use _local functions_ to structure tests with patterns like:
 
 * `Arrange` / `Act` / `Assert`
 * `Given` / `When` / `Then`
@@ -106,7 +106,7 @@ Terminology:
   * e.g. `AuthenticationTests`
 * Test method – a method in a test fixture that represents a test
   * e.g. `Authenticate_admin_users`
-* Test function – a local function in a containing test method
+* Test function – a local function in a containing test method, that does something along the lines of _arrange_, _act_ or _assert_
   * e.g. `when_authenticating_an_admin_user`, `should_indicate_the_user_s_role` and `should_have_a_unique_session_id`
 
 ## Packages
@@ -127,7 +127,7 @@ These test functions can perform the _arrange_, _act_ or _assert_ steps of the t
 
 The `LoFuTest` base class provides two important methods for test fixtures.
 The `Assert` and `AssertAsync` methods invokes the test functions in the containing test method.
-The invocations will occur in the order that the local functions are declared.
+The invocations will occur in the order that the test functions are declared.
 If a test function fails, the test method fails directly. Any subsequent test functions in the test method will not be invoked.
 Make sure that all test methods actually invoke `Assert` or `AssertAsync`.
 
@@ -305,8 +305,8 @@ The `Subject` property returns an auto-mocked instance of the _subject_ under te
 Use the _subject_ for the `act` or `when` test steps.
 
 The `Clear` method reset the Auto-Mocking Container, and clears the mocks and _subject_ under test.
-Make test methods isolated for each other, by clearing the state in between runs.
-Test fixtures can also be implemented so `Clear`is invoked for all test methods in a _set up / initialize / constructor_ or _tear down / cleanup / dispose_ method.
+Make test methods isolated from each other, by clearing the state between runs.
+Test fixtures can also be implemented so `Clear`is invoked for all test methods in a _tear down / cleanup / dispose_ method.
 
 The `Fixture` property is exposed to the test fixtures. Use it in scenarios where the methods described above are inadequate.
 Consult the [AutoFixture documentation](https://github.com/AutoFixture/AutoFixture/wiki) for more information.
