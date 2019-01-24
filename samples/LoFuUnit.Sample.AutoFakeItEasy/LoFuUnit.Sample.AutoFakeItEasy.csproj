@@ -8,12 +8,8 @@
 
   <ItemGroup>
     <PackageReference Include="FluentAssertions" Version="5.6.0" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\..\src\LoFuUnit.AutoFakeItEasy\LoFuUnit.AutoFakeItEasy.csproj" />
-    <ProjectReference Include="..\..\src\LoFuUnit.Auto\LoFuUnit.Auto.csproj" />
-    <ProjectReference Include="..\..\src\LoFuUnit.NUnit\LoFuUnit.NUnit.csproj" />
+    <PackageReference Include="LoFuUnit.AutoFakeItEasy" Version="1.0.1" />
+    <PackageReference Include="LoFuUnit.NUnit" Version="1.0.0" />
   </ItemGroup>
 
 </Project>

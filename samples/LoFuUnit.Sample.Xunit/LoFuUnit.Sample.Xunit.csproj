@@ -8,10 +8,7 @@
 
   <ItemGroup>
     <PackageReference Include="FluentAssertions" Version="5.6.0" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\..\src\LoFuUnit.Xunit\LoFuUnit.Xunit.csproj" />
+    <PackageReference Include="LoFuUnit.Xunit" Version="1.0.0" />
   </ItemGroup>
 
 </Project>
