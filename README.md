@@ -7,6 +7,7 @@
 [![LoFuUnit.MSTest](https://img.shields.io/nuget/v/LoFuUnit.MSTest.svg?label=LoFuUnit.MSTest)](https://www.nuget.org/packages/LoFuUnit.MSTest)
 [![LoFuUnit.NUnit](https://img.shields.io/nuget/v/LoFuUnit.NUnit.svg?label=LoFuUnit.NUnit)](https://www.nuget.org/packages/LoFuUnit.NUnit)
 [![LoFuUnit.Xunit](https://img.shields.io/nuget/v/LoFuUnit.Xunit.svg?label=LoFuUnit.Xunit)](https://www.nuget.org/packages/LoFuUnit.Xunit)
+
 [![LoFuUnit.AutoFakeItEasy](https://img.shields.io/nuget/v/LoFuUnit.AutoFakeItEasy.svg?label=LoFuUnit.AutoFakeItEasy)](https://www.nuget.org/packages/LoFuUnit.AutoFakeItEasy)
 [![LoFuUnit.AutoMoq](https://img.shields.io/nuget/v/LoFuUnit.AutoMoq.svg?label=LoFuUnit.AutoMoq)](https://www.nuget.org/packages/LoFuUnit.AutoMoq)
 [![LoFuUnit.AutoNSubstitute](https://img.shields.io/nuget/v/LoFuUnit.AutoNSubstitute.svg?label=LoFuUnit.AutoNSubstitute)](https://www.nuget.org/packages/LoFuUnit.AutoNSubstitute)
