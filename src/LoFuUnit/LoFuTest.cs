@@ -82,7 +82,7 @@ namespace LoFuUnit
                 {
                     var task = localFunction.Invoke(fixture, new object[0]) as Task;
 
-                    if (task == null) throw new InvalidOperationException("Invocation of async local function failed.");
+                    if (task == null) throw new InvalidTestFunctionException($"Invocation of test function '{localFunction.Name}' failed. The asynchronous local function does not have a valid return type. Asynchronous test functions must return a Task, and cannot return a Task<TResult> or void.");
 
                     await task.ConfigureAwait(false);
                 }
