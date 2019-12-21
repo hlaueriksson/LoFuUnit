@@ -42,7 +42,7 @@ namespace LoFuUnit
             var methodName = $"<{method.Name}>";
 
             var localFunctions = type?
-                                     .GetMethods(BindingFlags.NonPublic | BindingFlags.Instance)
+                                     .GetMethods(BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Static)
                                      .Where(x => x.GetCustomAttributes<CompilerGeneratedAttribute>().Any())
                                      .Where(x => x.ReturnType == typeof(void))
                                      .Where(x => x.GetParameters().Length == 0)
