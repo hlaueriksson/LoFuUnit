@@ -6,7 +6,7 @@ using LoFuUnit.Tests.Fakes;
 using NSubstitute;
 using NUnit.Framework;
 
-namespace LoFuUnit.Tests.AutoNSubstitute
+namespace LoFuUnit.Tests.LoFuUnit.AutoNSubstitute
 {
     public class LoFuTestTests : LoFuTest<FakeSubject>
     {

@@ -1,9 +1,9 @@
 ﻿using System.Threading.Tasks;
 using LoFuUnit.Tests.Extensions;
-using LoFuUnit.Tests.MSTest.Fakes;
+using LoFuUnit.Tests.LoFuUnit.MSTest.Fakes;
 using NUnit.Framework;
 
-namespace LoFuUnit.Tests.MSTest
+namespace LoFuUnit.Tests.LoFuUnit.MSTest
 {
     public class LoFuTestExtensionsTests
     {

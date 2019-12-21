@@ -3,7 +3,7 @@ using LoFuUnit.AutoMoq;
 using LoFuUnit.Tests.Fakes;
 using NUnit.Framework;
 
-namespace LoFuUnit.Tests.Auto
+namespace LoFuUnit.Tests.LoFuUnit.Auto
 {
     public class FakeLoFuTestBaseTests : LoFuTest<FakeSubject>
     {

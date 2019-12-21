@@ -2,7 +2,7 @@
 using LoFuUnit.MSTest;
 using LoFuUnit.Tests.Fakes;
 
-namespace LoFuUnit.Tests.MSTest.Fakes
+namespace LoFuUnit.Tests.LoFuUnit.MSTest.Fakes
 {
     public class FakeMsTestLoFuTest : FakeLoFuTestBase
     {

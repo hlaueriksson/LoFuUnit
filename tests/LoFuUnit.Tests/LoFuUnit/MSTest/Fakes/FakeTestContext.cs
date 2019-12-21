@@ -3,7 +3,7 @@ using System.Data;
 using System.Data.Common;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace LoFuUnit.Tests.MSTest.Fakes
+namespace LoFuUnit.Tests.LoFuUnit.MSTest.Fakes
 {
     public class FakeTestContext : TestContext
     {

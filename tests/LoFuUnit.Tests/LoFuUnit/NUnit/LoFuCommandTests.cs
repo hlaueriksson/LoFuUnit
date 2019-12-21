@@ -8,7 +8,7 @@ using NUnit.Framework.Internal;
 using NUnit.Framework.Internal.Commands;
 using ReflectionMagic;
 
-namespace LoFuUnit.Tests.NUnit
+namespace LoFuUnit.Tests.LoFuUnit.NUnit
 {
     public class LoFuCommandTests
     {

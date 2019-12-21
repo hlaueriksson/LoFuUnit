@@ -2,10 +2,10 @@
 using System.Threading.Tasks;
 using FluentAssertions;
 using LoFuUnit.Tests.Extensions;
-using LoFuUnit.Tests.Xunit.Fakes;
+using LoFuUnit.Tests.LoFuUnit.Xunit.Fakes;
 using NUnit.Framework;
 
-namespace LoFuUnit.Tests.Xunit
+namespace LoFuUnit.Tests.LoFuUnit.Xunit
 {
     public class LoFuTestExtensionsTests
     {

@@ -1,7 +1,7 @@
 ﻿using System.Text;
 using Xunit.Abstractions;
 
-namespace LoFuUnit.Tests.Xunit.Fakes
+namespace LoFuUnit.Tests.LoFuUnit.Xunit.Fakes
 {
     public class FakeTestOutputHelper : ITestOutputHelper
     {
