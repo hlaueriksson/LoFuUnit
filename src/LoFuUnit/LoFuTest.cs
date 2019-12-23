@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
@@ -113,7 +114,7 @@ namespace LoFuUnit
 
             var names = invalidTestFunctions.Select(x => x.GetFunctionName(method));
 
-            throw new InconclusiveTestMethodException($"Invocation of test method '{method.Name}' aborted. One or more test functions are inconclusive. Test functions must be parameterless, and cannot use variables declared at test method scope. Please review the following local functions:\n\t{string.Join("\n\t", names)}");
+            ThrowInconclusiveTestMethodException(method, names);
         }
 
         private void ValidateAsync(MethodBase method)
@@ -136,6 +137,11 @@ namespace LoFuUnit
 
             var names = invalidTestFunctions.Select(x => x.GetFunctionName(method));
 
+            ThrowInconclusiveTestMethodException(method, names);
+        }
+
+        private static void ThrowInconclusiveTestMethodException(MethodBase method, IEnumerable<string> names)
+        {
             throw new InconclusiveTestMethodException($"Invocation of test method '{method.Name}' aborted. One or more test functions are inconclusive. Test functions must be parameterless, and cannot use variables declared at test method scope. Please review the following local functions:\n\t{string.Join("\n\t", names)}");
         }
     }
