@@ -1,5 +1,4 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using FluentAssertions;
 using LoFuUnit.Tests.Extensions;
 using LoFuUnit.Tests.Fakes;
@@ -32,14 +31,36 @@ namespace LoFuUnit.Tests.LoFuUnit
         }
 
         [Test]
-        public void AssertAsync_object_MethodBase_throws()
+        public void AssertAsync_object_MethodBase_throws_InvalidTestFunctionException()
         {
             var fixture = new FakeLoFuTest();
-            var method = fixture.GetType().GetMethod(nameof(fixture.FakeTestFailAsync));
+            var method = fixture.GetType().GetMethod(nameof(fixture.FakeTestThatThrowsInvalidTestFunctionExceptionAsync));
 
             fixture.Awaiting(async x => await x.AssertAsync(fixture, method))
-                .Should().Throw<InvalidOperationException>()
-                .WithMessage("Invocation of async local function failed.");
+                .Should().Throw<InvalidTestFunctionException>()
+                .WithMessage("Invocation of test function *");
+        }
+
+        [Test]
+        public void Assert_object_MethodBase_throws_InconclusiveTestMethodException()
+        {
+            var fixture = new FakeLoFuTest();
+            var method = fixture.GetType().GetMethod(nameof(fixture.FakeTestThatThrowsInconclusiveTestMethodException));
+
+            fixture.Invoking(x => x.Assert(fixture, method))
+                .Should().Throw<InconclusiveTestMethodException>()
+                .WithMessage($"*{nameof(fixture.FakeTestThatThrowsInconclusiveTestMethodException)}*");
+        }
+        
+        [Test]
+        public async Task AssertAsync_object_MethodBase_throws_InconclusiveTestMethodException()
+        {
+            var fixture = new FakeLoFuTest();
+            var method = fixture.GetType().GetMethod(nameof(fixture.FakeTestThatThrowsInconclusiveTestMethodExceptionAsync));
+
+            fixture.Awaiting(async x => await x.AssertAsync(fixture, method))
+                .Should().Throw<InconclusiveTestMethodException>()
+                .WithMessage($"*{nameof(fixture.FakeTestThatThrowsInconclusiveTestMethodExceptionAsync)}*");
         }
 
         [Test]
@@ -60,17 +81,6 @@ namespace LoFuUnit.Tests.LoFuUnit
 
             fixture.Out.ToString().ShouldMatch(nameof(fixture.FakeTestWithAssertAsync), "A", "B", "C");
             fixture.Invocations.ShouldMatch(nameof(fixture.FakeTestWithAssertAsync), "A", "B", "C");
-        }
-
-        [Test]
-        public void Assert_with_nested_local_functions()
-        {
-            var fixture = new FakeLoFuTest();
-            var method = fixture.GetType().GetMethod(nameof(fixture.FakeTestWithNestedLocalFunctions));
-            fixture.Assert(fixture, method);
-
-            fixture.Out.ToString().ShouldMatch(nameof(fixture.FakeTestWithNestedLocalFunctions), "A", "Level 0", "Level 1", "Level 2");
-            fixture.Invocations.ShouldMatch(nameof(fixture.FakeTestWithNestedLocalFunctions), "A", "B", "C");
         }
     }
 }
