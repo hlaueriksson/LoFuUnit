@@ -1,12 +1,12 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-#if NET461
+#if NETFRAMEWORK
 using System.Collections;
 using System.Data;
 using System.Data.Common;
 #endif
 
-#if NETCOREAPP3_0
+#if NETCOREAPP
 using System.Collections.Generic;
 #endif
 
@@ -18,7 +18,7 @@ namespace LoFuUnit.Tests.LoFuUnit.MSTest.Fakes
 
         public FakeTestContext(string methodName) => TestName = methodName;
 
-#if NET461
+#if NETFRAMEWORK
         public override void WriteLine(string message) => throw new System.NotImplementedException();
 
         public override void WriteLine(string format, params object[] args) => throw new System.NotImplementedException();
@@ -34,7 +34,7 @@ namespace LoFuUnit.Tests.LoFuUnit.MSTest.Fakes
         public override DbConnection DataConnection { get; }
 #endif
 
-#if NETCOREAPP3_0
+#if NETCOREAPP
         public override void WriteLine(string message) => throw new System.NotImplementedException();
 
         public override void WriteLine(string format, params object[] args) => throw new System.NotImplementedException();
