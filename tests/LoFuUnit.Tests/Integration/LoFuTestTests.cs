@@ -44,7 +44,7 @@ namespace LoFuUnit.Tests.Integration
             void should_invoke_test_function_that_use_local_variables() => (1 + 1).Should().Be(2);
         }
 
-        [Test, Ignore("InconclusiveTestMethodException")]
+        [Test, Ignore("InconclusiveLoFuTestException")]
         public void when_Assert_on_inconclusive_test_method()
         {
             var result = 1 + 1;
@@ -56,7 +56,7 @@ namespace LoFuUnit.Tests.Integration
             void should_invoke_test_function_that_use_local_variables() => (1 + 1).Should().Be(2);
         }
 
-        [Test, Ignore("InconclusiveTestMethodException")]
+        [Test, Ignore("InconclusiveLoFuTestException")]
         public async Task when_AssertAsync_on_inconclusive_test_method()
         {
             var result = 1 + 1;
@@ -88,7 +88,7 @@ namespace LoFuUnit.Tests.Integration
             void should_invoke_test_function_that_use_local_variables() => (1 + 1).Should().Be(2);
         }
 
-        [Test, Ignore("InvalidTestFunctionException")]
+        [Test, Ignore("InconclusiveLoFuTestException")]
         public async Task when_AssertAsync_on_invalid_test_function()
         {
             await AssertAsync();

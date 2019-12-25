@@ -31,36 +31,36 @@ namespace LoFuUnit.Tests.LoFuUnit
         }
 
         [Test]
-        public void AssertAsync_object_MethodBase_throws_InvalidTestFunctionException()
+        public void Assert_object_MethodBase_throws_InconclusiveLoFuTestException()
         {
             var fixture = new FakeLoFuTest();
-            var method = fixture.GetType().GetMethod(nameof(fixture.FakeTestThatThrowsInvalidTestFunctionExceptionAsync));
-
-            fixture.Awaiting(async x => await x.AssertAsync(fixture, method))
-                .Should().Throw<InvalidTestFunctionException>()
-                .WithMessage("Invocation of test function *");
-        }
-
-        [Test]
-        public void Assert_object_MethodBase_throws_InconclusiveTestMethodException()
-        {
-            var fixture = new FakeLoFuTest();
-            var method = fixture.GetType().GetMethod(nameof(fixture.FakeTestThatThrowsInconclusiveTestMethodException));
+            var method = fixture.GetType().GetMethod(nameof(fixture.FakeTestThatThrowsInconclusiveLoFuTestException));
 
             fixture.Invoking(x => x.Assert(fixture, method))
-                .Should().Throw<InconclusiveTestMethodException>()
-                .WithMessage($"*{nameof(fixture.FakeTestThatThrowsInconclusiveTestMethodException)}*");
+                .Should().Throw<InconclusiveLoFuTestException>()
+                .WithMessage($"*{nameof(fixture.FakeTestThatThrowsInconclusiveLoFuTestException)}*");
         }
-        
+
         [Test]
-        public async Task AssertAsync_object_MethodBase_throws_InconclusiveTestMethodException()
+        public async Task AssertAsync_object_MethodBase_throws_InconclusiveLoFuTestException()
         {
             var fixture = new FakeLoFuTest();
-            var method = fixture.GetType().GetMethod(nameof(fixture.FakeTestThatThrowsInconclusiveTestMethodExceptionAsync));
+            var method = fixture.GetType().GetMethod(nameof(fixture.FakeTestThatThrowsInconclusiveLoFuTestExceptionAsync));
 
             fixture.Awaiting(async x => await x.AssertAsync(fixture, method))
-                .Should().Throw<InconclusiveTestMethodException>()
-                .WithMessage($"*{nameof(fixture.FakeTestThatThrowsInconclusiveTestMethodExceptionAsync)}*");
+                .Should().Throw<InconclusiveLoFuTestException>()
+                .WithMessage($"*{nameof(fixture.FakeTestThatThrowsInconclusiveLoFuTestExceptionAsync)}*");
+        }
+
+        [Test]
+        public void AssertAsync_object_MethodBase_throws_InconclusiveLoFuTestException_because_of_async_void()
+        {
+            var fixture = new FakeLoFuTest();
+            var method = fixture.GetType().GetMethod(nameof(fixture.FakeTestThatThrowsInconclusiveLoFuTestExceptionAsyncVoid));
+
+            fixture.Awaiting(async x => await x.AssertAsync(fixture, method))
+                .Should().Throw<InconclusiveLoFuTestException>()
+                .WithMessage("Invocation of test function *");
         }
 
         [Test]

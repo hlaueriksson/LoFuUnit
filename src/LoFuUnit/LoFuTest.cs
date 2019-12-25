@@ -79,7 +79,7 @@ namespace LoFuUnit
                 {
                     var task = testFunction.Invoke(testFixture, new object[0]) as Task;
 
-                    if (task == null) throw new InvalidTestFunctionException($"Invocation of test function '{testFunction.GetFunctionName(testMethod)}' failed. The asynchronous local function does not have a valid return type. Asynchronous test functions must return a Task, and cannot return a Task<TResult> or void.");
+                    if (task == null) throw new InconclusiveLoFuTestException($"Invocation of test function '{testFunction.GetFunctionName(testMethod)}' failed. The asynchronous local function does not have a valid return type. Asynchronous test functions must return a Task, and cannot return void or Task<TResult>.");
 
                     await task.ConfigureAwait(false);
                 }
@@ -114,7 +114,7 @@ namespace LoFuUnit
 
             var names = invalidTestFunctions.Select(x => x.GetFunctionName(method));
 
-            ThrowInconclusiveTestMethodException(method, names);
+            ThrowInconclusive(method, names);
         }
 
         private void ValidateAsync(MethodBase method)
@@ -137,12 +137,12 @@ namespace LoFuUnit
 
             var names = invalidTestFunctions.Select(x => x.GetFunctionName(method));
 
-            ThrowInconclusiveTestMethodException(method, names);
+            ThrowInconclusive(method, names);
         }
 
-        private static void ThrowInconclusiveTestMethodException(MethodBase method, IEnumerable<string> names)
+        private static void ThrowInconclusive(MethodBase method, IEnumerable<string> names)
         {
-            throw new InconclusiveTestMethodException($"Invocation of test method '{method.Name}' aborted. One or more test functions are inconclusive. Test functions must be parameterless, and cannot use variables declared at test method scope. Please review the following local functions:\n\t{string.Join("\n\t", names)}");
+            throw new InconclusiveLoFuTestException($"Invocation of test method '{method.Name}' aborted. One or more test functions are inconclusive. Test functions must be parameterless, and cannot use variables declared at test method scope. Please review the following local functions:\n\t{string.Join("\n\t", names)}");
         }
     }
 }

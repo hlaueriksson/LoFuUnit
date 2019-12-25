@@ -75,26 +75,26 @@ namespace LoFuUnit.Tests.Fakes
             async Task C() => await RecordAsync();
         }
 
-        public async Task FakeTestThatThrowsInvalidTestFunctionExceptionAsync()
-        {
-            await Task.CompletedTask;
-
-            async void Fail() => await RecordAsync(); // should return Task
-        }
-
-        public void FakeTestThatThrowsInconclusiveTestMethodException()
+        public void FakeTestThatThrowsInconclusiveLoFuTestException()
         {
             var result = 1 + 1;
 
             void Fail() => result.Should().Be(2); // should not access test method variables
         }
 
-        public async Task FakeTestThatThrowsInconclusiveTestMethodExceptionAsync()
+        public async Task FakeTestThatThrowsInconclusiveLoFuTestExceptionAsync()
         {
             var result = 1 + 1;
             await Task.CompletedTask;
 
             async Task Fail() => await Task.Delay(result); // should not access test method variables
+        }
+
+        public async Task FakeTestThatThrowsInconclusiveLoFuTestExceptionAsyncVoid()
+        {
+            await Task.CompletedTask;
+
+            async void Fail() => await RecordAsync(); // should return Task
         }
     }
 }
