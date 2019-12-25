@@ -54,6 +54,20 @@ namespace LoFuUnit.Tests.LoFuUnit.NUnit
             fixture.Invocations.Should().BeEmpty();
         }
 
+        [Test]
+        public void InconclusiveLoFuTestException()
+        {
+            var fixture = new FakeLoFuTest();
+
+            var method = new TestMethod(new MethodWrapper(fixture.GetType(), nameof(fixture.FakeTestThatThrowsInconclusiveLoFuTestException)));
+            var context = GetContext(fixture, method);
+
+            var command = new LoFuCommand(new EmptyTestCommand(method));
+
+            command.Invoking(x => x.Execute(context))
+                .Should().Throw<InconclusiveException>();
+        }
+
         private static TestExecutionContext GetContext(object fixture, TestMethod testMethod, ResultState result = null)
         {
             var testResult = new TestCaseResult(null);

@@ -23,5 +23,23 @@ namespace LoFuUnit.Tests.LoFuUnit.MSTest.Fakes
             void B() => Record();
             async Task C() => await RecordAsync();
         }
+
+        public void FakeTestWithExtensionThatThrowsInconclusiveLoFuTestException()
+        {
+            var result = 1 + 1;
+
+            this.Assert(new FakeTestContext(nameof(FakeTestWithExtensionThatThrowsInconclusiveLoFuTestException)));
+
+            void Fail() => result++; // should not access test method variables
+        }
+
+        public async Task FakeTestWithExtensionThatThrowsInconclusiveLoFuTestExceptionAsync()
+        {
+            var result = 1 + 1;
+
+            await this.AssertAsync(new FakeTestContext(nameof(FakeTestWithExtensionThatThrowsInconclusiveLoFuTestExceptionAsync)));
+
+            async Task Fail() => await Task.Delay(result); // should not access test method variables
+        }
     }
 }
