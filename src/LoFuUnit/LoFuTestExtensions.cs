@@ -15,7 +15,7 @@ namespace LoFuUnit
         public static void Assert(this object fixture)
         {
             var stackTrace = new StackTrace();
-            var method = stackTrace.GetFrame(1).GetMethod();
+            var method = stackTrace.GetFrame(Configuration.StackTraceFrameIndexForAssert()).GetMethod();
 
             new InternalLoFuTest().Assert(fixture, method);
         }
@@ -28,7 +28,7 @@ namespace LoFuUnit
         public static async Task AssertAsync(this object fixture)
         {
             var stackTrace = new StackTrace();
-            var method = stackTrace.GetFrame(5).GetMethod();
+            var method = stackTrace.GetFrame(Configuration.StackTraceFrameIndexForAssertAsync()).GetMethod();
 
             await new InternalLoFuTest().AssertAsync(fixture, method).ConfigureAwait(false);
         }

@@ -1,7 +1,14 @@
-﻿using System.Collections;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+
+#if NET461
+using System.Collections;
 using System.Data;
 using System.Data.Common;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+#endif
+
+#if NETCOREAPP3_0
+using System.Collections.Generic;
+#endif
 
 namespace LoFuUnit.Tests.LoFuUnit.MSTest.Fakes
 {
@@ -11,6 +18,7 @@ namespace LoFuUnit.Tests.LoFuUnit.MSTest.Fakes
 
         public FakeTestContext(string methodName) => TestName = methodName;
 
+#if NET461
         public override void WriteLine(string message) => throw new System.NotImplementedException();
 
         public override void WriteLine(string format, params object[] args) => throw new System.NotImplementedException();
@@ -24,5 +32,14 @@ namespace LoFuUnit.Tests.LoFuUnit.MSTest.Fakes
         public override IDictionary Properties { get; }
         public override DataRow DataRow { get; }
         public override DbConnection DataConnection { get; }
+#endif
+
+#if NETCOREAPP3_0
+        public override void WriteLine(string message) => throw new System.NotImplementedException();
+
+        public override void WriteLine(string format, params object[] args) => throw new System.NotImplementedException();
+
+        public override IDictionary<string, object> Properties { get; }
+#endif
     }
 }

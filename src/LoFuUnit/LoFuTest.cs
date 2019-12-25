@@ -19,7 +19,7 @@ namespace LoFuUnit
         protected void Assert()
         {
             var stackTrace = new StackTrace();
-            var method = stackTrace.GetFrame(1).GetMethod();
+            var method = stackTrace.GetFrame(Configuration.StackTraceFrameIndexForAssert()).GetMethod();
 
             Assert(this, method);
         }
@@ -31,7 +31,7 @@ namespace LoFuUnit
         protected async Task AssertAsync()
         {
             var stackTrace = new StackTrace();
-            var method = stackTrace.GetFrame(5).GetMethod();
+            var method = stackTrace.GetFrame(Configuration.StackTraceFrameIndexForAssertAsync()).GetMethod();
 
             await AssertAsync(this, method).ConfigureAwait(false);
         }
