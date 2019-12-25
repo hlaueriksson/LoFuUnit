@@ -24,7 +24,7 @@ namespace LoFuUnit.MSTest
             }
             catch (InconclusiveLoFuTestException e)
             {
-                throw new AssertInconclusiveException(e.Message);
+                throw new AssertInconclusiveException(e.Message, e);
             }
         }
 
@@ -45,7 +45,7 @@ namespace LoFuUnit.MSTest
             }
             catch (InconclusiveLoFuTestException e)
             {
-                throw new AssertInconclusiveException(e.Message);
+                throw new AssertInconclusiveException(e.Message, e);
             }
         }
     }

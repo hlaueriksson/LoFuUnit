@@ -40,7 +40,7 @@ namespace LoFuUnit.NUnit
                 }
                 catch (InconclusiveLoFuTestException e)
                 {
-                    throw new InconclusiveException(e.Message);
+                    throw new InconclusiveException(e.Message, e);
                 }
 
                 bool IsAsync()
