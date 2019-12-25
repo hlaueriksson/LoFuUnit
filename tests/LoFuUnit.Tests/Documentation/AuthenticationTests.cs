@@ -1,5 +1,6 @@
 ﻿using System;
 using FluentAssertions;
+using LoFuUnit.NUnit;
 using NUnit.Framework;
 
 namespace LoFuUnit.Tests.Documentation
@@ -7,17 +8,15 @@ namespace LoFuUnit.Tests.Documentation
     /// <summary>
     /// Compare with https://github.com/machine/machine.specifications#overview
     /// </summary>
-    public class AuthenticationTests : LoFuTest
+    public class AuthenticationTests
     {
         SecurityService Subject;
         UserToken Token;
 
-        [Test]
+        [LoFu, Test]
         public void Authenticate_admin_users()
         {
             Subject = new SecurityService();
-
-            Assert();
 
             void when_authenticating_an_admin_user() => Token = Subject.Authenticate("username", "password");
 

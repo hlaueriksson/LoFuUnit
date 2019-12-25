@@ -1,6 +1,7 @@
 ﻿using System;
 using FluentAssertions;
 using LoFuUnit.AutoNSubstitute;
+using LoFuUnit.NUnit;
 using NSubstitute;
 using NUnit.Framework;
 
@@ -13,11 +14,9 @@ namespace LoFuUnit.Tests.Documentation
     {
         string _mood;
 
-        [Test]
+        [LoFu, Test]
         public void Identify_mood_on_mondays()
         {
-            Assert();
-
             void given_the_current_day_is_monday()
             {
                 var monday = new DateTime(2011, 2, 14);
