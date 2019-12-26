@@ -22,15 +22,15 @@
 
 - [Introduction](#introduction)
 - [Testing](#testing)
-  - [Packages](#packages)
-  - [Tests ✔️](#tests-)
-  - [Output 📃](#output-)
-  - [Limitations ❗](#limitations-)
-  - [Inconclusiveness ⁉️](#inconclusiveness-)
+  - [Packages 📦](#packages-%f0%9f%93%a6)
+  - [Tests ✔️](#tests-%e2%9c%94%ef%b8%8f)
+  - [Output 📃](#output-%f0%9f%93%83)
+  - [Limitations ❗](#limitations-%e2%9d%97)
+  - [Inconclusiveness ⁉️](#inconclusiveness-%e2%81%89%ef%b8%8f)
 - [Auto Mocking](#auto-mocking)
-  - [Packages](#packages-1)
-  - [Mocks](#mocks)
-  - [Limitations ❗](#limitations--1)
+  - [Packages 📦](#packages-%f0%9f%93%a6-1)
+  - [Mocks 🦆](#mocks-%f0%9f%a6%86)
+  - [Limitations ❗](#limitations-%e2%9d%97-1)
 - [Results](#results)
 - [Troubleshooting](#troubleshooting)
 - [Attribution](#attribution)
@@ -115,7 +115,7 @@ Terminology:
 * Test function – a local function in a containing test method, that does something along the lines of _arrange_, _act_ or _assert_
   * e.g. `when_authenticating_an_admin_user`, `should_indicate_the_user_s_role` and `should_have_a_unique_session_id`
 
-## Packages
+## Packages 📦
 
 Package | Test Framework | NuGet | Sample
 --- | --- | --- | ---
@@ -287,7 +287,7 @@ Identify mood on mondays
 	should be pretty bad
 ```
 
-## Packages
+## Packages 📦
 
 Package | Mock Framework | NuGet | Sample
 --- | --- | --- | ---
@@ -295,7 +295,7 @@ Package | Mock Framework | NuGet | Sample
 `LoFuUnit.AutoMoq` | Moq | [![NuGet](https://buildstats.info/nuget/LoFuUnit.AutoMoq)](https://www.nuget.org/packages/LoFuUnit.AutoMoq/) | [`LoFuUnit.Sample.AutoMoq`](/samples/LoFuUnit.Sample.AutoMoq)
 `LoFuUnit.AutoNSubstitute` | NSubstitute | [![NuGet](https://buildstats.info/nuget/LoFuUnit.AutoNSubstitute)](https://www.nuget.org/packages/LoFuUnit.AutoNSubstitute/) | [`LoFuUnit.Sample.AutoNSubstitute`](/samples/LoFuUnit.Sample.AutoNSubstitute)
 
-## Mocks
+## Mocks 🦆
 
 `LoFuUnit` uses `AutoFixture` as Auto-Mocking Container.
 
