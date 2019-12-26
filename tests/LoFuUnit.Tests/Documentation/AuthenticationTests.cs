@@ -1,7 +1,6 @@
 ﻿using System;
 using FluentAssertions;
 using LoFuUnit.NUnit;
-using NUnit.Framework;
 
 namespace LoFuUnit.Tests.Documentation
 {
@@ -13,16 +12,19 @@ namespace LoFuUnit.Tests.Documentation
         SecurityService Subject;
         UserToken Token;
 
-        [LoFu, Test]
+        [LoFuTest]
         public void Authenticate_admin_users()
         {
             Subject = new SecurityService();
 
-            void when_authenticating_an_admin_user() => Token = Subject.Authenticate("username", "password");
+            void when_authenticating_an_admin_user() =>
+                Token = Subject.Authenticate("username", "password");
 
-            void should_indicate_the_user_s_role() => Token.Role.Should().Be(Roles.Admin);
+            void should_indicate_the_user_s_role() =>
+                Token.Role.Should().Be(Roles.Admin);
 
-            void should_have_a_unique_session_id() => Token.SessionId.Should().NotBeNull();
+            void should_have_a_unique_session_id() =>
+                Token.SessionId.Should().NotBeNull();
         }
     }
 
