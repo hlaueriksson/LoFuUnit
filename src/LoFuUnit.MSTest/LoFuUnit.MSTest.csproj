@@ -2,7 +2,13 @@
 
   <PropertyGroup>
     <TargetFrameworks>net461;netstandard2.0</TargetFrameworks>
-    <Version>1.0.0</Version>
+    <Version>1.1.0</Version>
+    <PackageReleaseNotes>
+☑️ Target net461 and netstandard2.0
+☑️ Introduce InconclusiveLoFuTestException and validation of test functions
+☑️ Bump dependencies
+☑️ Bug fixes and improvements
+    </PackageReleaseNotes>
     <Authors>Henrik Lau Eriksson</Authors>
     <Description>Unit Testing with Local Functions 🐯
 
@@ -13,16 +19,17 @@ Use MSTest to write TDD or BDD tests:
 ✔️ Context / Specification</Description>
     <PackageId>LoFuUnit.MSTest</PackageId>
     <PackageProjectUrl>https://github.com/hlaueriksson/LoFuUnit</PackageProjectUrl>
-    <PackageIconUrl>https://raw.githubusercontent.com/hlaueriksson/LoFuUnit/master/icon.png</PackageIconUrl>
+    <PackageIcon>icon.png</PackageIcon>
     <PackageTags>test;testing;tdd;bdd;mstest</PackageTags>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <RepositoryUrl>https://github.com/hlaueriksson/LoFuUnit.git</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
-  </PropertyGroup>
-
-  <PropertyGroup>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\..\icon.png" Link="icon.png" Pack="true" PackagePath="\" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="MSTest.TestFramework" Version="2.0.0" />
