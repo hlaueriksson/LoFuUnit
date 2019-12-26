@@ -106,6 +106,7 @@ namespace LoFuUnit
             var invalidTestFunctions = method.ReflectedType?
                 .GetMethods(BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Static)
                 .Where(x => x.GetCustomAttributes<CompilerGeneratedAttribute>().Any())
+                .Where(x => x.ReturnType == typeof(void))
                 .Where(x => x.GetParameters().Length > 0)
                 .Where(x => x.Name.StartsWith(method.WrappedName()))
                 .ToList();

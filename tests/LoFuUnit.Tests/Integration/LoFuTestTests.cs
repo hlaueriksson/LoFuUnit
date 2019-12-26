@@ -22,6 +22,20 @@ namespace LoFuUnit.Tests.Integration
         }
 
         [Test]
+        public void when_Assert_with_nested_local_functions()
+        {
+            Assert();
+
+            void should_invoke_nested_local_functions_that_return_non_void()
+            {
+                var result = add(1, 1);
+                result.Should().Be(2);
+
+                int add(int a, int b) => a + b;
+            }
+        }
+
+        [Test]
         public async Task when_AssertAsync()
         {
             await AssertAsync();
@@ -42,6 +56,28 @@ namespace LoFuUnit.Tests.Integration
 
             void should_invoke_test_function_that_access_class_members() => (Subject + Subject).Should().Be(2);
             void should_invoke_test_function_that_use_local_variables() => (1 + 1).Should().Be(2);
+        }
+
+        [Test]
+        public async Task when_AssertAsync_with_nested_local_functions()
+        {
+            await AssertAsync();
+
+            async Task should_invoke_nested_local_functions_that_return_Task_TResult()
+            {
+                var delay = await add(1, 1);
+                await Task.Delay(delay);
+
+                async Task<int> add(int a, int b) => await Task.FromResult(a + b);
+            }
+
+            void should_invoke_nested_local_functions_that_return_non_void()
+            {
+                var result = add(1, 1);
+                result.Should().Be(2);
+
+                int add(int a, int b) => a + b;
+            }
         }
 
         [Test, Ignore("InconclusiveLoFuTestException")]
