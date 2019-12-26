@@ -1,4 +1,6 @@
-﻿using System.Text.RegularExpressions;
+﻿using System;
+using System.Reflection;
+using System.Text.RegularExpressions;
 
 namespace LoFuUnit
 {
@@ -6,24 +8,52 @@ namespace LoFuUnit
     {
         static readonly Regex QuoteRegex = new Regex(@"(?<quoted>__(?<inner>\w+?)__)", RegexOptions.Compiled | RegexOptions.CultureInvariant);
 
-        internal static string ToFormat(this string name)
+        const string Gt = "<";
+        const string Lt = ">";
+        const string Prefix = "g__";
+
+        const char Suffix = '|';
+
+        internal static string WrappedName(this MethodBase testMethod)
+        {
+            return Gt + testMethod.Name + Lt;
+        }
+
+        internal static string GetFormattedName(this MethodBase testMethod)
+        {
+            return testMethod.Name.ToFormat();
+        }
+
+        internal static string GetFunctionName(this MethodInfo testFunction, MethodBase testMethod)
+        {
+            var start = Gt + testMethod.Name + Lt + Prefix;
+            var result = testFunction.Name.Substring(start.Length);
+            result = result.Remove(result.LastIndexOf(Suffix));
+
+            return result;
+        }
+
+        internal static string GetFunctionName(this Type testFunction, MethodBase testMethod)
+        {
+            var start = Gt + Gt + testMethod.Name + Lt + Prefix;
+            var result = testFunction.Name.Substring(start.Length);
+            result = result.Remove(result.LastIndexOf(Suffix));
+
+            return result;
+        }
+
+        internal static string GetFormattedFunctionName(this MethodInfo testFunction, MethodBase testMethod)
+        {
+            return testFunction.GetFunctionName(testMethod).ToFormat();
+        }
+
+        static string ToFormat(this string name)
         {
             name = ReplaceDoubleUnderscoresWithQuotes(name);
             name = ReplaceUnderscoreEssWithPossessive(name);
             name = ReplaceSingleUnderscoresWithSpaces(name);
 
             return name;
-        }
-
-        internal static string ToFormat(this string name, string methodName)
-        {
-            const string prefix = "g__";
-            const char suffix = '|';
-
-            var result = name.Substring(methodName.Length + prefix.Length);
-            result = result.Remove(result.LastIndexOf(suffix));
-
-            return result.ToFormat();
         }
 
         static string ReplaceUnderscoreEssWithPossessive(string specificationName)

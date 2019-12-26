@@ -18,7 +18,14 @@ namespace LoFuUnit.MSTest
         {
             var method = fixture.GetType().GetMethod(testContext.TestName);
 
-            new InternalLoFuTest().Assert(fixture, method);
+            try
+            {
+                new InternalLoFuTest().Assert(fixture, method);
+            }
+            catch (InconclusiveLoFuTestException e)
+            {
+                throw new AssertInconclusiveException(e.Message, e);
+            }
         }
 
         /// <summary>
@@ -32,7 +39,14 @@ namespace LoFuUnit.MSTest
         {
             var method = fixture.GetType().GetMethod(testContext.TestName);
 
-            await new InternalLoFuTest().AssertAsync(fixture, method).ConfigureAwait(false);
+            try
+            {
+                await new InternalLoFuTest().AssertAsync(fixture, method).ConfigureAwait(false);
+            }
+            catch (InconclusiveLoFuTestException e)
+            {
+                throw new AssertInconclusiveException(e.Message, e);
+            }
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
@@ -18,7 +19,7 @@ namespace LoFuUnit
         protected void Assert()
         {
             var stackTrace = new StackTrace();
-            var method = stackTrace.GetFrame(1).GetMethod();
+            var method = stackTrace.GetFrame(Configuration.StackTraceFrameIndexForAssert()).GetMethod();
 
             Assert(this, method);
         }
@@ -30,71 +31,67 @@ namespace LoFuUnit
         protected async Task AssertAsync()
         {
             var stackTrace = new StackTrace();
-            var method = stackTrace.GetFrame(5).GetMethod();
+            var method = stackTrace.GetFrame(Configuration.StackTraceFrameIndexForAssertAsync()).GetMethod();
 
             await AssertAsync(this, method).ConfigureAwait(false);
         }
 
-        internal void Assert(object fixture, MethodBase method)
+        internal void Assert(object testFixture, MethodBase testMethod)
         {
-            var type = method.ReflectedType;
+            Validate(testMethod);
 
-            var methodName = $"<{method.Name}>";
+            var testFunctions = testMethod.ReflectedType?
+                                    .GetMethods(BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Static)
+                                    .Where(x => x.GetCustomAttributes<CompilerGeneratedAttribute>().Any())
+                                    .Where(x => x.ReturnType == typeof(void))
+                                    .Where(x => x.GetParameters().Length == 0)
+                                    .Where(x => x.Name.StartsWith(testMethod.WrappedName()))
+                                    .ToList() ?? Enumerable.Empty<MethodInfo>().ToList();
 
-            var localFunctions = type?
-                                     .GetMethods(BindingFlags.NonPublic | BindingFlags.Instance)
-                                     .Where(x => x.GetCustomAttributes<CompilerGeneratedAttribute>().Any())
-                                     .Where(x => x.ReturnType == typeof(void))
-                                     .Where(x => x.GetParameters().Length == 0)
-                                     .Where(x => x.Name.StartsWith(methodName))
-                                     .ToList() ?? Enumerable.Empty<MethodInfo>().ToList();
+            Log(testMethod.GetFormattedName());
 
-            Log(method.Name.ToFormat());
-
-            foreach (var localFunction in localFunctions)
+            foreach (var testFunction in testFunctions)
             {
-                Log("\t" + localFunction.Name.ToFormat(methodName));
-                localFunction.Invoke(fixture, new object[0]);
+                Log("\t" + testFunction.GetFormattedFunctionName(testMethod));
+                testFunction.Invoke(testFixture, new object[0]);
             }
         }
 
-        internal async Task AssertAsync(object fixture, MethodBase method)
+        internal async Task AssertAsync(object testFixture, MethodBase testMethod)
         {
-            var type = method.ReflectedType;
+            ValidateAsync(testMethod);
 
-            var methodName = $"<{method.Name}>";
+            var testFunctions = testMethod.ReflectedType?
+                                    .GetMethods(BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Static)
+                                    .Where(x => x.GetCustomAttributes<CompilerGeneratedAttribute>().Any())
+                                    .Where(x => x.ReturnType == typeof(void) || x.ReturnType == typeof(Task))
+                                    .Where(x => x.GetParameters().Length == 0)
+                                    .Where(x => x.Name.StartsWith(testMethod.WrappedName()))
+                                    .ToList() ?? Enumerable.Empty<MethodInfo>().ToList();
 
-            var localFunctions = type?
-                                     .GetMethods(BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Static)
-                                     .Where(x => x.GetCustomAttributes<CompilerGeneratedAttribute>().Any())
-                                     .Where(x => x.ReturnType == typeof(void) || x.ReturnType == typeof(Task))
-                                     .Where(x => x.GetParameters().Length == 0)
-                                     .Where(x => x.Name.StartsWith(methodName))
-                                     .ToList() ?? Enumerable.Empty<MethodInfo>().ToList();
+            Log(testMethod.GetFormattedName());
 
-            Log(method.Name.ToFormat());
-
-            foreach (var localFunction in localFunctions)
+            foreach (var testFunction in testFunctions)
             {
-                Log("\t" + localFunction.Name.ToFormat(methodName));
+                Log("\t" + testFunction.GetFormattedFunctionName(testMethod));
 
-                if (IsAsync(localFunction))
+                if (IsAsync(testFunction))
                 {
-                    var task = localFunction.Invoke(fixture, new object[0]) as Task;
+                    var task = testFunction.Invoke(testFixture, new object[0]) as Task;
 
-                    if (task == null) throw new InvalidOperationException("Invocation of async local function failed.");
+                    if (task == null) throw new InconclusiveLoFuTestException($"Invocation of test function '{testFunction.GetFunctionName(testMethod)}' failed. The asynchronous local function does not have a valid return type. Asynchronous test functions must return a Task, and cannot return void or Task<TResult>.");
 
                     await task.ConfigureAwait(false);
                 }
                 else
                 {
-                    localFunction.Invoke(fixture, new object[0]);
+                    testFunction.Invoke(testFixture, new object[0]);
                 }
             }
 
-            bool IsAsync(MethodInfo localFunction)
+            bool IsAsync(MethodInfo testFunction)
             {
-                return localFunction.GetCustomAttributes<AsyncStateMachineAttribute>().Any();
+                return testFunction.GetCustomAttributes<AsyncStateMachineAttribute>().Any();
             }
         }
 
@@ -103,5 +100,50 @@ namespace LoFuUnit
         /// </summary>
         /// <param name="message">The message to write.</param>
         protected virtual void Log(string message) => Console.WriteLine(message);
+
+        private void Validate(MethodBase method)
+        {
+            var invalidTestFunctions = method.ReflectedType?
+                .GetMethods(BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Static)
+                .Where(x => x.GetCustomAttributes<CompilerGeneratedAttribute>().Any())
+                .Where(x => x.ReturnType == typeof(void))
+                .Where(x => x.GetParameters().Length > 0)
+                .Where(x => x.Name.StartsWith(method.WrappedName()))
+                .ToList();
+
+            if (invalidTestFunctions == null || !invalidTestFunctions.Any()) return;
+
+            var names = invalidTestFunctions.Select(x => x.GetFunctionName(method));
+
+            ThrowInconclusive(method, names);
+        }
+
+        private void ValidateAsync(MethodBase method)
+        {
+            var displayClasses = method.ReflectedType?
+                .GetNestedTypes(BindingFlags.NonPublic)
+                .Where(x => x.GetCustomAttributes<CompilerGeneratedAttribute>().Any())
+                .Where(x => !typeof(IAsyncStateMachine).IsAssignableFrom(x))
+                .ToList();
+
+            var invalidTestFunctions = displayClasses?
+                .SelectMany(t => t
+                    .GetNestedTypes(BindingFlags.NonPublic)
+                    .Where(x => typeof(IAsyncStateMachine).IsAssignableFrom(x))
+                    .Where(x => !x.GetCustomAttributes<CompilerGeneratedAttribute>().Any())
+                    .Where(x => x.Name.StartsWith("<" + method.WrappedName())))
+                .ToList();
+
+            if (invalidTestFunctions == null || !invalidTestFunctions.Any()) return;
+
+            var names = invalidTestFunctions.Select(x => x.GetFunctionName(method));
+
+            ThrowInconclusive(method, names);
+        }
+
+        private static void ThrowInconclusive(MethodBase method, IEnumerable<string> names)
+        {
+            throw new InconclusiveLoFuTestException($"Invocation of test method '{method.Name}' aborted. One or more test functions are inconclusive. Test functions must be parameterless, and cannot use variables declared at test method scope. Please review the following local functions:\n\t{string.Join("\n\t", names)}");
+        }
     }
 }

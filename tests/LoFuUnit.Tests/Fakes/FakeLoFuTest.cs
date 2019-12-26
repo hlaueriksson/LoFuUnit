@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+using FluentAssertions;
 
 namespace LoFuUnit.Tests.Fakes
 {
@@ -74,40 +75,26 @@ namespace LoFuUnit.Tests.Fakes
             async Task C() => await RecordAsync();
         }
 
-        public async Task FakeTestFailAsync()
+        public void FakeTestThatThrowsInconclusiveLoFuTestException()
+        {
+            var result = 1 + 1;
+
+            void Fail() => result.Should().Be(2); // should not access test method variables
+        }
+
+        public async Task FakeTestThatThrowsInconclusiveLoFuTestExceptionAsync()
+        {
+            var result = 1 + 1;
+            await Task.CompletedTask;
+
+            async Task Fail() => await Task.Delay(result); // should not access test method variables
+        }
+
+        public async Task FakeTestThatThrowsInconclusiveLoFuTestExceptionAsyncVoid()
         {
             await Task.CompletedTask;
 
-            async void Fail() => await RecordAsync(); // Task
-        }
-
-        public void FakeTestWithNestedLocalFunctions()
-        {
-            void A()
-            {
-                var level = 0;
-
-                Log($"\t\tLevel {level}");
-                Record();
-
-                B();
-
-                void B()
-                {
-                    level++;
-
-                    Log($"\t\tLevel {level}");
-                    Record();
-
-                    C($"\t\tLevel {++level}");
-
-                    void C(string message)
-                    {
-                        Log(message);
-                        Record();
-                    }
-                }
-            }
+            async void Fail() => await RecordAsync(); // should return Task
         }
     }
 }

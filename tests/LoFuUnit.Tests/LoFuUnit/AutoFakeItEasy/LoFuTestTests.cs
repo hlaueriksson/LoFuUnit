@@ -6,7 +6,7 @@ using LoFuUnit.AutoFakeItEasy;
 using LoFuUnit.Tests.Fakes;
 using NUnit.Framework;
 
-namespace LoFuUnit.Tests.AutoFakeItEasy
+namespace LoFuUnit.Tests.LoFuUnit.AutoFakeItEasy
 {
     public class LoFuTestTests : LoFuTest<FakeSubject>
     {

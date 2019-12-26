@@ -16,7 +16,7 @@ namespace LoFuUnit.Tests.Fakes
         protected void Record()
         {
             var stackTrace = new StackTrace();
-            var method = stackTrace.GetFrame(1).GetMethod();
+            var method = stackTrace.GetFrame(Configuration.StackTraceFrameIndexForAssert()).GetMethod();
 
             Invocations.Add(method);
         }
@@ -24,7 +24,7 @@ namespace LoFuUnit.Tests.Fakes
         protected async Task RecordAsync()
         {
             var stackTrace = new StackTrace();
-            var method = stackTrace.GetFrame(5).GetMethod();
+            var method = stackTrace.GetFrame(Configuration.StackTraceFrameIndexForAssertAsync()).GetMethod();
 
             Invocations.Add(method);
 

@@ -8,7 +8,7 @@ using NUnit.Framework.Internal;
 using NUnit.Framework.Internal.Commands;
 using ReflectionMagic;
 
-namespace LoFuUnit.Tests.NUnit
+namespace LoFuUnit.Tests.LoFuUnit.NUnit
 {
     public class LoFuCommandTests
     {
@@ -52,6 +52,20 @@ namespace LoFuUnit.Tests.NUnit
             command.Execute(context);
 
             fixture.Invocations.Should().BeEmpty();
+        }
+
+        [Test]
+        public void InconclusiveLoFuTestException()
+        {
+            var fixture = new FakeLoFuTest();
+
+            var method = new TestMethod(new MethodWrapper(fixture.GetType(), nameof(fixture.FakeTestThatThrowsInconclusiveLoFuTestException)));
+            var context = GetContext(fixture, method);
+
+            var command = new LoFuCommand(new EmptyTestCommand(method));
+
+            command.Invoking(x => x.Execute(context))
+                .Should().Throw<InconclusiveException>();
         }
 
         private static TestExecutionContext GetContext(object fixture, TestMethod testMethod, ResultState result = null)

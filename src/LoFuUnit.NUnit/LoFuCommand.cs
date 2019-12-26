@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using System.Reflection;
 using System.Runtime.CompilerServices;
+using NUnit.Framework;
 using NUnit.Framework.Interfaces;
 using NUnit.Framework.Internal.Commands;
 
@@ -26,13 +27,20 @@ namespace LoFuUnit.NUnit
                 var fixture = GetFixture(context.CurrentTest);
                 var method = context.CurrentTest.Method.MethodInfo;
 
-                if (IsAsync())
+                try
                 {
-                    fixture.AssertAsync(method).ConfigureAwait(false).GetAwaiter().GetResult();
+                    if (IsAsync())
+                    {
+                        fixture.AssertAsync(method).ConfigureAwait(false).GetAwaiter().GetResult();
+                    }
+                    else
+                    {
+                        fixture.Assert(method);
+                    }
                 }
-                else
+                catch (InconclusiveLoFuTestException e)
                 {
-                    fixture.Assert(method);
+                    throw new InconclusiveException(e.Message, e);
                 }
 
                 bool IsAsync()

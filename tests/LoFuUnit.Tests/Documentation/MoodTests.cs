@@ -1,8 +1,8 @@
 ﻿using System;
 using FluentAssertions;
 using LoFuUnit.AutoNSubstitute;
+using LoFuUnit.NUnit;
 using NSubstitute;
-using NUnit.Framework;
 
 namespace LoFuUnit.Tests.Documentation
 {
@@ -13,11 +13,9 @@ namespace LoFuUnit.Tests.Documentation
     {
         string _mood;
 
-        [Test]
+        [LoFuTest]
         public void Identify_mood_on_mondays()
         {
-            Assert();
-
             void given_the_current_day_is_monday()
             {
                 var monday = new DateTime(2011, 2, 14);
@@ -27,9 +25,11 @@ namespace LoFuUnit.Tests.Documentation
                     .Returns(monday);
             }
 
-            void when_identifying_my_mood() => _mood = Subject.IdentifyMood();
+            void when_identifying_my_mood() =>
+                _mood = Subject.IdentifyMood();
 
-            void should_be_pretty_bad() => _mood.Should().Be("Pretty bad");
+            void should_be_pretty_bad() =>
+                _mood.Should().Be("Pretty bad");
         }
     }
 

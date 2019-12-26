@@ -5,7 +5,7 @@ using NSubstitute;
 using Xunit.Abstractions;
 using Xunit.Sdk;
 
-namespace LoFuUnit.Tests.Xunit.Fakes
+namespace LoFuUnit.Tests.LoFuUnit.Xunit.Fakes
 {
     public class FakeXunitLoFuTest : FakeLoFuTestBase
     {

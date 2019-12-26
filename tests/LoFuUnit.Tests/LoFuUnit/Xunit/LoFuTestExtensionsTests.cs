@@ -2,10 +2,10 @@
 using System.Threading.Tasks;
 using FluentAssertions;
 using LoFuUnit.Tests.Extensions;
-using LoFuUnit.Tests.Xunit.Fakes;
+using LoFuUnit.Tests.LoFuUnit.Xunit.Fakes;
 using NUnit.Framework;
 
-namespace LoFuUnit.Tests.Xunit
+namespace LoFuUnit.Tests.LoFuUnit.Xunit
 {
     public class LoFuTestExtensionsTests
     {
@@ -41,7 +41,7 @@ namespace LoFuUnit.Tests.Xunit
         {
             var fixture = new FakeXunitLoFuTest();
 
-            fixture.Invoking(x => fixture.FakeTestWithTestOutputHelperExtensionFail())
+            fixture.Invoking(x => x.FakeTestWithTestOutputHelperExtensionFail())
                 .Should().Throw<InvalidOperationException>()
                 .WithMessage("Test method name from TestOutputHelper is unknown.");
         }
@@ -60,7 +60,7 @@ namespace LoFuUnit.Tests.Xunit
         {
             var fixture = new FakeXunitLoFuTest();
 
-            fixture.Awaiting(async x => await fixture.FakeTestWithTestOutputHelperExtensionFailAsync())
+            fixture.Awaiting(async x => await x.FakeTestWithTestOutputHelperExtensionFailAsync())
                 .Should().Throw<InvalidOperationException>()
                 .WithMessage("Test method name from TestOutputHelper is unknown.");
         }
