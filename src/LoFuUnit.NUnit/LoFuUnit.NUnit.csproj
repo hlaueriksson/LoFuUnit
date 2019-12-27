@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFrameworks>net461;netstandard2.0</TargetFrameworks>
-    <Version>1.1.0</Version>
+    <Version>1.1.1</Version>
     <PackageReleaseNotes>
 ☑️ Target net461 and netstandard2.0
 ☑️ Introduce InconclusiveLoFuTestException and validation of test functions
