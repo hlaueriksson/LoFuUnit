@@ -113,7 +113,7 @@ namespace LoFuUnit
 
             if (invalidTestFunctions == null || !invalidTestFunctions.Any()) return;
 
-            var names = invalidTestFunctions.Select(x => x.GetFunctionName(method));
+            var names = invalidTestFunctions.Select(x => x.GetFunctionName(method)).ToList();
 
             ThrowInconclusive(method, names);
         }
@@ -131,12 +131,12 @@ namespace LoFuUnit
                     .GetNestedTypes(BindingFlags.NonPublic)
                     .Where(x => typeof(IAsyncStateMachine).IsAssignableFrom(x))
                     .Where(x => !x.GetCustomAttributes<CompilerGeneratedAttribute>().Any())
-                    .Where(x => x.Name.StartsWith("<" + method.WrappedName())))
+                    .Where(x => x.Name.StartsWith("<" + method.WrappedName() + "g__")))
                 .ToList();
 
             if (invalidTestFunctions == null || !invalidTestFunctions.Any()) return;
 
-            var names = invalidTestFunctions.Select(x => x.GetFunctionName(method));
+            var names = invalidTestFunctions.Select(x => x.GetFunctionName(method)).ToList();
 
             ThrowInconclusive(method, names);
         }

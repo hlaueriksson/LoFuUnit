@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using FluentAssertions;
 using NUnit.Framework;
 
@@ -32,6 +33,19 @@ namespace LoFuUnit.Tests.Integration
                 result.Should().Be(2);
 
                 int add(int a, int b) => a + b;
+            }
+        }
+
+        [Test]
+        public void when_Assert_with_Func_Task()
+        {
+            Assert();
+
+            void should_invoke_local_function_with_Func_Task_expression()
+            {
+                var subject = new FakeAsyncSubject();
+
+                subject.Awaiting(async x => await x.Fail()).Should().Throw<Exception>();
             }
         }
 
@@ -77,6 +91,19 @@ namespace LoFuUnit.Tests.Integration
                 result.Should().Be(2);
 
                 int add(int a, int b) => a + b;
+            }
+        }
+
+        [Test]
+        public async Task when_AssertAsync_with_Func_Task()
+        {
+            await AssertAsync();
+
+            void should_invoke_local_function_with_Func_Task_expression()
+            {
+                var subject = new FakeAsyncSubject();
+
+                subject.Awaiting(async x => await x.Fail()).Should().Throw<Exception>();
             }
         }
 
@@ -136,5 +163,15 @@ namespace LoFuUnit.Tests.Integration
         }
 
         int Subject;
+    }
+
+    public class FakeAsyncSubject
+    {
+        public async Task Fail()
+        {
+            await Task.Delay(1);
+
+            throw new Exception("Fail");
+        }
     }
 }
