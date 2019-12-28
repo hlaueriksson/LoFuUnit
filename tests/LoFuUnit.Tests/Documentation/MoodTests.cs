@@ -3,6 +3,7 @@ using FluentAssertions;
 using LoFuUnit.AutoNSubstitute;
 using LoFuUnit.NUnit;
 using NSubstitute;
+using NUnit.Framework;
 
 namespace LoFuUnit.Tests.Documentation
 {
@@ -13,7 +14,7 @@ namespace LoFuUnit.Tests.Documentation
     {
         string _mood;
 
-        [LoFuTest]
+        [LoFu, Test]
         public void Identify_mood_on_mondays()
         {
             void given_the_current_day_is_monday()

@@ -1,6 +1,7 @@
 ﻿using System;
 using FluentAssertions;
 using LoFuUnit.NUnit;
+using NUnit.Framework;
 
 namespace LoFuUnit.Tests.Documentation
 {
@@ -12,7 +13,7 @@ namespace LoFuUnit.Tests.Documentation
         SecurityService Subject;
         UserToken Token;
 
-        [LoFuTest]
+        [LoFu, Test]
         public void Authenticate_admin_users()
         {
             Subject = new SecurityService();

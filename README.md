@@ -71,6 +71,7 @@ An example of a test with [LoFuUnit.NUnit](https://www.nuget.org/packages/LoFuUn
 using System;
 using FluentAssertions;
 using LoFuUnit.NUnit;
+using NUnit.Framework;
 
 namespace LoFuUnit.Tests.Documentation
 {
@@ -79,7 +80,7 @@ namespace LoFuUnit.Tests.Documentation
         SecurityService Subject;
         UserToken Token;
 
-        [LoFuTest]
+        [LoFu, Test]
         public void Authenticate_admin_users()
         {
             Subject = new SecurityService();
@@ -249,6 +250,7 @@ using FluentAssertions;
 using LoFuUnit.AutoNSubstitute;
 using LoFuUnit.NUnit;
 using NSubstitute;
+using NUnit.Framework;
 
 namespace LoFuUnit.Tests.Documentation
 {
@@ -256,7 +258,7 @@ namespace LoFuUnit.Tests.Documentation
     {
         string _mood;
 
-        [LoFuTest]
+        [LoFu, Test]
         public void Identify_mood_on_mondays()
         {
             void given_the_current_day_is_monday()
