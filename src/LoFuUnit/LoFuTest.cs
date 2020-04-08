@@ -99,6 +99,7 @@ namespace LoFuUnit
         /// Writes the specified message, followed by the current line terminator, to the standard output stream.
         /// </summary>
         /// <param name="message">The message to write.</param>
+        /// <remarks>Override this method to change how the test output is written.</remarks>
         protected virtual void Log(string message) => Console.WriteLine(message);
 
         private void Validate(MethodBase method)
