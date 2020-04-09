@@ -79,7 +79,7 @@ namespace LoFuUnit.Tests.LoFuUnit.Xunit.Fakes
         public async Task FakeTestWithTestOutputHelperExtensionFailAsync()
         {
             var test = Substitute.For<ITest>();
-            test.TestCase.TestMethod.Method.Name.Returns((string) null);
+            test.TestCase.TestMethod.Method.Name.Returns((string)null);
 
             var testOutputHelper = new TestOutputHelper();
             testOutputHelper.Initialize(Substitute.For<IMessageBus>(), test);

@@ -1,9 +1,13 @@
 ﻿using System;
 using System.Threading.Tasks;
 using FluentAssertions;
+using LoFuUnit.Xunit;
 using LoFuUnit.Tests.Extensions;
 using LoFuUnit.Tests.LoFuUnit.Xunit.Fakes;
+using NSubstitute;
 using NUnit.Framework;
+using Xunit.Abstractions;
+using Xunit.Sdk;
 
 namespace LoFuUnit.Tests.LoFuUnit.Xunit
 {
@@ -63,6 +67,46 @@ namespace LoFuUnit.Tests.LoFuUnit.Xunit
             fixture.Awaiting(async x => await x.FakeTestWithTestOutputHelperExtensionFailAsync())
                 .Should().Throw<InvalidOperationException>()
                 .WithMessage("Test method name from TestOutputHelper is unknown.");
+        }
+
+        [Test]
+        public void GetMethodInfo() 
+        {
+            var fixture = new FakeXunitLoFuTest();
+            var method = fixture.GetType().GetMethod(nameof(fixture.FakeTestWithITestOutputHelperExtension));
+            var test = Substitute.For<ITest>();
+            test.TestCase.TestMethod.Method.Name.Returns(method.Name);
+            var testOutputHelper = new TestOutputHelper();
+            testOutputHelper.Initialize(Substitute.For<IMessageBus>(), test);
+
+            var result = fixture.GetMethodInfo(testOutputHelper);
+
+            result.Should().BeSameAs(method);
+        }
+
+        [Test]
+        public void GetMethodInfo_throws() 
+        {
+            var fixture = new FakeXunitLoFuTest();
+
+            fixture.Invoking(x => x.GetMethodInfo(null))
+                .Should().Throw<InvalidOperationException>()
+                .WithMessage("TestOutputHelper is null.");
+
+            var testOutputHelper = new TestOutputHelper();
+            var test = Substitute.For<ITest>();
+            test.TestCase.TestMethod.Method.Name.Returns((string) null);
+            testOutputHelper.Initialize(Substitute.For<IMessageBus>(), test);
+            fixture.Invoking(x => x.GetMethodInfo(testOutputHelper))
+                .Should().Throw<InvalidOperationException>()
+                .WithMessage("Test method name from TestOutputHelper is unknown.");
+
+            testOutputHelper = new TestOutputHelper();
+            test = Substitute.For<ITest>();
+            testOutputHelper.Initialize(Substitute.For<IMessageBus>(), test);
+            fixture.Invoking(x => x.GetMethodInfo(testOutputHelper))
+                .Should().Throw<InvalidOperationException>()
+                .WithMessage("Test method not found on test fixture type.");
         }
     }
 }

@@ -53,6 +53,9 @@ namespace LoFuUnit.MSTest
 
         internal static MethodInfo GetMethodInfo(this object fixture, TestContext testContext)
         {
+            if (testContext == null) throw new InvalidOperationException("TestContext is null.");
+            if (testContext.TestName == null) throw new InvalidOperationException("Test method name from TestContext is unknown.");
+
             var method = fixture.GetType().GetMethod(testContext.TestName);
 
             if (method == null) throw new InvalidOperationException("Test method not found on test fixture type.");

@@ -1,5 +1,7 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using FluentAssertions;
+using LoFuUnit.MSTest;
 using LoFuUnit.Tests.Extensions;
 using LoFuUnit.Tests.LoFuUnit.MSTest.Fakes;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -43,6 +45,35 @@ namespace LoFuUnit.Tests.LoFuUnit.MSTest
 
             fixture.Awaiting(async x => await x.FakeTestWithExtensionThatThrowsInconclusiveLoFuTestExceptionAsync())
                 .Should().Throw<AssertInconclusiveException>();
+        }
+
+        [Test]
+        public void GetMethodInfo()
+        {
+            var fixture = new FakeMsTestLoFuTest();
+            var method = fixture.GetType().GetMethod(nameof(fixture.FakeTestWithExtension));
+
+            var result = fixture.GetMethodInfo(new FakeTestContext(method.Name));
+
+            result.Should().BeSameAs(method);
+        }
+
+        [Test]
+        public void GetMethodInfo_throws()
+        {
+            var fixture = new FakeMsTestLoFuTest();
+
+            fixture.Invoking(x => x.GetMethodInfo(null))
+                .Should().Throw<InvalidOperationException>()
+                .WithMessage("TestContext is null.");
+
+            fixture.Invoking(x => x.GetMethodInfo(new FakeTestContext(null)))
+                .Should().Throw<InvalidOperationException>()
+                .WithMessage("Test method name from TestContext is unknown.");
+
+            fixture.Invoking(x => x.GetMethodInfo(new FakeTestContext("")))
+                .Should().Throw<InvalidOperationException>()
+                .WithMessage("Test method not found on test fixture type.");
         }
     }
 }
