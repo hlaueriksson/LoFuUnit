@@ -145,7 +145,7 @@ namespace LoFuUnit
 
         private static void ThrowInconclusive(MethodBase method, IEnumerable<string> names)
         {
-            throw new InconclusiveLoFuTestException($"Invocation of test method '{method.Name}' aborted. One or more test functions are inconclusive. Test functions must be parameterless, and cannot use variables declared at test method scope. Please review the following local functions:\n\t{string.Join("\n\t", names)}");
+            throw new InconclusiveLoFuTestException($"Invocation of test method '{method.Name}' aborted. One or more test functions are inconclusive. Test functions must be parameterless, and cannot use variables declared at test method scope. Please review the following local functions: {string.Join(", ", names)}");
         }
     }
 }
