@@ -33,7 +33,22 @@ namespace LoFuUnit.Xunit
         /// </summary>
         /// <returns>A task that represents the asynchronous operation.</returns>
         /// <remarks>Override this method to change how the test cleanup is done.</remarks>
-        public virtual async Task DisposeAsync() => await this.AssertAsync(Output as TestOutputHelper);
+        public virtual async Task DisposeAsync()
+        {
+            if (IsAsync())
+            {
+                await this.AssertAsync(Output as TestOutputHelper);
+            }
+            else
+            {
+                this.Assert(Output as TestOutputHelper);
+            }
+
+            bool IsAsync()
+            {
+                return this.GetMethodInfo(Output as TestOutputHelper).IsAsync();
+            }
+        }
 
         /// <summary>
         /// Writes the specified message, followed by the current line terminator, to the test output stream.

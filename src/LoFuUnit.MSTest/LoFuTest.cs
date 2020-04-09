@@ -19,6 +19,21 @@ namespace LoFuUnit.MSTest
         /// <returns>A task that represents the asynchronous operation.</returns>
         /// <remarks>Override this method to change how the test cleanup is done.</remarks>
         [TestCleanup]
-        public virtual async Task TestCleanup() => await this.AssertAsync(TestContext);
+        public virtual async Task TestCleanup()
+        {
+            if (IsAsync())
+            {
+                await this.AssertAsync(TestContext);
+            }
+            else
+            {
+                this.Assert(TestContext);
+            }
+
+            bool IsAsync()
+            {
+                return this.GetMethodInfo(TestContext).IsAsync();
+            }
+        }
     }
 }

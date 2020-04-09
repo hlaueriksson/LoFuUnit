@@ -1,4 +1,6 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Reflection;
+using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace LoFuUnit.MSTest
@@ -16,7 +18,7 @@ namespace LoFuUnit.MSTest
         /// <remarks>Derives the test method from <c>testContext.TestName</c></remarks>
         public static void Assert(this object fixture, TestContext testContext)
         {
-            var method = fixture.GetType().GetMethod(testContext.TestName);
+            var method = fixture.GetMethodInfo(testContext);
 
             try
             {
@@ -37,7 +39,7 @@ namespace LoFuUnit.MSTest
         /// <returns>A task that represents the asynchronous operation.</returns>
         public static async Task AssertAsync(this object fixture, TestContext testContext)
         {
-            var method = fixture.GetType().GetMethod(testContext.TestName);
+            var method = fixture.GetMethodInfo(testContext);
 
             try
             {
@@ -47,6 +49,15 @@ namespace LoFuUnit.MSTest
             {
                 throw new AssertInconclusiveException(e.Message, e);
             }
+        }
+
+        internal static MethodInfo GetMethodInfo(this object fixture, TestContext testContext)
+        {
+            var method = fixture.GetType().GetMethod(testContext.TestName);
+
+            if (method == null) throw new InvalidOperationException("Test method not found on test fixture type.");
+
+            return method;
         }
     }
 }
