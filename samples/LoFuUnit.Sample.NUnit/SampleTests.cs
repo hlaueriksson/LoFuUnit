@@ -36,7 +36,7 @@ namespace LoFuUnit.Sample.NUnit
         [LoFu, Test]
         public void inconclusive_test()
         {
-            var result = 1 + 1;
+            var result = 1 + 1; // use a variable declared at test fixture scope, i.e. a field
 
             void should_be_yellow() => result.Should().Be(2);
         }
