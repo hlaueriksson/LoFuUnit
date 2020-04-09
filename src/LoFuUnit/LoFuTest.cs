@@ -60,6 +60,7 @@ namespace LoFuUnit
         internal async Task AssertAsync(object testFixture, MethodBase testMethod)
         {
             ValidateAsync(testMethod);
+            Validate(testMethod);
 
             var testFunctions = testMethod.ReflectedType?
                                     .GetMethods(BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Static)
