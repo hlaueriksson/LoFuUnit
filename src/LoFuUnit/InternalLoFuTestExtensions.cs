@@ -3,11 +3,6 @@ using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 
-[assembly: InternalsVisibleTo("LoFuUnit.MSTest"),
-           InternalsVisibleTo("LoFuUnit.NUnit"),
-           InternalsVisibleTo("LoFuUnit.Xunit"),
-           InternalsVisibleTo("LoFuUnit.Tests")]
-
 namespace LoFuUnit
 {
     internal static class InternalLoFuTestExtensions
