@@ -64,8 +64,8 @@ namespace LoFuUnit.Tests.LoFuUnit.Xunit
         {
             var fixture = new FakeXunitLoFuTest();
 
-            fixture.Awaiting(async x => await x.FakeTestWithTestOutputHelperExtensionFailAsync())
-                .Should().Throw<InvalidOperationException>()
+            Func<Task> act = async () => { await fixture.FakeTestWithTestOutputHelperExtensionFailAsync(); };
+            act.Should().Throw<InvalidOperationException>()
                 .WithMessage("Test method name from TestOutputHelper is unknown.");
         }
 

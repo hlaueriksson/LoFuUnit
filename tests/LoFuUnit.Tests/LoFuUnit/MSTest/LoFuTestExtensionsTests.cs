@@ -43,8 +43,8 @@ namespace LoFuUnit.Tests.LoFuUnit.MSTest
         {
             var fixture = new FakeMsTestLoFuTest();
 
-            fixture.Awaiting(async x => await x.FakeTestWithExtensionThatThrowsInconclusiveLoFuTestExceptionAsync())
-                .Should().Throw<AssertInconclusiveException>();
+            Func<Task> act = async () => { await fixture.FakeTestWithExtensionThatThrowsInconclusiveLoFuTestExceptionAsync(); };
+            act.Should().Throw<AssertInconclusiveException>();
         }
 
         [Test]

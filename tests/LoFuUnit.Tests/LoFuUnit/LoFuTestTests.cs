@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using FluentAssertions;
 using LoFuUnit.Tests.Extensions;
 using LoFuUnit.Tests.Fakes;
@@ -47,8 +48,8 @@ namespace LoFuUnit.Tests.LoFuUnit
             var fixture = new FakeLoFuTest();
             var method = fixture.GetType().GetMethod(nameof(fixture.FakeTestThatThrowsInconclusiveLoFuTestExceptionAsync));
 
-            fixture.Awaiting(async x => await x.AssertAsync(fixture, method))
-                .Should().Throw<InconclusiveLoFuTestException>()
+            Func<Task> act = async () => { await fixture.AssertAsync(fixture, method); };
+            act.Should().Throw<InconclusiveLoFuTestException>()
                 .WithMessage($"*{nameof(fixture.FakeTestThatThrowsInconclusiveLoFuTestExceptionAsync)}*");
         }
 
@@ -58,8 +59,8 @@ namespace LoFuUnit.Tests.LoFuUnit
             var fixture = new FakeLoFuTest();
             var method = fixture.GetType().GetMethod(nameof(fixture.FakeTestThatThrowsInconclusiveLoFuTestExceptionAsyncVoid));
 
-            fixture.Awaiting(async x => await x.AssertAsync(fixture, method))
-                .Should().Throw<InconclusiveLoFuTestException>()
+            Func<Task> act = async () => { await fixture.AssertAsync(fixture, method); };
+            act.Should().Throw<InconclusiveLoFuTestException>()
                 .WithMessage("Invocation of test function *");
         }
 
