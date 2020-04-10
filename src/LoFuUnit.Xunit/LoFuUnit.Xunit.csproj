@@ -5,9 +5,7 @@
     <IsPackable>true</IsPackable>
     <Version>1.1.1</Version>
     <PackageReleaseNotes>
-☑️ Target net461 and netstandard2.0
-☑️ Introduce InconclusiveLoFuTestException and validation of test functions
-☑️ Bump dependencies
+☑️ Make LoFuUnit.Xunit.LoFuTest implement IAsyncLifetime
 ☑️ Bug fixes and improvements
     </PackageReleaseNotes>
     <Authors>Henrik Lau Eriksson</Authors>
@@ -23,13 +21,17 @@ Use Xunit to write TDD or BDD tests:
     <PackageIcon>icon.png</PackageIcon>
     <PackageTags>test;testing;tdd;bdd;xunit</PackageTags>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <RepositoryUrl>https://github.com/hlaueriksson/LoFuUnit.git</RepositoryUrl>
-    <RepositoryType>git</RepositoryType>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <AllowedOutputExtensionsInPackageBuildOutputFolder>$(AllowedOutputExtensionsInPackageBuildOutputFolder);.pdb</AllowedOutputExtensionsInPackageBuildOutputFolder>
   </PropertyGroup>
 
   <ItemGroup>
     <None Include="..\..\icon.png" Link="icon.png" Pack="true" PackagePath="\" />
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
   </ItemGroup>
 
   <ItemGroup>
