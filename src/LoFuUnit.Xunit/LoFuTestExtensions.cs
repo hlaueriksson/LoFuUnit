@@ -47,12 +47,7 @@ namespace LoFuUnit.Xunit
         /// <remarks>Derives the test method via reflection from the private <c>output.test</c> field</remarks>
         public static void Assert(this object fixture, TestOutputHelper output)
         {
-            var test = output.GetType().GetField("test", BindingFlags.NonPublic | BindingFlags.Instance)?.GetValue(output) as ITest;
-            var methodName = test?.TestCase.TestMethod.Method.Name;
-
-            if (methodName == null) throw new InvalidOperationException("Test method name from TestOutputHelper is unknown.");
-
-            var method = fixture.GetType().GetMethod(methodName);
+            var method = fixture.GetMethodInfo(output);
 
             new InternalLoFuTest(output).Assert(fixture, method);
         }
@@ -66,6 +61,15 @@ namespace LoFuUnit.Xunit
         /// <returns>A task that represents the asynchronous operation.</returns>
         public static async Task AssertAsync(this object fixture, TestOutputHelper output)
         {
+            var method = fixture.GetMethodInfo(output);
+
+            await new InternalLoFuTest(output).AssertAsync(fixture, method).ConfigureAwait(false);
+        }
+
+        internal static MethodInfo GetMethodInfo(this object fixture, TestOutputHelper output)
+        {
+            if (output == null) throw new InvalidOperationException("TestOutputHelper is null.");
+
             var test = output.GetType().GetField("test", BindingFlags.NonPublic | BindingFlags.Instance)?.GetValue(output) as ITest;
             var methodName = test?.TestCase?.TestMethod?.Method?.Name;
 
@@ -73,7 +77,9 @@ namespace LoFuUnit.Xunit
 
             var method = fixture.GetType().GetMethod(methodName);
 
-            await new InternalLoFuTest(output).AssertAsync(fixture, method).ConfigureAwait(false);
+            if (method == null) throw new InvalidOperationException("Test method not found on test fixture type.");
+
+            return method;
         }
     }
 }

@@ -18,6 +18,10 @@ namespace LoFuUnit.Tests.LoFuUnit.MSTest.Fakes
 
         public override void AddResultFile(string fileName) => throw new System.NotImplementedException();
 
+        public override void Write(string message) => throw new System.NotImplementedException();
+
+        public override void Write(string format, params object[] args) => throw new System.NotImplementedException();
+
         public override void WriteLine(string message) => throw new System.NotImplementedException();
 
         public override void WriteLine(string format, params object[] args) => throw new System.NotImplementedException();

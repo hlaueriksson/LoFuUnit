@@ -60,6 +60,7 @@ namespace LoFuUnit
         internal async Task AssertAsync(object testFixture, MethodBase testMethod)
         {
             ValidateAsync(testMethod);
+            Validate(testMethod);
 
             var testFunctions = testMethod.ReflectedType?
                                     .GetMethods(BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Static)
@@ -99,6 +100,7 @@ namespace LoFuUnit
         /// Writes the specified message, followed by the current line terminator, to the standard output stream.
         /// </summary>
         /// <param name="message">The message to write.</param>
+        /// <remarks>Override this method to change how the test output is written.</remarks>
         protected virtual void Log(string message) => Console.WriteLine(message);
 
         private void Validate(MethodBase method)
@@ -143,7 +145,7 @@ namespace LoFuUnit
 
         private static void ThrowInconclusive(MethodBase method, IEnumerable<string> names)
         {
-            throw new InconclusiveLoFuTestException($"Invocation of test method '{method.Name}' aborted. One or more test functions are inconclusive. Test functions must be parameterless, and cannot use variables declared at test method scope. Please review the following local functions:\n\t{string.Join("\n\t", names)}");
+            throw new InconclusiveLoFuTestException($"Invocation of test method '{method.Name}' aborted. One or more test functions are inconclusive. Test functions must be parameterless, and cannot use variables declared at test method scope. Please review the following local functions: {string.Join(", ", names)}");
         }
     }
 }

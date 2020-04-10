@@ -45,7 +45,8 @@ namespace LoFuUnit.Tests.Integration
             {
                 var subject = new FakeAsyncSubject();
 
-                subject.Awaiting(async x => await x.Fail()).Should().Throw<Exception>();
+                Func<Task> act = async () => { await subject.Fail(); };
+                act.Should().Throw<Exception>();
             }
         }
 
@@ -103,7 +104,8 @@ namespace LoFuUnit.Tests.Integration
             {
                 var subject = new FakeAsyncSubject();
 
-                subject.Awaiting(async x => await x.Fail()).Should().Throw<Exception>();
+                Func<Task> act = async () => { await subject.Fail(); };
+                act.Should().Throw<Exception>();
             }
         }
 
