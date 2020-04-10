@@ -68,7 +68,6 @@ What are local functions?
 An example of a test with [LoFuUnit.NUnit](https://www.nuget.org/packages/LoFuUnit.NUnit/):
 
 ```csharp
-using System;
 using FluentAssertions;
 using LoFuUnit.NUnit;
 using NUnit.Framework;
@@ -118,12 +117,12 @@ Terminology:
 
 ## Packages 📦
 
-Package | Test Framework | NuGet | Sample
+README | Test Framework | NuGet | Sample
 --- | --- | --- | ---
-`LoFuUnit` | - | [![NuGet](https://buildstats.info/nuget/LoFuUnit)](https://www.nuget.org/packages/LoFuUnit/) | [`LoFuUnit.Sample`](/samples/LoFuUnit.Sample)
-`LoFuUnit.MSTest` | MSTest | [![NuGet](https://buildstats.info/nuget/LoFuUnit.MSTest)](https://www.nuget.org/packages/LoFuUnit.MSTest/) | [`LoFuUnit.Sample.MSTest`](/samples/LoFuUnit.Sample.MSTest)
-`LoFuUnit.NUnit` | NUnit | [![NuGet](https://buildstats.info/nuget/LoFuUnit.NUnit)](https://www.nuget.org/packages/LoFuUnit.NUnit/) | [`LoFuUnit.Sample.NUnit`](/samples/LoFuUnit.Sample.NUnit)
-`LoFuUnit.Xunit` | Xunit | [![NuGet](https://buildstats.info/nuget/LoFuUnit.Xunit)](https://www.nuget.org/packages/LoFuUnit.Xunit/) | [`LoFuUnit.Sample.Xunit`](/samples/LoFuUnit.Sample.Xunit)
+[LoFuUnit](LoFuUnit.md) | - | [![NuGet](https://buildstats.info/nuget/LoFuUnit)](https://www.nuget.org/packages/LoFuUnit/) | [`LoFuUnit.Sample`](/samples/LoFuUnit.Sample)
+[LoFuUnit.MSTest](LoFuUnit.MSTest.md) | MSTest | [![NuGet](https://buildstats.info/nuget/LoFuUnit.MSTest)](https://www.nuget.org/packages/LoFuUnit.MSTest/) | [`LoFuUnit.Sample.MSTest`](/samples/LoFuUnit.Sample.MSTest)
+[LoFuUnit.NUnit](LoFuUnit.NUnit.md) | NUnit | [![NuGet](https://buildstats.info/nuget/LoFuUnit.NUnit)](https://www.nuget.org/packages/LoFuUnit.NUnit/) | [`LoFuUnit.Sample.NUnit`](/samples/LoFuUnit.Sample.NUnit)
+[LoFuUnit.Xunit](LoFuUnit.Xunit.md) | Xunit | [![NuGet](https://buildstats.info/nuget/LoFuUnit.Xunit)](https://www.nuget.org/packages/LoFuUnit.Xunit/) | [`LoFuUnit.Sample.Xunit`](/samples/LoFuUnit.Sample.Xunit)
 
 ## Tests ✔️
 
@@ -291,11 +290,11 @@ Identify mood on mondays
 
 ## Packages 📦
 
-Package | Mock Framework | NuGet | Sample
+README | Mock Framework | NuGet | Sample
 --- | --- | --- | ---
-`LoFuUnit.AutoFakeItEasy` | FakeItEasy | [![NuGet](https://buildstats.info/nuget/LoFuUnit.AutoFakeItEasy)](https://www.nuget.org/packages/LoFuUnit.AutoFakeItEasy/) | [`LoFuUnit.Sample.AutoFakeItEasy`](/samples/LoFuUnit.Sample.AutoFakeItEasy)
-`LoFuUnit.AutoMoq` | Moq | [![NuGet](https://buildstats.info/nuget/LoFuUnit.AutoMoq)](https://www.nuget.org/packages/LoFuUnit.AutoMoq/) | [`LoFuUnit.Sample.AutoMoq`](/samples/LoFuUnit.Sample.AutoMoq)
-`LoFuUnit.AutoNSubstitute` | NSubstitute | [![NuGet](https://buildstats.info/nuget/LoFuUnit.AutoNSubstitute)](https://www.nuget.org/packages/LoFuUnit.AutoNSubstitute/) | [`LoFuUnit.Sample.AutoNSubstitute`](/samples/LoFuUnit.Sample.AutoNSubstitute)
+[LoFuUnit.AutoFakeItEasy](LoFuUnit.AutoFakeItEasy.md) | FakeItEasy | [![NuGet](https://buildstats.info/nuget/LoFuUnit.AutoFakeItEasy)](https://www.nuget.org/packages/LoFuUnit.AutoFakeItEasy/) | [`LoFuUnit.Sample.AutoFakeItEasy`](/samples/LoFuUnit.Sample.AutoFakeItEasy)
+[LoFuUnit.AutoMoq](LoFuUnit.AutoMoq.md) | Moq | [![NuGet](https://buildstats.info/nuget/LoFuUnit.AutoMoq)](https://www.nuget.org/packages/LoFuUnit.AutoMoq/) | [`LoFuUnit.Sample.AutoMoq`](/samples/LoFuUnit.Sample.AutoMoq)
+[LoFuUnit.AutoNSubstitute](LoFuUnit.AutoNSubstitute.md) | NSubstitute | [![NuGet](https://buildstats.info/nuget/LoFuUnit.AutoNSubstitute)](https://www.nuget.org/packages/LoFuUnit.AutoNSubstitute/) | [`LoFuUnit.Sample.AutoNSubstitute`](/samples/LoFuUnit.Sample.AutoNSubstitute)
 
 ## Mocks 🦆
 
