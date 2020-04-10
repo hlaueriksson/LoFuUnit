@@ -22,13 +22,8 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace LoFuUnitDocs
 {
     [TestClass]
-    public class AuthenticationTests
+    public class AuthenticationTests : LoFuTest
     {
-        public TestContext TestContext { get; set; }
-
-        [TestCleanup]
-        public void TestCleanup() => this.Assert(TestContext);
-
         SecurityService Subject;
         UserToken Token;
 
@@ -61,6 +56,6 @@ Authenticate admin users
 
 Test methods can contain local functions that are invoked implicitly. These test functions can perform the _arrange_, _act_ or _assert_ steps of the test.
 
-The `LoFuUnit.MSTest` package provides two important extension methods for test fixtures. The `Assert` and `AssertAsync` methods invokes the test functions in the containing test method. They can be invoked for all test methods in a `[TestCleanup]` method, by passing the `TestContext` as an argument. The invocations will occur in the order that the test functions are declared. If a test function fails, the test method fails directly. Any subsequent test functions in the test method will not be invoked.
+The `LoFuUnit.MSTest` package contains the `LoFuTest` base class for test fixtures to inherit from. This class defines a method marked with the `[TestCleanup]` attribute, and it is called after running each test in the test fixture. The `TestCleanup` method invokes the test functions in the containing test method that was just executed. The invocations will occur in the order that the test functions are declared. If a test function fails, the test method fails directly. Any subsequent test functions in the test method will not be invoked.
 
 More documentation is available at [https://github.com/hlaueriksson/LoFuUnit](https://github.com/hlaueriksson/LoFuUnit)
