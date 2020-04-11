@@ -14,6 +14,8 @@ namespace LoFuUnit.Tests.LoFuUnit.MSTest.Fakes
 
         public async Task FakeTestAsync()
         {
+            await Task.CompletedTask;
+
             async Task A() => TestFunctionWasCalled = await Task.FromResult(true);
         }
     }

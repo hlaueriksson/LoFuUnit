@@ -78,9 +78,11 @@ namespace LoFuUnit.Tests.LoFuUnit
     {
         public async Task ContainingMethod()
         {
-            async Task A_b_c() { }
-            async Task A__b__c() { }
-            async Task A_s_c() { }
+            await Task.CompletedTask;
+
+            async Task A_b_c() { await Task.CompletedTask; }
+            async Task A__b__c() { await Task.CompletedTask; }
+            async Task A_s_c() { await Task.CompletedTask; }
         }
     }
 }

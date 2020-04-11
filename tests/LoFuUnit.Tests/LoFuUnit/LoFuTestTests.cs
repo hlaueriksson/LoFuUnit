@@ -43,7 +43,7 @@ namespace LoFuUnit.Tests.LoFuUnit
         }
 
         [Test]
-        public async Task AssertAsync_object_MethodBase_throws_InconclusiveLoFuTestException()
+        public void AssertAsync_object_MethodBase_throws_InconclusiveLoFuTestException()
         {
             var fixture = new FakeLoFuTest();
             var method = fixture.GetType().GetMethod(nameof(fixture.FakeTestThatThrowsInconclusiveLoFuTestExceptionAsync));

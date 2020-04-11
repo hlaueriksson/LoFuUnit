@@ -39,7 +39,7 @@ namespace LoFuUnit.Tests.LoFuUnit.MSTest
         }
 
         [Test]
-        public async Task AssertAsync_InconclusiveLoFuTestException()
+        public void AssertAsync_InconclusiveLoFuTestException()
         {
             var fixture = new FakeMsTestLoFuTest();
 
