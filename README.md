@@ -347,7 +347,7 @@ dotnet test --logger:trx
 
 # Troubleshooting
 
-If you something like this:
+If you see something like this:
 
 ```
 LoFuUnit.InconclusiveLoFuTestException : Invocation of test method 'when_Assert_on_inconclusive_test_method' aborted. One or more test functions are inconclusive. Test functions must be parameterless, and cannot use variables declared at test method scope. Please review the following local functions:
@@ -364,7 +364,7 @@ Make sure that the local functions do not have any parameters.
 And furthermore, that the local functions do not access any variables declared in the containing method.
 Rewrite the test so that data is passed to the local functions via fields declared in the containing class.
 
-If you something like this:
+If you see something like this:
 
 ```
 LoFuUnit.InconclusiveLoFuTestException : Invocation of test function 'should_not_invoke_async_test_function_that_returns_void' failed. The asynchronous local function does not have a valid return type. Asynchronous test functions must return a Task, and cannot return void or Task<TResult>.
