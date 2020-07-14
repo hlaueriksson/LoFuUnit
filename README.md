@@ -27,6 +27,7 @@
   - [Output 📃](#output-)
   - [Limitations ❗](#limitations-)
   - [Inconclusiveness ⁉️](#inconclusiveness-%EF%B8%8F)
+  - [Best Practices 👍](#best-practices-)
 - [Auto Mocking](#auto-mocking)
   - [Packages 📦](#packages--1)
   - [Mocks 🦆](#mocks-)
@@ -238,6 +239,10 @@ The exception includes a message with the local functions that should be reviewe
 With the `[LoFu]` and `[LoFuTest]` attributes in [LoFuUnit.NUnit](https://www.nuget.org/packages/LoFuUnit.NUnit/), the test runner clearly shows inconclusive tests:
 
 ![Inconclusive](inconclusive.png)
+
+## Best Practices 👍
+
+A list of [Best Practices](BestPractices.md) with patterns to consider and avoid.
 
 # Auto Mocking
 
