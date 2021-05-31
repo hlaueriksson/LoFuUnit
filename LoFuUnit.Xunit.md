@@ -58,6 +58,12 @@ Authenticate admin users
 
 Test methods can contain local functions that are invoked implicitly. These test functions can perform the _arrange_, _act_ or _assert_ steps of the test.
 
-The `LoFuUnit.Xunit` package contains the `LoFuTest` base class for test fixtures to inherit from. This class implements the `DisposeAsync` method from the `IAsyncLifetime` interface, and it is called after running each test in the test fixture. The `DisposeAsync` method invokes the test functions in the containing test method that was just executed. The invocations will occur in the order that the test functions are declared. If a test function fails, the test method fails directly. Any subsequent test functions in the test method will not be invoked.
+The `LoFuUnit.Xunit` package contains the `LoFuTest` base class for test fixtures to inherit from.
+This class implements the `DisposeAsync` method from the `IAsyncLifetime` interface, and it is called after running each test in the test fixture.
+The `DisposeAsync` method invokes the test functions in the containing test method that was just executed.
+The invocations will probably occur in the order that the test functions are declared, but it's not guaranteed.
+Do not write tests that depend on the order of test function execution.
+If a test function fails, the test method fails directly.
+Any subsequent test functions in the test method will not be invoked.
 
 More documentation is available at [https://github.com/hlaueriksson/LoFuUnit](https://github.com/hlaueriksson/LoFuUnit)
