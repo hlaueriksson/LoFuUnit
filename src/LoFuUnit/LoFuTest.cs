@@ -46,6 +46,7 @@ namespace LoFuUnit
                                     .Where(x => x.ReturnType == typeof(void))
                                     .Where(x => x.GetParameters().Length == 0)
                                     .Where(x => x.Name.StartsWith(testMethod.WrappedName()))
+                                    .OrderBy(x => x.MetadataToken)
                                     .ToList() ?? Enumerable.Empty<MethodInfo>().ToList();
 
             Log(testMethod.GetFormattedName());
@@ -68,6 +69,7 @@ namespace LoFuUnit
                                     .Where(x => x.ReturnType == typeof(void) || x.ReturnType == typeof(Task))
                                     .Where(x => x.GetParameters().Length == 0)
                                     .Where(x => x.Name.StartsWith(testMethod.WrappedName()))
+                                    .OrderBy(x => x.MetadataToken)
                                     .ToList() ?? Enumerable.Empty<MethodInfo>().ToList();
 
             Log(testMethod.GetFormattedName());
