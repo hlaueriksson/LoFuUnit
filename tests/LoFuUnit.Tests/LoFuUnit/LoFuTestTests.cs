@@ -120,7 +120,7 @@ namespace LoFuUnit.Tests.LoFuUnit
         }
 
         [Test]
-        public async Task AssertAsync_throws_InconclusiveLoFuTestException_with_message_about_invalid_test_functions_in_declaration_order()
+        public void AssertAsync_throws_InconclusiveLoFuTestException_with_message_about_invalid_test_functions_in_declaration_order()
         {
             var fixture = new FakeLoFuTestWithManyLocalFunctions();
 
