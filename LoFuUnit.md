@@ -1,5 +1,5 @@
 [![Build status](https://ci.appveyor.com/api/projects/status/ahjxbhw42vggh0su?svg=true)](https://ci.appveyor.com/project/hlaueriksson/lofuunit)
-[![CodeFactor](https://www.codefactor.io/repository/github/hlaueriksson/lofuunit/badge)](https://www.codefactor.io/repository/github/hlaueriksson/lofuunit)
+[![CodeFactor](https://codefactor.io/repository/github/hlaueriksson/lofuunit/badge)](https://codefactor.io/repository/github/hlaueriksson/lofuunit)
 
 Use the traditional Unit Testing Frameworks for **BDD**.
 
