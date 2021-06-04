@@ -113,6 +113,7 @@ namespace LoFuUnit
                 .Where(x => x.ReturnType == typeof(void))
                 .Where(x => x.GetParameters().Length > 0)
                 .Where(x => x.Name.StartsWith(method.WrappedName()))
+                .OrderBy(x => x.MetadataToken)
                 .ToList();
 
             if (invalidTestFunctions == null || !invalidTestFunctions.Any()) return;
@@ -128,6 +129,7 @@ namespace LoFuUnit
                 .GetNestedTypes(BindingFlags.NonPublic)
                 .Where(x => x.GetCustomAttributes<CompilerGeneratedAttribute>().Any())
                 .Where(x => !typeof(IAsyncStateMachine).IsAssignableFrom(x))
+                .OrderBy(x => x.MetadataToken)
                 .ToList();
 
             var invalidTestFunctions = displayClasses?
@@ -136,6 +138,7 @@ namespace LoFuUnit
                     .Where(x => typeof(IAsyncStateMachine).IsAssignableFrom(x))
                     .Where(x => !x.GetCustomAttributes<CompilerGeneratedAttribute>().Any())
                     .Where(x => x.Name.StartsWith("<" + method.WrappedName() + "g__")))
+                .OrderBy(x => x.MetadataToken)
                 .ToList();
 
             if (invalidTestFunctions == null || !invalidTestFunctions.Any()) return;
