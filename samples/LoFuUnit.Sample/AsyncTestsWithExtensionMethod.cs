@@ -21,7 +21,7 @@ namespace LoFuUnit.Sample
             async Task then_it_should_have_proper_content()
             {
                 var content = await Response.Content.ReadAsStringAsync();
-                content.Should().Contain("Built for developers");
+                content.Should().Contain("Where the world builds software");
             }
         }
     }
