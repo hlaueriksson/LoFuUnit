@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
 using FluentAssertions;
 using LoFuUnit.Tests.Extensions;
@@ -82,6 +83,28 @@ namespace LoFuUnit.Tests.LoFuUnit
 
             fixture.Out.ToString().ShouldMatch(nameof(fixture.FakeTestWithAssertAsync), "A", "B", "C");
             fixture.Invocations.ShouldMatch(nameof(fixture.FakeTestWithAssertAsync), "A", "B", "C");
+        }
+
+        [Test]
+        public void Assert_should_execute_test_functions_in_declaration_order()
+        {
+            var fixture = new FakeLoFuTestWithManyLocalFunctions();
+            fixture.FakeTest();
+
+            var names = Enumerable.Range(0, 200).Select(x => $"A{x.ToString().PadLeft(3, '0')}").ToArray();
+
+            fixture.Invocations.ShouldMatch(nameof(fixture.FakeTest), names);
+        }
+
+        [Test]
+        public async Task AssertAsync_should_execute_test_functions_in_declaration_order()
+        {
+            var fixture = new FakeLoFuTestWithManyLocalFunctions();
+            await fixture.FakeTestAsync();
+
+            var names = Enumerable.Range(0, 200).Select(x => $"A{x.ToString().PadLeft(3, '0')}").ToArray();
+
+            fixture.Invocations.ShouldMatch(nameof(fixture.FakeTestAsync), names);
         }
     }
 }
