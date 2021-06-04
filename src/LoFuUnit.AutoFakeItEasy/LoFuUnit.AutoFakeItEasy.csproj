@@ -31,7 +31,7 @@ Use FakeItEasy to:
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="AutoFixture.AutoFakeItEasy" Version="4.11.0" />
+    <PackageReference Include="AutoFixture.AutoFakeItEasy" Version="4.17.0" />
   </ItemGroup>
 
   <ItemGroup>
