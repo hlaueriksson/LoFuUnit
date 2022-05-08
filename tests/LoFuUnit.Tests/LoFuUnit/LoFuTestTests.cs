@@ -50,7 +50,7 @@ namespace LoFuUnit.Tests.LoFuUnit
             var method = fixture.GetType().GetMethod(nameof(fixture.FakeTestThatThrowsInconclusiveLoFuTestExceptionAsync));
 
             Func<Task> act = async () => { await fixture.AssertAsync(fixture, method); };
-            act.Should().Throw<InconclusiveLoFuTestException>()
+            act.Should().ThrowAsync<InconclusiveLoFuTestException>()
                 .WithMessage($"*{nameof(fixture.FakeTestThatThrowsInconclusiveLoFuTestExceptionAsync)}*");
         }
 
@@ -61,7 +61,7 @@ namespace LoFuUnit.Tests.LoFuUnit
             var method = fixture.GetType().GetMethod(nameof(fixture.FakeTestThatThrowsInconclusiveLoFuTestExceptionAsyncVoid));
 
             Func<Task> act = async () => { await fixture.AssertAsync(fixture, method); };
-            act.Should().Throw<InconclusiveLoFuTestException>()
+            act.Should().ThrowAsync<InconclusiveLoFuTestException>()
                 .WithMessage("Invocation of test function *");
         }
 
@@ -127,7 +127,7 @@ namespace LoFuUnit.Tests.LoFuUnit
             var names = Enumerable.Range(0, 200).Select(x => $"Fail{x.ToString().PadLeft(3, '0')}").ToArray();
 
             Func<Task> act = async () => { await fixture.FakeTestThatThrowsInconclusiveLoFuTestExceptionAsync(); };
-            act.Should().Throw<InconclusiveLoFuTestException>()
+            act.Should().ThrowAsync<InconclusiveLoFuTestException>()
                 .WithMessage("*" + string.Join("*", names) + "*");
         }
     }
