@@ -1,6 +1,6 @@
-# LoFuUnit
+# LoFuUnit<!-- omit in toc -->
 
-[![Build status](https://ci.appveyor.com/api/projects/status/ahjxbhw42vggh0su?svg=true)](https://ci.appveyor.com/project/hlaueriksson/lofuunit)
+[![build](https://github.com/hlaueriksson/LoFuUnit/actions/workflows/build.yml/badge.svg)](https://github.com/hlaueriksson/LoFuUnit/actions/workflows/build.yml)
 [![CodeFactor](https://www.codefactor.io/repository/github/hlaueriksson/lofuunit/badge)](https://www.codefactor.io/repository/github/hlaueriksson/lofuunit)
 
 [![LoFuUnit](https://img.shields.io/nuget/v/LoFuUnit.svg?label=LoFuUnit)](https://www.nuget.org/packages/LoFuUnit)
@@ -18,15 +18,15 @@
 >
 > with your favorite **Unit** Testing Framework ✔️
 
-## Content
+## Content<!-- omit in toc -->
 
 - [Introduction](#introduction)
 - [Testing](#testing)
   - [Packages 📦](#packages-)
-  - [Tests ✔️](#tests-%EF%B8%8F)
+  - [Tests ✔️](#tests-️)
   - [Output 📃](#output-)
   - [Limitations ❗](#limitations-)
-  - [Inconclusiveness ⁉️](#inconclusiveness-%EF%B8%8F)
+  - [Inconclusiveness ⁉️](#inconclusiveness-️)
   - [Best Practices 👍](#best-practices-)
 - [Auto Mocking](#auto-mocking)
   - [Packages 📦](#packages--1)
@@ -36,15 +36,15 @@
 - [Troubleshooting](#troubleshooting)
 - [Attribution](#attribution)
 
-# Introduction
+## Introduction
 
 Use the traditional Unit Testing Frameworks for **BDD**.
 
 Use _local functions_ to structure tests with patterns like:
 
-* `Arrange` / `Act` / `Assert`
-* `Given` / `When` / `Then`
-* `Context` / `Specification`
+- `Arrange` / `Act` / `Assert`
+- `Given` / `When` / `Then`
+- `Context` / `Specification`
 
 Use Auto-Mocking Containers to `Mock` / `Fake` / `Stub` dependencies.
 
@@ -59,12 +59,12 @@ Why the tiger logo?
 What are local functions?
 
 > Starting with C# 7.0, C# supports local functions.
-
+>
 > Local functions are private methods of a type that are nested in another member.
-
+>
 > Local functions can use the `async` modifier.
 
-# Testing
+## Testing
 
 An example of a test with [LoFuUnit.NUnit](https://www.nuget.org/packages/LoFuUnit.NUnit/):
 
@@ -102,21 +102,21 @@ Output:
 
 ```txt
 Authenticate admin users
-	when authenticating an admin user
-	should indicate the user's role
-	should have a unique session id
+  when authenticating an admin user
+  should indicate the user's role
+  should have a unique session id
 ```
 
 Terminology:
 
-* Test fixture – a class that contains tests
-  * e.g. `AuthenticationTests`
-* Test method – a method in a test fixture that represents a test
-  * e.g. `Authenticate_admin_users`
-* Test function – a local function in a containing test method, that does something along the lines of _arrange_, _act_ or _assert_
-  * e.g. `when_authenticating_an_admin_user`, `should_indicate_the_user_s_role` and `should_have_a_unique_session_id`
+- Test fixture – a class that contains tests
+  - e.g. `AuthenticationTests`
+- Test method – a method in a test fixture that represents a test
+  - e.g. `Authenticate_admin_users`
+- Test function – a local function in a containing test method, that does something along the lines of _arrange_, _act_ or _assert_
+  - e.g. `when_authenticating_an_admin_user`, `should_indicate_the_user_s_role` and `should_have_a_unique_session_id`
 
-## Packages 📦
+### Packages 📦
 
 README | Test Framework | NuGet | Sample
 --- | --- | --- | ---
@@ -125,7 +125,7 @@ README | Test Framework | NuGet | Sample
 [LoFuUnit.NUnit](LoFuUnit.NUnit.md) | NUnit | [![NuGet](https://buildstats.info/nuget/LoFuUnit.NUnit)](https://www.nuget.org/packages/LoFuUnit.NUnit/) | [`LoFuUnit.Sample.NUnit`](/samples/LoFuUnit.Sample.NUnit)
 [LoFuUnit.Xunit](LoFuUnit.Xunit.md) | Xunit | [![NuGet](https://buildstats.info/nuget/LoFuUnit.Xunit)](https://www.nuget.org/packages/LoFuUnit.Xunit/) | [`LoFuUnit.Sample.Xunit`](/samples/LoFuUnit.Sample.Xunit)
 
-## Tests ✔️
+### Tests ✔️
 
 Test fixtures can inherit the class `LoFuTest`.
 
@@ -140,8 +140,8 @@ Make sure that all test methods actually invoke `Assert` or `AssertAsync`.
 
 Test fixtures that does not inherit the `LoFuTest` base class can invoke the extension methods:
 
-* `this.Assert();`
-* `await this.AssertAsync();`
+- `this.Assert();`
+- `await this.AssertAsync();`
 
 Test fixtures can also be implemented so `Assert` or `AssertAsync` is invoked for all test methods in a _tear down / cleanup / dispose_ method.
 
@@ -158,10 +158,10 @@ The naming of the test methods and test functions are important, because the nam
 
 Remember:
 
-* Do **not** explicitly invoke the test functions in a test method
-* Only invoke the `Assert` or `AssertAsync` method **once** per test method
+- Do **not** explicitly invoke the test functions in a test method
+- Only invoke the `Assert` or `AssertAsync` method **once** per test method
 
-## Output 📃
+### Output 📃
 
 ![Visual Studio](vs.png)
 
@@ -171,24 +171,24 @@ The naming convention is to use `snake_case` for test methods and test functions
 
 An underscore will be replaced by _space_ in the test output:
 
-* `foo_bar` will be formatted as `foo bar`
+- `foo_bar` will be formatted as `foo bar`
 
 Surrounding a word with double underscores will put _quotes_ around that word in the test output:
 
-* `__Foo__` will be formatted as `"Foo"`
+- `__Foo__` will be formatted as `"Foo"`
 
 Suffixing a word with `_s_` will add _possessive_ form to the word in the test output:
 
-* `Foo_s_` will be formatted as `Foo's`
+- `Foo_s_` will be formatted as `Foo's`
 
 Take the opportunity to invent your own convention for naming test methods and test functions.
 
 Consider using keywords like:
 
-* `given`
-* `when`
-* `then`
-* `should`
+- `given`
+- `when`
+- `then`
+- `should`
 
 What characters can be used when naming test methods and test functions?
 [Stack Overflow](https://stackoverflow.com/a/950651/7042367) has the answer!
@@ -197,24 +197,24 @@ You can use the `Log` method from the `LoFuTest` base class to write custom mess
 
 The naming of `assemblies`, `namespaces` and `classes` can also make the test suite more readable in your test runner.
 
-## Limitations ❗
+### Limitations ❗
 
 **Rule #1**: Test functions must return `void` or `Task`
 
 The `Assert` method can only invoke local functions that:
 
-* are *synchronous* and returns `void`
+- are *synchronous* and returns `void`
 
 The `AssertAsync` method can only invoke local functions that:
 
-* are *synchronous* and returns `void`, or
-* are *asynchronous* and returns `Task`
+- are *synchronous* and returns `void`, or
+- are *asynchronous* and returns `Task`
 
 **Rule #2**: Test functions must be parameterless
 
 The `Assert` and `AssertAsync` methods can only invoke local functions that:
 
-* has no parameters
+- has no parameters
 
 **Rule #3**: Test functions must **not** use variables declared at test method scope, i.e. local variables in the containing method (including its parameters)
 
@@ -222,13 +222,13 @@ The solution for this is to use test fixture [members](https://docs.microsoft.co
 
 When a test function needs access to data from the test method or another test function:
 
-* use a variable declared at test fixture scope, i.e. a [field](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/classes-and-structs/fields)
+- use a variable declared at test fixture scope, i.e. a [field](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/classes-and-structs/fields)
 
 It is easy to break rule #3 by mistake, because:
 
 > Note that all local variables that are defined in the containing member, including its method parameters, are accessible in the local function.
 
-## Inconclusiveness ⁉️
+### Inconclusiveness ⁉️
 
 Test functions that break these abovementioned rules can not be invoked when the test method is running.
 
@@ -240,11 +240,11 @@ With the `[LoFu]` and `[LoFuTest]` attributes in [LoFuUnit.NUnit](https://www.nu
 
 ![Inconclusive](inconclusive.png)
 
-## Best Practices 👍
+### Best Practices 👍
 
 A list of [Best Practices](BestPractices.md) with patterns to consider and avoid.
 
-# Auto Mocking
+## Auto Mocking
 
 An example of a test with [LoFuUnit.AutoNSubstitute](https://www.nuget.org/packages/LoFuUnit.AutoNSubstitute/) and [LoFuUnit.NUnit](https://www.nuget.org/packages/LoFuUnit.NUnit/):
 
@@ -288,12 +288,12 @@ Output:
 
 ```txt
 Identify mood on mondays
-	given the current day is monday
-	when identifying my mood
-	should be pretty bad
+  given the current day is monday
+  when identifying my mood
+  should be pretty bad
 ```
 
-## Packages 📦
+### Packages 📦
 
 README | Mock Framework | NuGet | Sample
 --- | --- | --- | ---
@@ -301,7 +301,7 @@ README | Mock Framework | NuGet | Sample
 [LoFuUnit.AutoMoq](LoFuUnit.AutoMoq.md) | Moq | [![NuGet](https://buildstats.info/nuget/LoFuUnit.AutoMoq)](https://www.nuget.org/packages/LoFuUnit.AutoMoq/) | [`LoFuUnit.Sample.AutoMoq`](/samples/LoFuUnit.Sample.AutoMoq)
 [LoFuUnit.AutoNSubstitute](LoFuUnit.AutoNSubstitute.md) | NSubstitute | [![NuGet](https://buildstats.info/nuget/LoFuUnit.AutoNSubstitute)](https://www.nuget.org/packages/LoFuUnit.AutoNSubstitute/) | [`LoFuUnit.Sample.AutoNSubstitute`](/samples/LoFuUnit.Sample.AutoNSubstitute)
 
-## Mocks 🦆
+### Mocks 🦆
 
 `LoFuUnit` uses `AutoFixture` as Auto-Mocking Container.
 
@@ -326,13 +326,13 @@ Consult the [AutoFixture documentation](https://github.com/AutoFixture/AutoFixtu
 
 Examples of usage can be found in the [samples](/samples) folder.
 
-## Limitations ❗
+### Limitations ❗
 
 Before you can access a mock / dependency via the `The<TDependency>` method,
 you must first call one of the `Use<TDependency>` methods for that specific type.
 The `The<TDependency>` method will return `null` for unknown mocks / dependencies.
 
-# Results
+## Results
 
 The test result output can be used as documentation.
 
@@ -350,13 +350,13 @@ dotnet test --logger:trx
 
 ![dotnet test --logger:trx](dotnet-test-logger-trx.png)
 
-# Troubleshooting
+## Troubleshooting
 
 If you see something like this:
 
-```
+```txt
 LoFuUnit.InconclusiveLoFuTestException : Invocation of test method 'when_Assert_on_inconclusive_test_method' aborted. One or more test functions are inconclusive. Test functions must be parameterless, and cannot use variables declared at test method scope. Please review the following local functions:
-	should_not_invoke_test_function_that_access_test_method_variables
+  should_not_invoke_test_function_that_access_test_method_variables
    at LoFuUnit.LoFuTest.ThrowInconclusive(MethodBase method, IEnumerable`1 names) in C:\work\github\LoFuUnit\src\LoFuUnit\LoFuTest.cs:line 146
    at LoFuUnit.LoFuTest.Validate(MethodBase method) in C:\work\github\LoFuUnit\src\LoFuUnit\LoFuTest.cs:line 118
    at LoFuUnit.LoFuTest.Assert(Object testFixture, MethodBase testMethod) in C:\work\github\LoFuUnit\src\LoFuUnit\LoFuTest.cs:line 41
@@ -371,7 +371,7 @@ Rewrite the test so that data is passed to the local functions via fields declar
 
 If you see something like this:
 
-```
+```txt
 LoFuUnit.InconclusiveLoFuTestException : Invocation of test function 'should_not_invoke_async_test_function_that_returns_void' failed. The asynchronous local function does not have a valid return type. Asynchronous test functions must return a Task, and cannot return void or Task<TResult>.
    at LoFuUnit.LoFuTest.AssertAsync(Object testFixture, MethodBase testMethod) in C:\work\github\LoFuUnit\src\LoFuUnit\LoFuTest.cs:line 84
    at LoFuUnit.LoFuTest.AssertAsync() in C:\work\github\LoFuUnit\src\LoFuUnit\LoFuTest.cs:line 36
@@ -388,7 +388,7 @@ Then you broke Rule #1, described above.
 Make sure that the `async` local functions does not return `void`.
 Rewrite the test so that the asynchronous local functions return a `Task`.
 
-# Attribution
+## Attribution
 
 LoFuUnit is standing on the shoulders of giants.
 
@@ -396,10 +396,10 @@ It is inspired by https://github.com/machine/machine.specifications and https://
 
 It builds upon:
 
-* https://github.com/nunit/nunit
-* https://github.com/xunit/xunit
-* https://github.com/Microsoft/testfx
-* https://github.com/AutoFixture/AutoFixture
-* https://github.com/FakeItEasy/FakeItEasy
-* https://github.com/moq/moq4
-* https://github.com/nsubstitute/NSubstitute
+- https://github.com/nunit/nunit
+- https://github.com/xunit/xunit
+- https://github.com/Microsoft/testfx
+- https://github.com/AutoFixture/AutoFixture
+- https://github.com/FakeItEasy/FakeItEasy
+- https://github.com/moq/moq4
+- https://github.com/nsubstitute/NSubstitute

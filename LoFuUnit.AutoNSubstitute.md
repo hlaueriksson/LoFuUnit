@@ -1,4 +1,6 @@
-[![Build status](https://ci.appveyor.com/api/projects/status/ahjxbhw42vggh0su?svg=true)](https://ci.appveyor.com/project/hlaueriksson/lofuunit) [![CodeFactor](https://codefactor.io/repository/github/hlaueriksson/lofuunit/badge)](https://codefactor.io/repository/github/hlaueriksson/lofuunit)
+# LoFuUnit.AutoNSubstitute
+
+[![build](https://github.com/hlaueriksson/LoFuUnit/actions/workflows/build.yml/badge.svg)](https://github.com/hlaueriksson/LoFuUnit/actions/workflows/build.yml) [![CodeFactor](https://codefactor.io/repository/github/hlaueriksson/lofuunit/badge)](https://codefactor.io/repository/github/hlaueriksson/lofuunit)
 
 Use LoFuUnit and NSubstitute to automatically `Mock` / `Fake` / `Stub` dependencies.
 
@@ -48,9 +50,9 @@ Output:
 
 ```txt
 Identify mood on mondays
-	given the current day is monday
-	when identifying my mood
-	should be pretty bad
+    given the current day is monday
+    when identifying my mood
+    should be pretty bad
 ```
 
 The `LoFuTest<TSubject>` base class provides auto-mocking capabilities. The generic type parameter defines what kind of _subject_ under test to create.

@@ -1,4 +1,6 @@
-[![Build status](https://ci.appveyor.com/api/projects/status/ahjxbhw42vggh0su?svg=true)](https://ci.appveyor.com/project/hlaueriksson/lofuunit) [![CodeFactor](https://codefactor.io/repository/github/hlaueriksson/lofuunit/badge)](https://codefactor.io/repository/github/hlaueriksson/lofuunit)
+# LoFuUnit.Xunit
+
+[![build](https://github.com/hlaueriksson/LoFuUnit/actions/workflows/build.yml/badge.svg)](https://github.com/hlaueriksson/LoFuUnit/actions/workflows/build.yml) [![CodeFactor](https://codefactor.io/repository/github/hlaueriksson/lofuunit/badge)](https://codefactor.io/repository/github/hlaueriksson/lofuunit)
 
 Use xUnit.net for **BDD**.
 
@@ -51,9 +53,9 @@ Output:
 
 ```txt
 Authenticate admin users
-	when authenticating an admin user
-	should indicate the user's role
-	should have a unique session id
+    when authenticating an admin user
+    should indicate the user's role
+    should have a unique session id
 ```
 
 Test methods can contain local functions that are invoked implicitly. These test functions can perform the _arrange_, _act_ or _assert_ steps of the test.
