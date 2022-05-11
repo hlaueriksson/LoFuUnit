@@ -1,9 +1,0 @@
-version: "1.0.0.{build}"
-image: Visual Studio 2022
-before_build:
-  - ps: dotnet restore LoFuUnit.sln
-build:
-  project: LoFuUnit.sln
-  verbosity: minimal
-test_script:
-  - ps: dotnet test ./tests/LoFuUnit.Tests/LoFuUnit.Tests.csproj
