@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
@@ -21,6 +21,7 @@ Use FakeItEasy to:
     <PackageId>LoFuUnit.AutoFakeItEasy</PackageId>
     <PackageProjectUrl>https://github.com/hlaueriksson/LoFuUnit</PackageProjectUrl>
     <PackageIcon>icon.png</PackageIcon>
+    <PackageReadmeFile>LoFuUnit.AutoFakeItEasy.md</PackageReadmeFile>
     <PackageTags>test;testing;tdd;bdd;mocks;mocking;fakeiteasy</PackageTags>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
@@ -28,7 +29,8 @@ Use FakeItEasy to:
   </PropertyGroup>
 
   <ItemGroup>
-    <None Include="..\..\icon.png" Link="icon.png" Pack="true" PackagePath="\" />
+    <None Include="..\..\icon.png" Pack="true" PackagePath="\" />
+    <None Include="..\..\LoFuUnit.AutoFakeItEasy.md" Pack="true" PackagePath="\" />
   </ItemGroup>
 
   <ItemGroup>

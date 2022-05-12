@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
@@ -21,6 +21,7 @@ Use NSubstitute to:
     <PackageId>LoFuUnit.AutoNSubstitute</PackageId>
     <PackageProjectUrl>https://github.com/hlaueriksson/LoFuUnit</PackageProjectUrl>
     <PackageIcon>icon.png</PackageIcon>
+    <PackageReadmeFile>LoFuUnit.AutoNSubstitute.md</PackageReadmeFile>
     <PackageTags>test;testing;tdd;bdd;mocks;mocking;nsubstitute</PackageTags>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
@@ -28,7 +29,8 @@ Use NSubstitute to:
   </PropertyGroup>
 
   <ItemGroup>
-    <None Include="..\..\icon.png" Link="icon.png" Pack="true" PackagePath="\" />
+    <None Include="..\..\icon.png" Pack="true" PackagePath="\" />
+    <None Include="..\..\LoFuUnit.AutoNSubstitute.md" Pack="true" PackagePath="\" />
   </ItemGroup>
 
   <ItemGroup>
