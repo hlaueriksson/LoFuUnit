@@ -1,4 +1,4 @@
-﻿using System.Threading.Tasks;
+using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace LoFuUnit.MSTest
@@ -11,7 +11,7 @@ namespace LoFuUnit.MSTest
         /// <summary>
         /// Stores information that is provided to unit tests.
         /// </summary>
-        public TestContext TestContext { get; set; }
+        public TestContext? TestContext { get; set; }
 
         /// <summary>
         /// Runs the local functions in the containing test method that just executed.
@@ -23,16 +23,18 @@ namespace LoFuUnit.MSTest
         {
             if (IsAsync())
             {
-                await this.AssertAsync(TestContext);
+                await this.AssertAsync(TestContext!).ConfigureAwait(false);
             }
             else
             {
-                this.Assert(TestContext);
+#pragma warning disable CA1849 // Call async methods when in an async method
+                this.Assert(TestContext!);
+#pragma warning restore CA1849 // Call async methods when in an async method
             }
 
             bool IsAsync()
             {
-                return this.GetMethodInfo(TestContext).IsAsync();
+                return this.GetMethodInfo(TestContext!).IsAsync();
             }
         }
     }

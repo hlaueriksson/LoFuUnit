@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Reflection;
 using System.Text.RegularExpressions;
 
@@ -6,13 +6,12 @@ namespace LoFuUnit
 {
     internal static class InternalNamingExtensions
     {
-        static readonly Regex QuoteRegex = new Regex(@"(?<quoted>__(?<inner>\w+?)__)", RegexOptions.Compiled | RegexOptions.CultureInvariant);
+        private const string Gt = "<";
+        private const string Lt = ">";
+        private const string Prefix = "g__";
+        private const char Suffix = '|';
 
-        const string Gt = "<";
-        const string Lt = ">";
-        const string Prefix = "g__";
-
-        const char Suffix = '|';
+        private static readonly Regex QuoteRegex = new Regex(@"(?<quoted>__(?<inner>\w+?)__)", RegexOptions.Compiled | RegexOptions.CultureInvariant);
 
         internal static string WrappedName(this MethodBase testMethod)
         {
@@ -47,7 +46,7 @@ namespace LoFuUnit
             return testFunction.GetFunctionName(testMethod).ToFormat();
         }
 
-        static string ToFormat(this string name)
+        private static string ToFormat(this string name)
         {
             name = ReplaceDoubleUnderscoresWithQuotes(name);
             name = ReplaceUnderscoreEssWithPossessive(name);
@@ -56,19 +55,19 @@ namespace LoFuUnit
             return name;
         }
 
-        static string ReplaceUnderscoreEssWithPossessive(string specificationName)
+        private static string ReplaceUnderscoreEssWithPossessive(string specificationName)
         {
             specificationName = specificationName.Replace("_s_", "'s ");
             return specificationName;
         }
 
-        static string ReplaceSingleUnderscoresWithSpaces(string specificationName)
+        private static string ReplaceSingleUnderscoresWithSpaces(string specificationName)
         {
             specificationName = specificationName.Replace("_", " ");
             return specificationName;
         }
 
-        static string ReplaceDoubleUnderscoresWithQuotes(string specificationName)
+        private static string ReplaceDoubleUnderscoresWithQuotes(string specificationName)
         {
             specificationName = QuoteRegex.Replace(specificationName, " \"${inner}\" ");
 

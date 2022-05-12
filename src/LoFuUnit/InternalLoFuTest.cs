@@ -1,4 +1,4 @@
-﻿namespace LoFuUnit
+namespace LoFuUnit
 {
     internal class InternalLoFuTest : LoFuTest
     {

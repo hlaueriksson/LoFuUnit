@@ -1,4 +1,4 @@
-﻿using System.Threading.Tasks;
+using System.Threading.Tasks;
 using Xunit;
 using Xunit.Abstractions;
 using Xunit.Sdk;
@@ -11,22 +11,23 @@ namespace LoFuUnit.Xunit
     public abstract class LoFuTest : LoFuUnit.LoFuTest, IAsyncLifetime
     {
         /// <summary>
+        /// Initializes a new instance of the <see cref="LoFuTest"/> class,
+        /// with a <see cref="ITestOutputHelper"/>.
+        /// </summary>
+        /// <param name="output">A test output log writer.</param>
+        protected LoFuTest(ITestOutputHelper output) => Output = output;
+
+        /// <summary>
         /// Test output log writer.
         /// </summary>
         protected ITestOutputHelper Output { get; }
-
-        /// <summary>
-        /// Initializes a new instance of the test fixture with a <see cref="ITestOutputHelper"/>.
-        /// </summary>
-        /// <param name="output">A test output log writer</param>
-        protected LoFuTest(ITestOutputHelper output) => Output = output;
 
         /// <summary>
         /// Does nothing.
         /// </summary>
         /// <returns>A task that represents the asynchronous operation.</returns>
         /// <remarks>Override this method to change how the test setup is done.</remarks>
-        public virtual async Task InitializeAsync() => await Task.CompletedTask;
+        public virtual async Task InitializeAsync() => await Task.CompletedTask.ConfigureAwait(false);
 
         /// <summary>
         /// Runs the local functions in the containing test method that just executed.
@@ -37,16 +38,18 @@ namespace LoFuUnit.Xunit
         {
             if (IsAsync())
             {
-                await this.AssertAsync(Output as TestOutputHelper);
+                await this.AssertAsync((TestOutputHelper)Output).ConfigureAwait(false);
             }
             else
             {
-                this.Assert(Output as TestOutputHelper);
+#pragma warning disable CA1849 // Call async methods when in an async method
+                this.Assert((TestOutputHelper)Output);
+#pragma warning restore CA1849 // Call async methods when in an async method
             }
 
             bool IsAsync()
             {
-                return this.GetMethodInfo(Output as TestOutputHelper).IsAsync();
+                return this.GetMethodInfo((TestOutputHelper)Output).IsAsync();
             }
         }
 

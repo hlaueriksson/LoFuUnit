@@ -1,4 +1,4 @@
-﻿using AutoFixture.AutoMoq;
+using AutoFixture.AutoMoq;
 using LoFuUnit.Auto;
 
 namespace LoFuUnit.AutoMoq
@@ -7,12 +7,15 @@ namespace LoFuUnit.AutoMoq
     /// Base class for <c>Moq</c> auto-mocked test fixtures.
     /// </summary>
     /// <typeparam name="TSubject">The subject under test type.</typeparam>
-    public abstract class LoFuTest<TSubject> : LoFuTestBase<TSubject> where TSubject : class
+    public abstract class LoFuTest<TSubject> : LoFuTestBase<TSubject>
+        where TSubject : class
     {
         /// <summary>
-        /// Initializes a new instance of the test fixture with the <see cref="AutoFixture.IFixture" /> customized with a <see cref="AutoMoqCustomization" />.
+        /// Initializes a new instance of the <see cref="LoFuTest{TSubject}"/> class,
+        /// with the <see cref="AutoFixture.IFixture" /> customized with a <see cref="AutoMoqCustomization" />.
         /// </summary>
-        protected LoFuTest() : base(new AutoMoqCustomization())
+        protected LoFuTest()
+            : base(new AutoMoqCustomization())
         {
         }
     }

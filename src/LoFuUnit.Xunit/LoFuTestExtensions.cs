@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Diagnostics;
 using System.Reflection;
 using System.Threading.Tasks;
@@ -16,7 +16,7 @@ namespace LoFuUnit.Xunit
         /// Runs the local functions in the containing test method that invoked this extension method.
         /// </summary>
         /// <param name="fixture">The test fixture.</param>
-        /// <param name="output">A test output log writer</param>
+        /// <param name="output">A test output log writer.</param>
         public static void Assert(this object fixture, ITestOutputHelper output)
         {
             var stackTrace = new StackTrace();
@@ -29,7 +29,7 @@ namespace LoFuUnit.Xunit
         /// Runs the local functions in the containing test method that invoked this extension method.
         /// </summary>
         /// <param name="fixture">The test fixture.</param>
-        /// <param name="output">A test output log writer</param>
+        /// <param name="output">A test output log writer.</param>
         /// <returns>A task that represents the asynchronous operation.</returns>
         public static async Task AssertAsync(this object fixture, ITestOutputHelper output)
         {
@@ -43,10 +43,12 @@ namespace LoFuUnit.Xunit
         /// Runs the local functions in the containing test method derived from the <see cref="TestOutputHelper"/>.
         /// </summary>
         /// <param name="fixture">The test fixture.</param>
-        /// <param name="output">A <see cref="TestOutputHelper"/></param>
-        /// <remarks>Derives the test method via reflection from the private <c>output.test</c> field</remarks>
+        /// <param name="output">A <see cref="TestOutputHelper"/>.</param>
+        /// <remarks>Derives the test method via reflection from the private <c>output.test</c> field.</remarks>
         public static void Assert(this object fixture, TestOutputHelper output)
         {
+            if (fixture == null) throw new ArgumentNullException(nameof(fixture));
+
             var method = fixture.GetMethodInfo(output);
 
             new InternalLoFuTest(output).Assert(fixture, method);
@@ -56,11 +58,13 @@ namespace LoFuUnit.Xunit
         /// Runs the local functions in the containing test method derived from the <see cref="TestOutputHelper"/>.
         /// </summary>
         /// <param name="fixture">The test fixture.</param>
-        /// <param name="output">A <see cref="TestOutputHelper"/></param>
-        /// <remarks>Derives the test method via reflection from the private <c>output.test</c> field</remarks>
+        /// <param name="output">A <see cref="TestOutputHelper"/>.</param>
+        /// <remarks>Derives the test method via reflection from the private <c>output.test</c> field.</remarks>
         /// <returns>A task that represents the asynchronous operation.</returns>
         public static async Task AssertAsync(this object fixture, TestOutputHelper output)
         {
+            if (fixture == null) throw new ArgumentNullException(nameof(fixture));
+
             var method = fixture.GetMethodInfo(output);
 
             await new InternalLoFuTest(output).AssertAsync(fixture, method).ConfigureAwait(false);

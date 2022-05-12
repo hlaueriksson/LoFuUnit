@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using NUnit.Framework.Interfaces;
 using NUnit.Framework.Internal.Commands;
 
@@ -8,15 +8,15 @@ namespace LoFuUnit.NUnit
     /// Runs the local functions in the containing test method marked by this attribute.
     /// </summary>
     [AttributeUsage(AttributeTargets.Method)]
-    public class LoFuAttribute : Attribute, IWrapSetUpTearDown
+    public sealed class LoFuAttribute : Attribute, IWrapSetUpTearDown
     {
         // https://github.com/nunit/docs/wiki/ICommandWrapper-Interface
 
         /// <summary>
         /// Wraps a command and returns the result.
         /// </summary>
-        /// <param name="command">The command to be wrapped</param>
-        /// <returns>The wrapped command</returns>
+        /// <param name="command">The command to be wrapped.</param>
+        /// <returns>The wrapped command.</returns>
         public TestCommand Wrap(TestCommand command)
         {
             return new LoFuCommand(command);

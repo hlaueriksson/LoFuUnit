@@ -23,9 +23,18 @@ Use the traditional Unit Testing Frameworks to write TDD or BDD tests:
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
   </PropertyGroup>
 
+  <Import Project="../../Analyzers.props" />
+
   <ItemGroup>
     <None Include="..\..\icon.png" Pack="true" PackagePath="\" />
     <None Include="..\..\LoFuUnit.md" Pack="true" PackagePath="\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <InternalsVisibleTo Include="LoFuUnit.MSTest" />
+    <InternalsVisibleTo Include="LoFuUnit.NUnit" />
+    <InternalsVisibleTo Include="LoFuUnit.Xunit" />
+    <InternalsVisibleTo Include="LoFuUnit.Tests" />
   </ItemGroup>
 
 </Project>

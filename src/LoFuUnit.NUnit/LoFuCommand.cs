@@ -1,4 +1,4 @@
-﻿using System.Linq;
+using System.Linq;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 using NUnit.Framework;
@@ -13,10 +13,12 @@ namespace LoFuUnit.NUnit
     public class LoFuCommand : AfterTestCommand
     {
         /// <summary>
+        /// Initializes a new instance of the <see cref="LoFuCommand"/> class.
         /// Constructs a command that runs the local functions in the containing test method derived from the test execution context.
         /// </summary>
-        /// <param name="innerCommand"></param>
-        public LoFuCommand(TestCommand innerCommand) : base(innerCommand)
+        /// <param name="innerCommand">The inner command.</param>
+        public LoFuCommand(TestCommand innerCommand)
+            : base(innerCommand)
         {
             AfterTest = (context) =>
             {

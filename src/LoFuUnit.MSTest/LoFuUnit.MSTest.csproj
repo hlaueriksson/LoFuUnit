@@ -23,6 +23,8 @@ Use MSTest to write TDD or BDD tests:
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
   </PropertyGroup>
 
+  <Import Project="../../Analyzers.props" />
+
   <ItemGroup>
     <None Include="..\..\icon.png" Pack="true" PackagePath="\" />
     <None Include="..\..\LoFuUnit.MSTest.md" Pack="true" PackagePath="\" />
@@ -34,6 +36,10 @@ Use MSTest to write TDD or BDD tests:
 
   <ItemGroup>
     <ProjectReference Include="..\LoFuUnit\LoFuUnit.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <InternalsVisibleTo Include="LoFuUnit.Tests" />
   </ItemGroup>
 
 </Project>
