@@ -1,4 +1,4 @@
-﻿using System.Reflection;
+using System.Reflection;
 using System.Threading.Tasks;
 using FluentAssertions;
 using NUnit.Framework;
@@ -10,7 +10,7 @@ namespace LoFuUnit.Tests.LoFuUnit
         [Test]
         public void WrappedName()
         {
-            typeof(FakeTestFixture).GetMethod(nameof(FakeTestFixture.A_b_c)).WrappedName().Should().Be("<A_b_c>");
+            typeof(FakeTestFixture).GetMethod(nameof(FakeTestFixture.A_b_c)).WrappedName().Should().Be("<A_b_c>g__");
         }
 
         [Test]
