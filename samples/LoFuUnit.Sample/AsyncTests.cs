@@ -1,4 +1,4 @@
-﻿using System.Net.Http;
+using System.Net.Http;
 using System.Threading.Tasks;
 using FluentAssertions;
 using NUnit.Framework;
@@ -21,7 +21,7 @@ namespace LoFuUnit.Sample
             async Task then_it_should_have_proper_content()
             {
                 var content = await Response.Content.ReadAsStringAsync();
-                content.Should().Contain("Where the world builds software");
+                content.Should().Contain("Let’s build from here");
             }
         }
     }
