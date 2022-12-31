@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Threading.Tasks;
 using FluentAssertions;
 using NUnit.Framework;
@@ -165,20 +165,5 @@ namespace LoFuUnit.Tests.Integration
         }
 
         int Subject;
-    }
-
-    public class FailSubject
-    {
-        public void Fail()
-        {
-            throw new Exception("Fail");
-        }
-
-        public async Task FailAsync()
-        {
-            await Task.Delay(1);
-
-            throw new Exception("Fail");
-        }
     }
 }
