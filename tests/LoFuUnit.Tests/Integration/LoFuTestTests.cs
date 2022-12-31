@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Threading.Tasks;
 using FluentAssertions;
 using NUnit.Framework;
@@ -37,16 +37,16 @@ namespace LoFuUnit.Tests.Integration
         }
 
         [Test]
-        public void when_Assert_with_Func_Task()
+        public void when_Assert_with_Action()
         {
             Assert();
 
-            void should_invoke_local_function_with_Func_Task_expression()
+            void should_invoke_local_function_with_Action_expression()
             {
-                var subject = new FakeAsyncSubject();
+                var subject = new FailSubject();
 
-                Func<Task> act = async () => { await subject.Fail(); };
-                act.Should().ThrowAsync<Exception>();
+                Action act = subject.Fail;
+                act.Should().Throw<Exception>();
             }
         }
 
@@ -100,12 +100,12 @@ namespace LoFuUnit.Tests.Integration
         {
             await AssertAsync();
 
-            void should_invoke_local_function_with_Func_Task_expression()
+            async Task should_invoke_local_function_with_Func_Task_expression()
             {
-                var subject = new FakeAsyncSubject();
+                var subject = new FailSubject();
 
-                Func<Task> act = async () => { await subject.Fail(); };
-                act.Should().ThrowAsync<Exception>();
+                Func<Task> act = subject.FailAsync;
+                await act.Should().ThrowAsync<Exception>();
             }
         }
 
@@ -165,15 +165,5 @@ namespace LoFuUnit.Tests.Integration
         }
 
         int Subject;
-    }
-
-    public class FakeAsyncSubject
-    {
-        public async Task Fail()
-        {
-            await Task.Delay(1);
-
-            throw new Exception("Fail");
-        }
     }
 }

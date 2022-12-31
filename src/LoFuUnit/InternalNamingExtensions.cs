@@ -15,7 +15,7 @@ namespace LoFuUnit
 
         internal static string WrappedName(this MethodBase testMethod)
         {
-            return Gt + testMethod.Name + Lt;
+            return Gt + testMethod.Name + Lt + Prefix;
         }
 
         internal static string GetFormattedName(this MethodBase testMethod)
