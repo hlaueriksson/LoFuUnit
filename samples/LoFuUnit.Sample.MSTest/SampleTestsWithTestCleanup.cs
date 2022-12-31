@@ -1,7 +1,7 @@
-﻿using FluentAssertions;
+﻿using System.Threading.Tasks;
+using FluentAssertions;
 using LoFuUnit.MSTest;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System.Threading.Tasks;
 
 namespace LoFuUnit.Sample.MSTest
 {

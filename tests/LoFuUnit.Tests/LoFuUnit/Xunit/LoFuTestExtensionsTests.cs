@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Threading.Tasks;
 using FluentAssertions;
-using LoFuUnit.Xunit;
 using LoFuUnit.Tests.Extensions;
 using LoFuUnit.Tests.LoFuUnit.Xunit.Fakes;
+using LoFuUnit.Xunit;
 using NSubstitute;
 using NUnit.Framework;
 using Xunit.Abstractions;
@@ -70,7 +70,7 @@ namespace LoFuUnit.Tests.LoFuUnit.Xunit
         }
 
         [Test]
-        public void GetMethodInfo() 
+        public void GetMethodInfo()
         {
             var fixture = new FakeXunitLoFuTest();
             var method = fixture.GetType().GetMethod(nameof(fixture.FakeTestWithITestOutputHelperExtension));
@@ -85,7 +85,7 @@ namespace LoFuUnit.Tests.LoFuUnit.Xunit
         }
 
         [Test]
-        public void GetMethodInfo_throws() 
+        public void GetMethodInfo_throws()
         {
             var fixture = new FakeXunitLoFuTest();
 
@@ -95,7 +95,7 @@ namespace LoFuUnit.Tests.LoFuUnit.Xunit
 
             var testOutputHelper = new TestOutputHelper();
             var test = Substitute.For<ITest>();
-            test.TestCase.TestMethod.Method.Name.Returns((string) null);
+            test.TestCase.TestMethod.Method.Name.Returns((string)null);
             testOutputHelper.Initialize(Substitute.For<IMessageBus>(), test);
             fixture.Invoking(x => x.GetMethodInfo(testOutputHelper))
                 .Should().Throw<InvalidOperationException>()

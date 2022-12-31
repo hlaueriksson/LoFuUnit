@@ -111,7 +111,7 @@ namespace LoFuUnit.Tests.LoFuUnit
         public void Assert_throws_InconclusiveLoFuTestException_with_message_about_invalid_test_functions_in_declaration_order()
         {
             var fixture = new FakeLoFuTestWithManyLocalFunctions();
-            
+
             var names = Enumerable.Range(0, 200).Select(x => $"Fail{x.ToString().PadLeft(3, '0')}").ToArray();
 
             fixture.Invoking(x => x.FakeTestThatThrowsInconclusiveLoFuTestException())
