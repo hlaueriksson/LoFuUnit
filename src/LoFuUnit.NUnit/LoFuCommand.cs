@@ -27,7 +27,7 @@ namespace LoFuUnit.NUnit
                 if (result.ResultState != ResultState.Success) return;
 
                 var fixture = GetFixture(context.CurrentTest);
-                var method = context.CurrentTest.Method.MethodInfo;
+                var method = context.CurrentTest.Method!.MethodInfo;
 
                 try
                 {
@@ -51,7 +51,7 @@ namespace LoFuUnit.NUnit
                 }
             };
 
-            object GetFixture(ITest test) => test.Fixture ?? GetFixture(test.Parent);
+            object GetFixture(ITest test) => test.Fixture ?? GetFixture(test.Parent!);
         }
     }
 }
