@@ -3,9 +3,11 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <IsPackable>true</IsPackable>
-    <Version>1.3.0</Version>
+    <Version>2.0.0</Version>
     <PackageReleaseNotes>
-🔢 Test functions are executed in order of declaration
+- Remove TargetFramework net461
+- Fix lambda expression bug
+- Bump xunit to 2.4.2
     </PackageReleaseNotes>
     <Authors>Henrik Lau Eriksson</Authors>
     <Description>Unit Testing with Local Functions 🐯
