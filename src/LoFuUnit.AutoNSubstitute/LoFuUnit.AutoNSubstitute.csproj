@@ -25,7 +25,6 @@ Use NSubstitute to:
     <PackageTags>test;testing;tdd;bdd;mocks;mocking;nsubstitute</PackageTags>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
-    <TargetsForTfmSpecificBuildOutput>$(TargetsForTfmSpecificBuildOutput);CopyProjectReferencesToPackage</TargetsForTfmSpecificBuildOutput>
     <NoWarn>$(NoWarn);NU1603</NoWarn>
   </PropertyGroup>
 
@@ -41,14 +40,8 @@ Use NSubstitute to:
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\LoFuUnit.Auto\LoFuUnit.Auto.csproj" PrivateAssets="all" />
+    <ProjectReference Include="..\LoFuUnit.Auto\LoFuUnit.Auto.csproj" />
     <ProjectReference Include="..\LoFuUnit\LoFuUnit.csproj" />
   </ItemGroup>
-
-  <Target Name="CopyProjectReferencesToPackage" DependsOnTargets="ResolveReferences">
-    <ItemGroup>
-      <BuildOutputInPackage Include="@(ReferenceCopyLocalPaths-&gt;WithMetadataValue('ReferenceSourceTarget', 'ProjectReference')-&gt;WithMetadataValue('PrivateAssets', 'All'))" />
-    </ItemGroup>
-  </Target>
 
 </Project>
