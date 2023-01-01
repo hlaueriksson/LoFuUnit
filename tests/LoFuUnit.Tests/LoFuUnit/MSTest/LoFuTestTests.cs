@@ -19,7 +19,7 @@ namespace LoFuUnit.Tests.LoFuUnit.MSTest
 
             fixture.TestFunctionWasCalled.Should().BeTrue();
         }
-        
+
         [Test]
         public async Task TestCleanup_with_async_test_method()
         {

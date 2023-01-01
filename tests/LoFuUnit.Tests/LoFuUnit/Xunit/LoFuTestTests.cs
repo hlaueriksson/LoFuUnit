@@ -16,7 +16,7 @@ namespace LoFuUnit.Tests.LoFuUnit.Xunit
             var fixture = new FakeXunitLoFuTestWithIAsyncLifetime(new TestOutputHelper());
             await fixture.InitializeAsync();
         }
-        
+
         [Test]
         public async Task DisposeAsync_with_sync_test_method()
         {
@@ -30,7 +30,7 @@ namespace LoFuUnit.Tests.LoFuUnit.Xunit
 
             fixture.TestFunctionWasCalled.Should().BeTrue();
         }
-        
+
         [Test]
         public async Task DisposeAsync_with_async_test_method()
         {
