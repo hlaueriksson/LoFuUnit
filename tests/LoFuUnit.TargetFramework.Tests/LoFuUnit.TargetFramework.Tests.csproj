@@ -3,7 +3,10 @@
   <PropertyGroup>
     <TargetFrameworks><!--net462;net481;-->net6.0;net7.0;net8.0</TargetFrameworks>
     <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
+    <Nullable>disable</Nullable>
+    <IsPackable>false</IsPackable>
+    <IsTestProject>true</IsTestProject>
+    <NoWarn>$(NoWarn);CS8321;NU1603</NoWarn>
   </PropertyGroup>
 
   <ItemGroup>
