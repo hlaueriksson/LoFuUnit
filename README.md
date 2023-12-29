@@ -143,6 +143,9 @@ Test fixtures that does not inherit the `LoFuTest` base class can invoke the ext
 - `this.Assert();`
 - `await this.AssertAsync();`
 
+These methods has a `[CallerMemberName]` parameter.
+The caller of these methods will implicitly be used, so don't set this parameter explicitly.
+
 Test fixtures can also be implemented so `Assert` or `AssertAsync` is invoked for all test methods in a _tear down / cleanup / dispose_ method.
 
 The `LoFuUnit.NUnit` package also contains the `[LoFuTest]` and `[LoFu]` attributes to mark test methods with.
