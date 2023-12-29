@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.CompilerServices;
@@ -78,24 +77,20 @@ namespace LoFuUnit
         /// <summary>
         /// Runs the local functions in the containing test method that invoked this method.
         /// </summary>
-        protected void Assert()
+        /// <param name="callerMemberName">The test method name. The caller of this method will implicitly be used, so don't set this parameter explicitly.</param>
+        protected void Assert([CallerMemberName] string callerMemberName = "")
         {
-            var stackTrace = new StackTrace();
-            var method = stackTrace.GetFrame(Configuration.StackTraceFrameIndexForAssert()).GetMethod();
-
-            Assert(this, method);
+            Assert(this, this.GetTestMethodForAssert(callerMemberName));
         }
 
         /// <summary>
         /// Runs the local functions in the containing test method that invoked this method.
         /// </summary>
+        /// <param name="callerMemberName">The test method name. The caller of this method will implicitly be used, so don't set this parameter explicitly.</param>
         /// <returns>A task that represents the asynchronous operation.</returns>
-        protected async Task AssertAsync()
+        protected async Task AssertAsync([CallerMemberName] string callerMemberName = "")
         {
-            var stackTrace = new StackTrace();
-            var method = stackTrace.GetFrame(Configuration.StackTraceFrameIndexForAssertAsync()).GetMethod();
-
-            await AssertAsync(this, method).ConfigureAwait(false);
+            await AssertAsync(this, this.GetTestMethodForAssertAsync(callerMemberName)).ConfigureAwait(false);
         }
 
         /// <summary>

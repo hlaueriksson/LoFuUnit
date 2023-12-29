@@ -35,6 +35,7 @@ Use the traditional Unit Testing Frameworks to write TDD or BDD tests:
     <InternalsVisibleTo Include="LoFuUnit.MSTest" />
     <InternalsVisibleTo Include="LoFuUnit.NUnit" />
     <InternalsVisibleTo Include="LoFuUnit.Xunit" />
+    <InternalsVisibleTo Include="LoFuUnit.TargetFramework.Tests" />
     <InternalsVisibleTo Include="LoFuUnit.Tests" />
   </ItemGroup>
 

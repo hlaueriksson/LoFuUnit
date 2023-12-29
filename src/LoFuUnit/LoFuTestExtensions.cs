@@ -1,4 +1,4 @@
-using System.Diagnostics;
+using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 
 namespace LoFuUnit
@@ -12,25 +12,21 @@ namespace LoFuUnit
         /// Runs the local functions in the containing test method that invoked this extension method.
         /// </summary>
         /// <param name="fixture">The test fixture.</param>
-        public static void Assert(this object fixture)
+        /// <param name="callerMemberName">The test method name. The caller of this method will implicitly be used, so don't set this parameter explicitly.</param>
+        public static void Assert(this object fixture, [CallerMemberName] string callerMemberName = "")
         {
-            var stackTrace = new StackTrace();
-            var method = stackTrace.GetFrame(Configuration.StackTraceFrameIndexForAssert()).GetMethod();
-
-            new InternalLoFuTest().Assert(fixture, method);
+            new InternalLoFuTest().Assert(fixture, fixture.GetTestMethodForAssert(callerMemberName));
         }
 
         /// <summary>
         /// Runs the local functions in the containing test method that invoked this extension method.
         /// </summary>
         /// <param name="fixture">The test fixture.</param>
+        /// <param name="callerMemberName">The test method name. The caller of this method will implicitly be used, so don't set this parameter explicitly.</param>
         /// <returns>A task that represents the asynchronous operation.</returns>
-        public static async Task AssertAsync(this object fixture)
+        public static async Task AssertAsync(this object fixture, [CallerMemberName] string callerMemberName = "")
         {
-            var stackTrace = new StackTrace();
-            var method = stackTrace.GetFrame(Configuration.StackTraceFrameIndexForAssertAsync()).GetMethod();
-
-            await new InternalLoFuTest().AssertAsync(fixture, method).ConfigureAwait(false);
+            await new InternalLoFuTest().AssertAsync(fixture, fixture.GetTestMethodForAssertAsync(callerMemberName)).ConfigureAwait(false);
         }
     }
 }
