@@ -11,7 +11,7 @@ namespace LoFuUnit
         private const string Prefix = "g__";
         private const char Suffix = '|';
 
-        private static readonly Regex QuoteRegex = new Regex(@"(?<quoted>__(?<inner>\w+?)__)", RegexOptions.Compiled | RegexOptions.CultureInvariant);
+        private static readonly Regex _quoteRegex = new(@"(?<quoted>__(?<inner>\w+?)__)", RegexOptions.Compiled | RegexOptions.CultureInvariant);
 
         internal static string WrappedName(this MethodBase testMethod)
         {
@@ -27,18 +27,14 @@ namespace LoFuUnit
         {
             var start = Gt + testMethod.Name + Lt + Prefix;
             var result = testFunction.Name.Substring(start.Length);
-            result = result.Remove(result.LastIndexOf(Suffix));
-
-            return result;
+            return result.Remove(result.LastIndexOf(Suffix));
         }
 
         internal static string GetFunctionName(this Type testFunction, MethodBase testMethod)
         {
             var start = Gt + Gt + testMethod.Name + Lt + Prefix;
             var result = testFunction.Name.Substring(start.Length);
-            result = result.Remove(result.LastIndexOf(Suffix));
-
-            return result;
+            return result.Remove(result.LastIndexOf(Suffix));
         }
 
         internal static string GetFormattedFunctionName(this MethodInfo testFunction, MethodBase testMethod)
@@ -57,21 +53,17 @@ namespace LoFuUnit
 
         private static string ReplaceUnderscoreEssWithPossessive(string specificationName)
         {
-            specificationName = specificationName.Replace("_s_", "'s ");
-            return specificationName;
+            return specificationName.Replace("_s_", "'s ");
         }
 
         private static string ReplaceSingleUnderscoresWithSpaces(string specificationName)
         {
-            specificationName = specificationName.Replace("_", " ");
-            return specificationName;
+            return specificationName.Replace("_", " ");
         }
 
         private static string ReplaceDoubleUnderscoresWithQuotes(string specificationName)
         {
-            specificationName = QuoteRegex.Replace(specificationName, " \"${inner}\" ");
-
-            return specificationName;
+            return _quoteRegex.Replace(specificationName, " \"${inner}\" ");
         }
     }
 }

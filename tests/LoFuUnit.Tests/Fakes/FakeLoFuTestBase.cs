@@ -13,12 +13,12 @@ namespace LoFuUnit.Tests.Fakes
 
         protected void Record([CallerMemberName] string callerMemberName = "")
         {
-            Invocations.Add(this.GetTestMethodForAssert(callerMemberName));
+            Invocations.Add(this.GetAssertTestMethod(callerMemberName));
         }
 
         protected async Task RecordAsync([CallerMemberName] string callerMemberName = "")
         {
-            Invocations.Add(this.GetTestMethodForAssertAsync(callerMemberName));
+            Invocations.Add(this.GetAssertAsyncTestMethod(callerMemberName));
 
             await Task.CompletedTask;
         }

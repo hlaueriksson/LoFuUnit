@@ -9,8 +9,10 @@ namespace LoFuUnit
 {
     internal static class InternalLoFuTestExtensions
     {
-        internal static MethodBase GetTestMethodForAssert(this object fixture, string callerMemberName)
+        internal static MethodBase GetAssertTestMethod(this object fixture, string callerMemberName)
         {
+            if (!fixture.HasMethod(callerMemberName)) throw new InvalidOperationException($"Test method '{callerMemberName}' not found in Fixture {fixture}.");
+
             var stackTrace = new StackTrace();
             var method = stackTrace.GetFrame(2).GetMethod();
 
@@ -19,10 +21,10 @@ namespace LoFuUnit
             return method;
         }
 
-#pragma warning disable VSTHRD200 // Use "Async" suffix for async methods
-        internal static MethodBase GetTestMethodForAssertAsync(this object fixture, string callerMemberName)
-#pragma warning restore VSTHRD200 // Use "Async" suffix for async methods
+        internal static MethodBase GetAssertAsyncTestMethod(this object fixture, string callerMemberName)
         {
+            if (!fixture.HasMethod(callerMemberName)) throw new InvalidOperationException($"Test method '{callerMemberName}' not found in Fixture {fixture}.");
+
             var stackTrace = new StackTrace();
 
             for (int i = 6; i <= 8; i++)
@@ -48,11 +50,14 @@ namespace LoFuUnit
             await new InternalLoFuTest().AssertAsync(fixture, method).ConfigureAwait(false);
         }
 
-#pragma warning disable VSTHRD200 // Use "Async" suffix for async methods
-        internal static bool IsAsync(this MethodInfo method)
-#pragma warning restore VSTHRD200 // Use "Async" suffix for async methods
+        internal static bool IsAsyncMethod(this MethodInfo method)
         {
             return method.GetCustomAttributes<AsyncStateMachineAttribute>().Any();
+        }
+
+        internal static bool HasMethod(this object fixture, string callerMemberName)
+        {
+            return fixture.GetType().GetMethod(callerMemberName) != null;
         }
     }
 }

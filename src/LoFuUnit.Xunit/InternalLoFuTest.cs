@@ -2,11 +2,7 @@ using Xunit.Abstractions;
 
 namespace LoFuUnit.Xunit
 {
-    internal class InternalLoFuTest : LoFuTest
+    internal class InternalLoFuTest(ITestOutputHelper output) : LoFuTest(output)
     {
-        public InternalLoFuTest(ITestOutputHelper output)
-            : base(output)
-        {
-        }
     }
 }

@@ -31,10 +31,10 @@ namespace LoFuUnit.Tests.LoFuUnit
             var fixture = new FakeLoFuTest();
 
             var method = fixture.GetType().GetMethod(nameof(fixture.FakeTest));
-            method.IsAsync().Should().BeFalse();
+            method.IsAsyncMethod().Should().BeFalse();
 
             method = fixture.GetType().GetMethod(nameof(fixture.FakeTestAsync));
-            method.IsAsync().Should().BeTrue();
+            method.IsAsyncMethod().Should().BeTrue();
         }
     }
 }

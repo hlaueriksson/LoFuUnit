@@ -11,9 +11,9 @@ namespace LoFuUnit.Auto
     public abstract class LoFuTestBase<TSubject> : LoFuTest
         where TSubject : class
     {
-        private readonly ICustomization customization;
-        private readonly Dictionary<Type, object> mocks;
-        private TSubject? subject;
+        private readonly ICustomization _customization;
+        private readonly Dictionary<Type, object> _mocks;
+        private TSubject? _subject;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="LoFuTestBase{TSubject}"/> class,
@@ -22,9 +22,9 @@ namespace LoFuUnit.Auto
         /// <param name="customization">A customization of an <see cref="IFixture" />.</param>
         protected LoFuTestBase(ICustomization customization)
         {
-            this.customization = customization;
-            Fixture = new Fixture().Customize(this.customization);
-            mocks = new Dictionary<Type, object>();
+            _customization = customization;
+            _mocks = [];
+            Fixture = new Fixture().Customize(_customization);
         }
 
         /// <summary>
@@ -35,7 +35,7 @@ namespace LoFuUnit.Auto
         /// <summary>
         /// The auto-mocked subject under test.
         /// </summary>
-        protected TSubject Subject => subject ?? (subject = Fixture.Create<TSubject>());
+        protected TSubject Subject => _subject ??= Fixture.Create<TSubject>();
 
         /// <summary>
         /// Clears the test fixture:
@@ -46,9 +46,9 @@ namespace LoFuUnit.Auto
         protected void Clear()
         {
             Fixture.Customizations.Clear();
-            Fixture.Customize(customization);
-            mocks.Clear();
-            subject = null;
+            Fixture.Customize(_customization);
+            _mocks.Clear();
+            _subject = null;
         }
 
         /// <summary>
@@ -61,7 +61,7 @@ namespace LoFuUnit.Auto
         {
             var type = typeof(TDependency);
 
-            return mocks.ContainsKey(type) ? mocks[type] as TDependency : null;
+            return _mocks.ContainsKey(type) ? _mocks[type] as TDependency : null;
         }
 
         /// <summary>
@@ -75,7 +75,7 @@ namespace LoFuUnit.Auto
             where TDependency : class
         {
             var mock = Fixture.Freeze<TDependency>();
-            mocks[typeof(TDependency)] = mock;
+            _mocks[typeof(TDependency)] = mock;
 
             return mock;
         }
@@ -91,7 +91,7 @@ namespace LoFuUnit.Auto
         protected TDependency Use<TDependency>(TDependency instance)
         {
             Fixture.Inject(instance);
-            mocks[typeof(TDependency)] = instance!;
+            _mocks[typeof(TDependency)] = instance!;
 
             return instance;
         }

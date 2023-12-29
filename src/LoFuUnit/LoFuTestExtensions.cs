@@ -15,7 +15,7 @@ namespace LoFuUnit
         /// <param name="callerMemberName">The test method name. The caller of this method will implicitly be used, so don't set this parameter explicitly.</param>
         public static void Assert(this object fixture, [CallerMemberName] string callerMemberName = "")
         {
-            new InternalLoFuTest().Assert(fixture, fixture.GetTestMethodForAssert(callerMemberName));
+            new InternalLoFuTest().Assert(fixture, fixture.GetAssertTestMethod(callerMemberName));
         }
 
         /// <summary>
@@ -26,7 +26,7 @@ namespace LoFuUnit
         /// <returns>A task that represents the asynchronous operation.</returns>
         public static async Task AssertAsync(this object fixture, [CallerMemberName] string callerMemberName = "")
         {
-            await new InternalLoFuTest().AssertAsync(fixture, fixture.GetTestMethodForAssertAsync(callerMemberName)).ConfigureAwait(false);
+            await new InternalLoFuTest().AssertAsync(fixture, fixture.GetAssertAsyncTestMethod(callerMemberName)).ConfigureAwait(false);
         }
     }
 }

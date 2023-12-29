@@ -60,11 +60,7 @@ namespace LoFuUnit.MSTest
             if (testContext == null) throw new InvalidOperationException("TestContext is null.");
             if (testContext.TestName == null) throw new InvalidOperationException("Test method name from TestContext is unknown.");
 
-            var method = fixture.GetType().GetMethod(testContext.TestName);
-
-            if (method == null) throw new InvalidOperationException("Test method not found on test fixture type.");
-
-            return method;
+            return fixture.GetType().GetMethod(testContext.TestName) ?? throw new InvalidOperationException("Test method not found on test fixture type.");
         }
     }
 }

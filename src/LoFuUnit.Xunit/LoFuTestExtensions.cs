@@ -20,7 +20,7 @@ namespace LoFuUnit.Xunit
         /// <param name="callerMemberName">The test method name. The caller of this method will implicitly be used, so don't set this parameter explicitly.</param>
         public static void Assert(this object fixture, ITestOutputHelper output, [CallerMemberName] string callerMemberName = "")
         {
-            new InternalLoFuTest(output).Assert(fixture, fixture.GetTestMethodForAssert(callerMemberName));
+            new InternalLoFuTest(output).Assert(fixture, fixture.GetAssertTestMethod(callerMemberName));
         }
 
         /// <summary>
@@ -32,7 +32,7 @@ namespace LoFuUnit.Xunit
         /// <returns>A task that represents the asynchronous operation.</returns>
         public static async Task AssertAsync(this object fixture, ITestOutputHelper output, [CallerMemberName] string callerMemberName = "")
         {
-            await new InternalLoFuTest(output).AssertAsync(fixture, fixture.GetTestMethodForAssertAsync(callerMemberName)).ConfigureAwait(false);
+            await new InternalLoFuTest(output).AssertAsync(fixture, fixture.GetAssertAsyncTestMethod(callerMemberName)).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -71,15 +71,9 @@ namespace LoFuUnit.Xunit
             if (output == null) throw new InvalidOperationException("TestOutputHelper is null.");
 
             var test = output.GetType().GetField("test", BindingFlags.NonPublic | BindingFlags.Instance)?.GetValue(output) as ITest;
-            var methodName = test?.TestCase?.TestMethod?.Method?.Name;
+            var methodName = test?.TestCase?.TestMethod?.Method?.Name ?? throw new InvalidOperationException("Test method name from TestOutputHelper is unknown.");
 
-            if (methodName == null) throw new InvalidOperationException("Test method name from TestOutputHelper is unknown.");
-
-            var method = fixture.GetType().GetMethod(methodName);
-
-            if (method == null) throw new InvalidOperationException("Test method not found on test fixture type.");
-
-            return method;
+            return fixture.GetType().GetMethod(methodName) ?? throw new InvalidOperationException("Test method not found on test fixture type.");
         }
     }
 }

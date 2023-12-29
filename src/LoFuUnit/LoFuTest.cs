@@ -14,14 +14,15 @@ namespace LoFuUnit
     {
         internal void Assert(object testFixture, MethodBase testMethod)
         {
-            Validate(testMethod);
+            ValidateMethod(testMethod);
 
             var testFunctions = testMethod.ReflectedType?
                                     .GetMethods(BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Static)
-                                    .Where(x => x.GetCustomAttributes<CompilerGeneratedAttribute>().Any())
-                                    .Where(x => x.ReturnType == typeof(void))
-                                    .Where(x => x.GetParameters().Length == 0)
-                                    .Where(x => x.Name.StartsWith(testMethod.WrappedName(), StringComparison.Ordinal))
+                                    .Where(x =>
+                                        x.GetCustomAttributes<CompilerGeneratedAttribute>().Any() &&
+                                        x.ReturnType == typeof(void) &&
+                                        x.GetParameters().Length == 0 &&
+                                        x.Name.StartsWith(testMethod.WrappedName(), StringComparison.Ordinal))
                                     .OrderBy(x => x.MetadataToken)
                                     .ToList() ?? Enumerable.Empty<MethodInfo>().ToList();
 
@@ -30,21 +31,22 @@ namespace LoFuUnit
             foreach (var testFunction in testFunctions)
             {
                 Log("\t" + testFunction.GetFormattedFunctionName(testMethod));
-                testFunction.Invoke(testFixture, Array.Empty<object>());
+                testFunction.Invoke(testFixture, []);
             }
         }
 
         internal async Task AssertAsync(object testFixture, MethodBase testMethod)
         {
-            ValidateAsync(testMethod);
-            Validate(testMethod);
+            ValidateAsyncMethod(testMethod);
+            ValidateMethod(testMethod);
 
             var testFunctions = testMethod.ReflectedType?
                                     .GetMethods(BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Static)
-                                    .Where(x => x.GetCustomAttributes<CompilerGeneratedAttribute>().Any())
-                                    .Where(x => x.ReturnType == typeof(void) || x.ReturnType == typeof(Task))
-                                    .Where(x => x.GetParameters().Length == 0)
-                                    .Where(x => x.Name.StartsWith(testMethod.WrappedName(), StringComparison.Ordinal))
+                                    .Where(x =>
+                                        x.GetCustomAttributes<CompilerGeneratedAttribute>().Any() &&
+                                        (x.ReturnType == typeof(void) || x.ReturnType == typeof(Task)) &&
+                                        x.GetParameters().Length == 0 &&
+                                        x.Name.StartsWith(testMethod.WrappedName(), StringComparison.Ordinal))
                                     .OrderBy(x => x.MetadataToken)
                                     .ToList() ?? Enumerable.Empty<MethodInfo>().ToList();
 
@@ -56,15 +58,13 @@ namespace LoFuUnit
 
                 if (IsAsync(testFunction))
                 {
-                    var task = testFunction.Invoke(testFixture, Array.Empty<object>()) as Task;
-
-                    if (task == null) throw new InconclusiveLoFuTestException($"Invocation of test function '{testFunction.GetFunctionName(testMethod)}' failed. The asynchronous local function does not have a valid return type. Asynchronous test functions must return a Task, and cannot return void or Task<TResult>.");
+                    if (testFunction.Invoke(testFixture, []) is not Task task) throw new InconclusiveLoFuTestException($"Invocation of test function '{testFunction.GetFunctionName(testMethod)}' failed. The asynchronous local function does not have a valid return type. Asynchronous test functions must return a Task, and cannot return void or Task<TResult>.");
 
                     await task.ConfigureAwait(false);
                 }
                 else
                 {
-                    testFunction.Invoke(testFixture, Array.Empty<object>());
+                    testFunction.Invoke(testFixture, []);
                 }
             }
 
@@ -80,7 +80,7 @@ namespace LoFuUnit
         /// <param name="callerMemberName">The test method name. The caller of this method will implicitly be used, so don't set this parameter explicitly.</param>
         protected void Assert([CallerMemberName] string callerMemberName = "")
         {
-            Assert(this, this.GetTestMethodForAssert(callerMemberName));
+            Assert(this, this.GetAssertTestMethod(callerMemberName));
         }
 
         /// <summary>
@@ -90,7 +90,7 @@ namespace LoFuUnit
         /// <returns>A task that represents the asynchronous operation.</returns>
         protected async Task AssertAsync([CallerMemberName] string callerMemberName = "")
         {
-            await AssertAsync(this, this.GetTestMethodForAssertAsync(callerMemberName)).ConfigureAwait(false);
+            await AssertAsync(this, this.GetAssertAsyncTestMethod(callerMemberName)).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -100,47 +100,48 @@ namespace LoFuUnit
         /// <remarks>Override this method to change how the test output is written.</remarks>
         protected virtual void Log(string message) => Console.WriteLine(message);
 
-        private static void Validate(MethodBase method)
+        private static void ValidateMethod(MethodBase method)
         {
             var invalidTestFunctions = method.ReflectedType?
                 .GetMethods(BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Static)
-                .Where(x => x.GetCustomAttributes<CompilerGeneratedAttribute>().Any())
-                .Where(x => x.ReturnType == typeof(void))
-                .Where(x => x.GetParameters().Length > 0)
-                .Where(x => x.Name.StartsWith(method.WrappedName(), StringComparison.Ordinal))
+                .Where(x =>
+                    x.GetCustomAttributes<CompilerGeneratedAttribute>().Any() &&
+                    x.ReturnType == typeof(void) &&
+                    x.GetParameters().Length > 0 &&
+                    x.Name.StartsWith(method.WrappedName(), StringComparison.Ordinal))
                 .OrderBy(x => x.MetadataToken)
                 .ToList();
 
-            if (invalidTestFunctions == null || !invalidTestFunctions.Any()) return;
+            if (invalidTestFunctions?.Any() != true) return;
 
-            var names = invalidTestFunctions.Select(x => x.GetFunctionName(method)).ToList();
+            var names = invalidTestFunctions.ConvertAll(x => x.GetFunctionName(method));
 
             ThrowInconclusive(method, names);
         }
 
-#pragma warning disable VSTHRD200 // Use "Async" suffix for async methods
-        private static void ValidateAsync(MethodBase method)
-#pragma warning restore VSTHRD200 // Use "Async" suffix for async methods
+        private static void ValidateAsyncMethod(MethodBase method)
         {
             var displayClasses = method.ReflectedType?
                 .GetNestedTypes(BindingFlags.NonPublic)
-                .Where(x => x.GetCustomAttributes<CompilerGeneratedAttribute>().Any())
-                .Where(x => !typeof(IAsyncStateMachine).IsAssignableFrom(x))
+                .Where(x =>
+                    x.GetCustomAttributes<CompilerGeneratedAttribute>().Any() &&
+                    !typeof(IAsyncStateMachine).IsAssignableFrom(x))
                 .OrderBy(x => x.MetadataToken)
                 .ToList();
 
             var invalidTestFunctions = displayClasses?
                 .SelectMany(t => t
                     .GetNestedTypes(BindingFlags.NonPublic)
-                    .Where(x => typeof(IAsyncStateMachine).IsAssignableFrom(x))
-                    .Where(x => !x.GetCustomAttributes<CompilerGeneratedAttribute>().Any())
-                    .Where(x => x.Name.StartsWith("<" + method.WrappedName() + "g__", StringComparison.Ordinal)))
+                    .Where(x =>
+                        typeof(IAsyncStateMachine).IsAssignableFrom(x) &&
+                        !x.GetCustomAttributes<CompilerGeneratedAttribute>().Any() &&
+                        x.Name.StartsWith("<" + method.WrappedName() + "g__", StringComparison.Ordinal)))
                 .OrderBy(x => x.MetadataToken)
                 .ToList();
 
-            if (invalidTestFunctions == null || !invalidTestFunctions.Any()) return;
+            if (invalidTestFunctions?.Any() != true) return;
 
-            var names = invalidTestFunctions.Select(x => x.GetFunctionName(method)).ToList();
+            var names = invalidTestFunctions.ConvertAll(x => x.GetFunctionName(method));
 
             ThrowInconclusive(method, names);
         }

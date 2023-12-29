@@ -27,16 +27,14 @@ namespace LoFuUnit.MSTest
             }
             else
             {
-#pragma warning disable CA1849 // Call async methods when in an async method
 #pragma warning disable VSTHRD103 // Call async methods when in an async method
                 this.Assert(TestContext!);
 #pragma warning restore VSTHRD103 // Call async methods when in an async method
-#pragma warning restore CA1849 // Call async methods when in an async method
             }
 
             bool IsAsync()
             {
-                return this.GetMethodInfo(TestContext!).IsAsync();
+                return this.GetMethodInfo(TestContext!).IsAsyncMethod();
             }
         }
     }
