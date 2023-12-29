@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.IO;
 using LoFuUnit.NUnit;
 using NUnit.Framework;
@@ -8,7 +8,7 @@ namespace LoFuUnit.Sample.NUnit
     public class TestsWithTheory
     {
         [DatapointSource]
-        public double[] Values = { 0.0, 1.0, -1.0, 42.0 };
+        public double[] Values = [0.0, 1.0, -1.0, 42.0];
 
         [LoFu, Theory]
         public void SquareRootDefinition(double num)

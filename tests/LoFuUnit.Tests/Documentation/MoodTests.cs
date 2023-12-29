@@ -1,4 +1,4 @@
-﻿using FluentAssertions;
+using FluentAssertions;
 using LoFuUnit.AutoNSubstitute;
 using LoFuUnit.NUnit;
 using NSubstitute;
@@ -49,15 +49,12 @@ namespace LoFuUnit.Tests.Documentation
 
         public string IdentifyMood()
         {
-            switch (_clock.CurrentTime.DayOfWeek)
+            return _clock.CurrentTime.DayOfWeek switch
             {
-                case DayOfWeek.Monday:
-                    return "Pretty bad";
-                case DayOfWeek.Friday:
-                    return "Pretty good";
-                default:
-                    return "Just fine";
-            }
+                DayOfWeek.Monday => "Pretty bad",
+                DayOfWeek.Friday => "Pretty good",
+                _ => "Just fine",
+            };
         }
     }
 }

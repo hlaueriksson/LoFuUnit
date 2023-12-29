@@ -1,4 +1,4 @@
-﻿using FluentAssertions;
+using FluentAssertions;
 using LoFuUnit.NUnit;
 using NUnit.Framework;
 
@@ -16,11 +16,11 @@ namespace LoFuUnit.Sample.NUnit
         }
 
         static readonly object[] DivideCases =
-        {
+        [
             new object[] { 12, 3, 4 },
             new object[] { 12, 2, 6 },
             new object[] { 12, 4, 3 }
-        };
+        ];
 
         private int Result { get; set; }
         private int Expected { get; set; }

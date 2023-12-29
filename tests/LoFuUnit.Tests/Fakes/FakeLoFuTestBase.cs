@@ -7,7 +7,7 @@ namespace LoFuUnit.Tests.Fakes
     public abstract class FakeLoFuTestBase : LoFuTest
     {
         public StringBuilder Out { get; } = new StringBuilder();
-        public List<MethodBase> Invocations { get; } = new List<MethodBase>();
+        public List<MethodBase> Invocations { get; } = [];
 
         protected override void Log(string message) => Out.AppendLine(message);
 
