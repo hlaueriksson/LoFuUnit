@@ -19,7 +19,7 @@ namespace LoFuUnit.MSTest
         /// <returns>A task that represents the asynchronous operation.</returns>
         /// <remarks>Override this method to change how the test cleanup is done.</remarks>
         [TestCleanup]
-        public virtual async Task TestCleanup()
+        public virtual async Task TestCleanupAsync()
         {
             if (IsAsync())
             {
@@ -28,7 +28,9 @@ namespace LoFuUnit.MSTest
             else
             {
 #pragma warning disable CA1849 // Call async methods when in an async method
+#pragma warning disable VSTHRD103 // Call async methods when in an async method
                 this.Assert(TestContext!);
+#pragma warning restore VSTHRD103 // Call async methods when in an async method
 #pragma warning restore CA1849 // Call async methods when in an async method
             }
 

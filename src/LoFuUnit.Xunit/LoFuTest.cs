@@ -43,7 +43,9 @@ namespace LoFuUnit.Xunit
             else
             {
 #pragma warning disable CA1849 // Call async methods when in an async method
+#pragma warning disable VSTHRD103 // Call async methods when in an async method
                 this.Assert((TestOutputHelper)Output);
+#pragma warning restore VSTHRD103 // Call async methods when in an async method
 #pragma warning restore CA1849 // Call async methods when in an async method
             }
 

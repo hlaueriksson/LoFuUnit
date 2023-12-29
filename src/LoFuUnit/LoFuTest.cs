@@ -123,7 +123,9 @@ namespace LoFuUnit
             ThrowInconclusive(method, names);
         }
 
+#pragma warning disable VSTHRD200 // Use "Async" suffix for async methods
         private static void ValidateAsync(MethodBase method)
+#pragma warning restore VSTHRD200 // Use "Async" suffix for async methods
         {
             var displayClasses = method.ReflectedType?
                 .GetNestedTypes(BindingFlags.NonPublic)

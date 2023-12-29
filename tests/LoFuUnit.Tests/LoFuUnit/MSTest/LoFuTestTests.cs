@@ -15,7 +15,7 @@ namespace LoFuUnit.Tests.LoFuUnit.MSTest
             {
                 TestContext = new FakeTestContext(nameof(FakeXunitLoFuTestWithIAsyncLifetime.FakeTest))
             };
-            await fixture.TestCleanup();
+            await fixture.TestCleanupAsync();
 
             fixture.TestFunctionWasCalled.Should().BeTrue();
         }
@@ -27,7 +27,7 @@ namespace LoFuUnit.Tests.LoFuUnit.MSTest
             {
                 TestContext = new FakeTestContext(nameof(FakeXunitLoFuTestWithIAsyncLifetime.FakeTestAsync))
             };
-            await fixture.TestCleanup();
+            await fixture.TestCleanupAsync();
 
             fixture.TestFunctionWasCalled.Should().BeTrue();
         }

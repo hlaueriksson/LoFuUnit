@@ -17,7 +17,9 @@ namespace LoFuUnit
             await new InternalLoFuTest().AssertAsync(fixture, method).ConfigureAwait(false);
         }
 
+#pragma warning disable VSTHRD200 // Use "Async" suffix for async methods
         internal static bool IsAsync(this MethodInfo method)
+#pragma warning restore VSTHRD200 // Use "Async" suffix for async methods
         {
             return method.GetCustomAttributes<AsyncStateMachineAttribute>().Any();
         }

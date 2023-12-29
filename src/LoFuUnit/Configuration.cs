@@ -7,7 +7,9 @@ namespace LoFuUnit
             return 1;
         }
 
+#pragma warning disable VSTHRD200 // Use "Async" suffix for async methods
         public static int StackTraceFrameIndexForAssertAsync()
+#pragma warning restore VSTHRD200 // Use "Async" suffix for async methods
         {
 #if NET461
             return 5;
