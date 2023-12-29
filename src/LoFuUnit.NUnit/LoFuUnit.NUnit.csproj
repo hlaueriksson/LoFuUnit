@@ -4,9 +4,8 @@
     <TargetFramework>net6.0</TargetFramework>
     <Version>2.0.0</Version>
     <PackageReleaseNotes>
-- Remove TargetFramework net461
-- Fix lambda expression bug
-- Bump NUnit to 3.13.3
+- Change TargetFramework to net6.0
+- Bump NUnit to 4.0.1
     </PackageReleaseNotes>
     <Authors>Henrik Lau Eriksson</Authors>
     <Description>Unit Testing with Local Functions 🐯

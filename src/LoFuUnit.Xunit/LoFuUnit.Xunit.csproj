@@ -5,9 +5,9 @@
     <IsPackable>true</IsPackable>
     <Version>2.0.0</Version>
     <PackageReleaseNotes>
-- Remove TargetFramework net461
-- Fix lambda expression bug
-- Bump xunit to 2.4.2
+- Fix test method invocation bug that occurs on some TargetFrameworks
+- Add [CallerMemberName] parameter to Assert and AssertAsync methods
+- Bump xunit to 2.6.4
     </PackageReleaseNotes>
     <Authors>Henrik Lau Eriksson</Authors>
     <Description>Unit Testing with Local Functions 🐯
