@@ -1,6 +1,6 @@
-using NUnit.Framework;
-using LoFuUnit.TargetFramework.Tests.Fakes;
 using LoFuUnit.TargetFramework.Tests.Extensions;
+using LoFuUnit.TargetFramework.Tests.Fakes;
+using NUnit.Framework;
 
 namespace LoFuUnit.TargetFramework.Tests
 {
