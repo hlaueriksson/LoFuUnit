@@ -1,5 +1,4 @@
-﻿using System;
-using AutoFixture;
+﻿using AutoFixture;
 using FluentAssertions;
 using LoFuUnit.AutoMoq;
 using LoFuUnit.Tests.Fakes;

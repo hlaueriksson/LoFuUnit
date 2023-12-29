@@ -1,5 +1,4 @@
-﻿using System;
-using AutoFixture;
+﻿using AutoFixture;
 using FakeItEasy;
 using FluentAssertions;
 using LoFuUnit.AutoFakeItEasy;

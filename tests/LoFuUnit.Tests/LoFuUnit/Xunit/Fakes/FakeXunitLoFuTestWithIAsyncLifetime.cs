@@ -1,5 +1,4 @@
-﻿using System.Threading.Tasks;
-using Xunit.Abstractions;
+﻿using Xunit.Abstractions;
 using XunitLoFuTest = LoFuUnit.Xunit.LoFuTest;
 
 namespace LoFuUnit.Tests.LoFuUnit.Xunit.Fakes

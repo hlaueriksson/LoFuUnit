@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace LoFuUnit.Tests.Fakes
+﻿namespace LoFuUnit.Tests.Fakes
 {
     public class FakeSubject
     {

@@ -1,6 +1,4 @@
-﻿using System;
-using System.Threading.Tasks;
-using FluentAssertions;
+﻿using FluentAssertions;
 using LoFuUnit.Tests.Extensions;
 using LoFuUnit.Tests.LoFuUnit.Xunit.Fakes;
 using LoFuUnit.Xunit;

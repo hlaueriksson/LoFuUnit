@@ -1,7 +1,4 @@
-﻿using System;
-using System.Linq;
-using System.Threading.Tasks;
-using FluentAssertions;
+﻿using FluentAssertions;
 using LoFuUnit.Tests.Extensions;
 using LoFuUnit.Tests.Fakes;
 using NUnit.Framework;

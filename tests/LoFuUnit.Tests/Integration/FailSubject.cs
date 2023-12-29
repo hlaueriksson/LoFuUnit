@@ -1,7 +1,4 @@
-﻿using System;
-using System.Threading.Tasks;
-
-namespace LoFuUnit.Tests.Integration
+﻿namespace LoFuUnit.Tests.Integration
 {
     public class FailSubject
     {

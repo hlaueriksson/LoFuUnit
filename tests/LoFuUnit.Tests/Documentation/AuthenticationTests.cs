@@ -1,5 +1,4 @@
-﻿using System;
-using FluentAssertions;
+﻿using FluentAssertions;
 using LoFuUnit.NUnit;
 using NUnit.Framework;
 

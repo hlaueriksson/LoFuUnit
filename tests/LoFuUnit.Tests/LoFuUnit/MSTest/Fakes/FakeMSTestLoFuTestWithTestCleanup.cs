@@ -1,5 +1,4 @@
-﻿using System.Threading.Tasks;
-using MSTestLoFuTest = LoFuUnit.MSTest.LoFuTest;
+﻿using MSTestLoFuTest = LoFuUnit.MSTest.LoFuTest;
 
 namespace LoFuUnit.Tests.LoFuUnit.MSTest.Fakes
 {

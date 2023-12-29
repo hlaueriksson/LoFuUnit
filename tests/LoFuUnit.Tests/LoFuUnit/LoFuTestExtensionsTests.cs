@@ -1,5 +1,4 @@
-﻿using System.Threading.Tasks;
-using LoFuUnit.Tests.Extensions;
+﻿using LoFuUnit.Tests.Extensions;
 using LoFuUnit.Tests.Fakes;
 using NUnit.Framework;
 

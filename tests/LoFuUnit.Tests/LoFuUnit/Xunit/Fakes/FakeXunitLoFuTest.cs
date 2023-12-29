@@ -1,5 +1,4 @@
-﻿using System.Threading.Tasks;
-using LoFuUnit.Tests.Fakes;
+﻿using LoFuUnit.Tests.Fakes;
 using LoFuUnit.Xunit;
 using NSubstitute;
 using Xunit.Abstractions;
