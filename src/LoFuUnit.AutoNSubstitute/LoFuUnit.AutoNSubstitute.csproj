@@ -37,7 +37,7 @@ Use NSubstitute to:
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="AutoFixture.AutoNSubstitute" Version="4.17.0" />
+    <PackageReference Include="AutoFixture.AutoNSubstitute" Version="4.18.1" />
   </ItemGroup>
 
   <ItemGroup>
