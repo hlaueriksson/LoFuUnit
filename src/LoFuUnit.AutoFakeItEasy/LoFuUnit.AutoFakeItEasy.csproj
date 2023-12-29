@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <Version>2.0.0</Version>
+    <Version>3.0.0</Version>
     <PackageReleaseNotes>
 - Bump AutoFixture.AutoFakeItEasy to 4.18.1
     </PackageReleaseNotes>
