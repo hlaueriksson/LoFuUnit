@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using FluentAssertions;
 using NUnit.Framework;
@@ -24,7 +24,7 @@ namespace LoFuUnit.Sample
         [Test]
         public void Non_empty_stack()
         {
-            Subject = new Stack<int>(new[] { 1, 2, 3 });
+            Subject = new Stack<int>([1, 2, 3]);
 
             Assert();
 

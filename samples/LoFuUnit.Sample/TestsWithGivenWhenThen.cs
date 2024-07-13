@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using FluentAssertions;
 using NUnit.Framework;
@@ -26,7 +26,7 @@ namespace LoFuUnit.Sample
         {
             Assert();
 
-            void given_a_non_empty_stack() => Subject = new Stack<int>(new[] { 1, 2, 3 });
+            void given_a_non_empty_stack() => Subject = new Stack<int>([1, 2, 3]);
             void when_calling_peek() => Result = Subject.Peek();
             void then_it_returns_the_top_element() => Result.Should().Be(3);
             void but_it_does_not_remove_the_top_element() => Subject.Should().Contain(3);
