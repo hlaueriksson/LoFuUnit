@@ -31,7 +31,7 @@ namespace LoFuUnit.NUnit
 
                 try
                 {
-                    if (IsAsync())
+                    if (IsAsyncMethod())
                     {
                         fixture.AssertAsync(method).ConfigureAwait(false).GetAwaiter().GetResult();
                     }
@@ -45,7 +45,7 @@ namespace LoFuUnit.NUnit
                     throw new InconclusiveException(e.Message, e);
                 }
 
-                bool IsAsync()
+                bool IsAsyncMethod()
                 {
                     return method.GetCustomAttributes<AsyncStateMachineAttribute>().Any();
                 }

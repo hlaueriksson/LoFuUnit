@@ -21,7 +21,7 @@ namespace LoFuUnit.MSTest
         [TestCleanup]
         public virtual async Task TestCleanupAsync()
         {
-            if (IsAsync())
+            if (IsAsyncMethod())
             {
                 await this.AssertAsync(TestContext!).ConfigureAwait(false);
             }
@@ -32,7 +32,7 @@ namespace LoFuUnit.MSTest
 #pragma warning restore VSTHRD103 // Call async methods when in an async method
             }
 
-            bool IsAsync()
+            bool IsAsyncMethod()
             {
                 return this.GetMethodInfo(TestContext!).IsAsyncMethod();
             }

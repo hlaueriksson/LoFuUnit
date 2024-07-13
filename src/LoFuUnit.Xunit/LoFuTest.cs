@@ -36,7 +36,7 @@ namespace LoFuUnit.Xunit
         /// <remarks>Override this method to change how the test cleanup is done.</remarks>
         public virtual async Task DisposeAsync()
         {
-            if (IsAsync())
+            if (IsAsyncMethod())
             {
                 await this.AssertAsync((TestOutputHelper)Output).ConfigureAwait(false);
             }
@@ -47,7 +47,7 @@ namespace LoFuUnit.Xunit
 #pragma warning restore VSTHRD103 // Call async methods when in an async method
             }
 
-            bool IsAsync()
+            bool IsAsyncMethod()
             {
                 return this.GetMethodInfo((TestOutputHelper)Output).IsAsyncMethod();
             }

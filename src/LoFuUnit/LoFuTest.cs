@@ -56,7 +56,7 @@ namespace LoFuUnit
             {
                 Log("\t" + testFunction.GetFormattedFunctionName(testMethod));
 
-                if (IsAsync(testFunction))
+                if (IsAsyncMethod(testFunction))
                 {
                     if (testFunction.Invoke(testFixture, []) is not Task task) throw new InconclusiveLoFuTestException($"Invocation of test function '{testFunction.GetFunctionName(testMethod)}' failed. The asynchronous local function does not have a valid return type. Asynchronous test functions must return a Task, and cannot return void or Task<TResult>.");
 
@@ -68,7 +68,7 @@ namespace LoFuUnit
                 }
             }
 
-            static bool IsAsync(MethodInfo testFunction)
+            static bool IsAsyncMethod(MethodInfo testFunction)
             {
                 return testFunction.GetCustomAttributes<AsyncStateMachineAttribute>().Any();
             }
