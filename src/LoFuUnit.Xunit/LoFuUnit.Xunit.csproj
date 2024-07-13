@@ -34,7 +34,7 @@ Use Xunit to write TDD or BDD tests:
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="xunit" Version="2.6.4" />
+    <PackageReference Include="xunit" Version="2.9.0" />
   </ItemGroup>
 
   <ItemGroup>
