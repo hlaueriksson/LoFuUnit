@@ -1,5 +1,4 @@
-﻿using System.Threading.Tasks;
-using FluentAssertions;
+﻿using FluentAssertions;
 using LoFuUnit.MSTest;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 

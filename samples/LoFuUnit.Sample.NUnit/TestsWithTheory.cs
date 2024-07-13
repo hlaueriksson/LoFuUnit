@@ -1,5 +1,3 @@
-using System;
-using System.IO;
 using LoFuUnit.NUnit;
 using NUnit.Framework;
 

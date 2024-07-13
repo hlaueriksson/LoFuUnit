@@ -1,5 +1,4 @@
-﻿using System.Threading.Tasks;
-using FluentAssertions;
+﻿using FluentAssertions;
 using LoFuUnit.Xunit;
 using Xunit;
 using Xunit.Abstractions;
