@@ -50,19 +50,6 @@ namespace LoFuUnit.Auto
         }
 
         /// <summary>
-        /// Returns the mock for the specified type, or <c>null</c> if the type is unknown.
-        /// </summary>
-        /// <typeparam name="TDependency">The type of mock.</typeparam>
-        /// <returns>The mock, or <c>null</c>.</returns>
-        protected TDependency? The<TDependency>()
-            where TDependency : class
-        {
-            var type = typeof(TDependency);
-
-            return _mocks.ContainsKey(type) ? _mocks[type] as TDependency : null;
-        }
-
-        /// <summary>
         /// Customize the <see cref="IFixture" /> and the test fixture to use this type of mock:
         ///  - Freezes the type for the <see cref="IFixture" /> and creates a mock.
         ///  - Saves the mock so that it is known by the <see cref="The{TDependency}" /> method.
@@ -93,5 +80,43 @@ namespace LoFuUnit.Auto
 
             return instance;
         }
+
+        /// <summary>
+        /// Returns the mock for the specified type, or <c>null</c> if the type is unknown.
+        /// </summary>
+        /// <typeparam name="TDependency">The type of mock.</typeparam>
+        /// <returns>The mock, or <c>null</c>.</returns>
+        protected TDependency? The<TDependency>()
+            where TDependency : class
+        {
+            var type = typeof(TDependency);
+
+            return _mocks.ContainsKey(type) ? _mocks[type] as TDependency : null;
+        }
+
+        /// <summary>
+        /// Creates one fake of the specified type.
+        /// </summary>
+        /// <typeparam name="T">The type of fake.</typeparam>
+        /// <returns>One <typeparamref name="T" />.</returns>
+        protected T One<T>()
+            => Fixture.Create<T>();
+
+        /// <summary>
+        /// Creates three fakes of the specified type.
+        /// </summary>
+        /// <typeparam name="T">The type of fakes.</typeparam>
+        /// <returns>An <see cref="IEnumerable{T}"/>.</returns>
+        protected IEnumerable<T> Some<T>()
+            => Some<T>(3);
+
+        /// <summary>
+        /// Creates some fakes of the specified type.
+        /// </summary>
+        /// <typeparam name="T">The type of fakes.</typeparam>
+        /// <param name="count">The number of fakes.</param>
+        /// <returns>An <see cref="IEnumerable{T}"/>.</returns>
+        protected IEnumerable<T> Some<T>(int count)
+            => Fixture.CreateMany<T>(count);
     }
 }
