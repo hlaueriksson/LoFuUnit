@@ -1,3 +1,4 @@
+using System.Reflection;
 using AutoFixture;
 
 namespace LoFuUnit.Auto
@@ -86,12 +87,37 @@ namespace LoFuUnit.Auto
         /// </summary>
         /// <typeparam name="TDependency">The type of mock.</typeparam>
         /// <returns>The mock, or <c>null</c>.</returns>
-        protected TDependency? The<TDependency>()
+        protected virtual TDependency? The<TDependency>()
             where TDependency : class
-        {
-            var type = typeof(TDependency);
+            => The(typeof(TDependency)) as TDependency;
 
-            return _mocks.ContainsKey(type) ? _mocks[type] as TDependency : null;
+#pragma warning disable SA1202 // Elements should be ordered by access
+        internal object? The(Type type)
+#pragma warning restore SA1202 // Elements should be ordered by access
+        {
+            // Frozen or injected
+            if (_mocks.TryGetValue(type, out object? value))
+            {
+                return value;
+            }
+
+            // Auto-mocked
+            if (_subject != null)
+            {
+                var field = _subject.GetType().GetFields(BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic).FirstOrDefault(x => x.FieldType == type);
+                if (field != null)
+                {
+                    return field.GetValue(_subject);
+                }
+
+                var property = _subject.GetType().GetProperties(BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic).FirstOrDefault(x => x.PropertyType == type);
+                if (property != null)
+                {
+                    return property.GetValue(_subject);
+                }
+            }
+
+            return null;
         }
 
         /// <summary>

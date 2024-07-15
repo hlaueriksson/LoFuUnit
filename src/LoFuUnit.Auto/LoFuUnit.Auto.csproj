@@ -32,6 +32,11 @@ Base for:
   </ItemGroup>
 
   <ItemGroup>
+    <InternalsVisibleTo Include="LoFuUnit.AutoFakeItEasy" />
+    <InternalsVisibleTo Include="LoFuUnit.AutoMoq" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="AutoFixture" Version="5.0.0-preview0011" />
   </ItemGroup>
 

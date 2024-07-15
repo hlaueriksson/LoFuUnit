@@ -1,4 +1,4 @@
-﻿using AutoFixture;
+using AutoFixture;
 using FluentAssertions;
 using LoFuUnit.AutoNSubstitute;
 using LoFuUnit.Tests.Fakes;
@@ -30,6 +30,19 @@ namespace LoFuUnit.Tests.LoFuUnit.AutoNSubstitute
 
             The<IFakeDependency>().Should().Be(substitute1);
             The<FakeDependencyBase>().Should().Be(substitute2);
+        }
+
+        [Test]
+        public void The_should_return_the_substitute_after_Subject()
+        {
+            var result = Subject;
+
+            var substitute = The<IFakeDependency>();
+            substitute.Should().NotBeNull();
+
+            // Verify
+            result.Dependency1.Id.Should().BeEmpty();
+            _ = substitute.Received().Id;
         }
 
         [Test]

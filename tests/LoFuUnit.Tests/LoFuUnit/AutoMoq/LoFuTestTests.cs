@@ -1,4 +1,5 @@
-﻿using AutoFixture;
+using AutoFixture;
+using FakeItEasy;
 using FluentAssertions;
 using LoFuUnit.AutoMoq;
 using LoFuUnit.Tests.Fakes;
@@ -30,6 +31,21 @@ namespace LoFuUnit.Tests.LoFuUnit.AutoMoq
 
             The<Mock<IFakeDependency>>().Should().Be(mock1);
             The<Mock<FakeDependencyBase>>().Should().Be(mock2);
+        }
+
+        [Test]
+        public void The_should_return_the_Mock_T_after_Subject()
+        {
+            var result = Subject;
+
+            var mock = The<Mock<IFakeDependency>>();
+            mock.Should().NotBeNull();
+            mock.Should().BeOfType<Mock<IFakeDependency>>();
+            mock.Object.Should().NotBeNull();
+
+            // Verify
+            result.Dependency1.Id.Should().BeEmpty();
+            mock.Verify(x => x.Id);
         }
 
         [Test]

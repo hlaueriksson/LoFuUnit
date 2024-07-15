@@ -1,8 +1,9 @@
-﻿using AutoFixture;
+using AutoFixture;
 using FakeItEasy;
 using FluentAssertions;
 using LoFuUnit.AutoFakeItEasy;
 using LoFuUnit.Tests.Fakes;
+using Moq;
 using NUnit.Framework;
 
 namespace LoFuUnit.Tests.LoFuUnit.AutoFakeItEasy
@@ -20,6 +21,7 @@ namespace LoFuUnit.Tests.LoFuUnit.AutoFakeItEasy
         {
             The<IFakeDependency>().Should().BeNull();
             The<FakeDependencyBase>().Should().BeNull();
+            The<Fake<FakeDependency>>().Should().BeNull();
         }
 
         [Test]
@@ -30,6 +32,34 @@ namespace LoFuUnit.Tests.LoFuUnit.AutoFakeItEasy
 
             The<IFakeDependency>().Should().Be(fake1);
             The<FakeDependencyBase>().Should().Be(fake2);
+        }
+
+        [Test]
+        public void The_should_return_the_fake_after_Subject()
+        {
+            var result = Subject;
+
+            var fake = The<IFakeDependency>();
+            fake.Should().NotBeNull();
+
+            // Verify
+            result.Dependency1.Id.Should().BeEmpty();
+            A.CallTo(() => fake.Id).MustHaveHappened();
+        }
+
+        [Test]
+        public void The_should_return_the_Fake_T_after_Subject()
+        {
+            var result = Subject;
+
+            var fake = The<Fake<IFakeDependency>>();
+            fake.Should().NotBeNull();
+            fake.Should().BeOfType<Fake<IFakeDependency>>();
+            fake.FakedObject.Should().NotBeNull();
+
+            // Verify
+            result.Dependency1.Id.Should().BeEmpty();
+            fake.CallsTo(x => x.Id).MustHaveHappened();
         }
 
         [Test]
