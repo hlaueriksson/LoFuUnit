@@ -28,6 +28,8 @@ Use MSTest to write TDD or BDD tests:
   <ItemGroup>
     <None Include="..\..\icon.png" Pack="true" PackagePath="\" />
     <None Include="..\..\LoFuUnit.MSTest.md" Pack="true" PackagePath="\" />
+    <None Include="buildTransitive\LoFuUnit.MSTest.props" Pack="true" PackagePath="buildTransitive\LoFuUnit.MSTest.props" />
+    <None Include="buildTransitive\LoFuUnit.MSTest.props" Pack="true" PackagePath="build\LoFuUnit.MSTest.props" />
   </ItemGroup>
 
   <ItemGroup>

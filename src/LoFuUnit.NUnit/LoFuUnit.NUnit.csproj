@@ -29,6 +29,8 @@ Use NUnit to write TDD or BDD tests:
   <ItemGroup>
     <None Include="..\..\icon.png" Pack="true" PackagePath="\" />
     <None Include="..\..\LoFuUnit.NUnit.md" Pack="true" PackagePath="\" />
+    <None Include="buildTransitive\LoFuUnit.NUnit.props" Pack="true" PackagePath="buildTransitive\LoFuUnit.NUnit.props" />
+    <None Include="buildTransitive\LoFuUnit.NUnit.props" Pack="true" PackagePath="build\LoFuUnit.NUnit.props" />
   </ItemGroup>
 
   <ItemGroup>
