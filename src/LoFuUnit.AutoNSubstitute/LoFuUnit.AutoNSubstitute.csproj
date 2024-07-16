@@ -33,6 +33,8 @@ Use NSubstitute to:
   <ItemGroup>
     <None Include="..\..\icon.png" Pack="true" PackagePath="\" />
     <None Include="..\..\LoFuUnit.AutoNSubstitute.md" Pack="true" PackagePath="\" />
+    <None Include="buildTransitive\LoFuUnit.AutoNSubstitute.props" Pack="true" PackagePath="buildTransitive\LoFuUnit.AutoNSubstitute.props" />
+    <None Include="buildTransitive\LoFuUnit.AutoNSubstitute.props" Pack="true" PackagePath="build\LoFuUnit.AutoNSubstitute.props" />
   </ItemGroup>
 
   <ItemGroup>

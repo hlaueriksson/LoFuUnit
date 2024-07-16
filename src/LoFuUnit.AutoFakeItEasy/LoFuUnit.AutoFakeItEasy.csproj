@@ -32,6 +32,8 @@ Use FakeItEasy to:
   <ItemGroup>
     <None Include="..\..\icon.png" Pack="true" PackagePath="\" />
     <None Include="..\..\LoFuUnit.AutoFakeItEasy.md" Pack="true" PackagePath="\" />
+    <None Include="buildTransitive\LoFuUnit.AutoFakeItEasy.props" Pack="true" PackagePath="buildTransitive\LoFuUnit.AutoFakeItEasy.props" />
+    <None Include="buildTransitive\LoFuUnit.AutoFakeItEasy.props" Pack="true" PackagePath="build\LoFuUnit.AutoFakeItEasy.props" />
   </ItemGroup>
 
   <ItemGroup>

@@ -33,6 +33,8 @@ Use Moq to:
   <ItemGroup>
     <None Include="..\..\icon.png" Pack="true" PackagePath="\" />
     <None Include="..\..\LoFuUnit.AutoMoq.md" Pack="true" PackagePath="\" />
+    <None Include="buildTransitive\LoFuUnit.AutoMoq.props" Pack="true" PackagePath="buildTransitive\LoFuUnit.AutoMoq.props" />
+    <None Include="buildTransitive\LoFuUnit.AutoMoq.props" Pack="true" PackagePath="build\LoFuUnit.AutoMoq.props" />
   </ItemGroup>
 
   <ItemGroup>
