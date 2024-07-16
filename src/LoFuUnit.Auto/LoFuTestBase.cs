@@ -38,9 +38,11 @@ namespace LoFuUnit.Auto
 
         /// <summary>
         /// Clears the test fixture:
-        ///  - The <see cref="IFixture" /> is reset from customizations.
-        ///  - The known mocks returned by <see cref="The{TDependency}" /> are cleared.
-        ///  - The <see cref="Subject" /> is reset.
+        /// <list type="bullet">
+        /// <item><description>The <see cref="IFixture" /> is reset from customizations.</description></item>
+        /// <item><description>The known mocks returned by <see cref="The{TDependency}" /> are cleared.</description></item>
+        /// <item><description>The <see cref="Subject" /> is reset.</description></item>
+        /// </list>
         /// </summary>
         protected void Clear()
         {
@@ -52,8 +54,10 @@ namespace LoFuUnit.Auto
 
         /// <summary>
         /// Customize the <see cref="IFixture" /> and the test fixture to use this type of mock:
-        ///  - Freezes the type for the <see cref="IFixture" /> and creates a mock.
-        ///  - Saves the mock so that it is known by the <see cref="The{TDependency}" /> method.
+        /// <list type="bullet">
+        /// <item><description>Freezes the type for the <see cref="IFixture" /> and creates a mock.</description></item>
+        /// <item><description>Saves the mock so that it is known by the <see cref="The{TDependency}" /> method.</description></item>
+        /// </list>
         /// </summary>
         /// <typeparam name="TDependency">The type to use.</typeparam>
         /// <returns>The mock.</returns>
@@ -68,8 +72,10 @@ namespace LoFuUnit.Auto
 
         /// <summary>
         /// Customize the <see cref="IFixture" /> and the test fixture to use this type of mock:
-        ///  - Injects the mock to the <see cref="IFixture" />.
-        ///  - Saves the mock so that it is known by the <see cref="The{TDependency}" /> method.
+        /// <list type="bullet">
+        /// <item><description>Injects the mock to the <see cref="IFixture" />.</description></item>
+        /// <item><description>Saves the mock so that it is known by the <see cref="The{TDependency}" /> method.</description></item>
+        /// </list>
         /// </summary>
         /// <typeparam name="TDependency">The type to use.</typeparam>
         /// <param name="instance">The mock instance.</param>
