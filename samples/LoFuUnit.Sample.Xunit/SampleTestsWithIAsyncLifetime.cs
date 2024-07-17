@@ -1,8 +1,4 @@
 ﻿using FluentAssertions;
-using LoFuUnit.Xunit;
-using Xunit;
-using Xunit.Abstractions;
-using Xunit.Sdk;
 
 namespace LoFuUnit.Sample.Xunit
 {

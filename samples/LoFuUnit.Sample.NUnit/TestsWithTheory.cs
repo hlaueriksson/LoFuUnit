@@ -1,6 +1,3 @@
-using LoFuUnit.NUnit;
-using NUnit.Framework;
-
 namespace LoFuUnit.Sample.NUnit
 {
     public class TestsWithTheory

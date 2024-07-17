@@ -1,6 +1,4 @@
 ﻿using FluentAssertions;
-using LoFuUnit.MSTest;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace LoFuUnit.Sample.MSTest
 {

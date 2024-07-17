@@ -1,8 +1,4 @@
-using FakeItEasy;
 using FluentAssertions;
-using LoFuUnit.AutoFakeItEasy;
-using LoFuUnit.NUnit;
-using NUnit.Framework;
 
 namespace LoFuUnit.Sample.AutoFakeItEasy
 {
@@ -24,7 +20,7 @@ namespace LoFuUnit.Sample.AutoFakeItEasy
             Result = Subject.GetMessage();
 
             void should_invoke_IFoo_GetMessage() => A.CallTo(() => The<IFoo>().GetFoo()).MustHaveHappened();
-            void should_invoke_IBar_GetMessage() => The<Fake<IBar>>().CallsTo(x => x.GetBar()).MustHaveHappened(Repeated.Exactly.Once);
+            void should_invoke_IBar_GetMessage() => The<Fake<IBar>>().CallsTo(x => x.GetBar()).MustHaveHappenedOnceExactly();
             void should_return_combined_message() => Result.Should().Be("Hello, World!");
         }
 

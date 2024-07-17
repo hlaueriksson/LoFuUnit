@@ -1,8 +1,4 @@
 ﻿using FluentAssertions;
-using LoFuUnit.AutoMoq;
-using LoFuUnit.NUnit;
-using Moq;
-using NUnit.Framework;
 
 namespace LoFuUnit.Sample.AutoMoq
 {

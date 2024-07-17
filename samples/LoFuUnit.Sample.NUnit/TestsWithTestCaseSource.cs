@@ -1,6 +1,4 @@
 using FluentAssertions;
-using LoFuUnit.NUnit;
-using NUnit.Framework;
 
 namespace LoFuUnit.Sample.NUnit
 {

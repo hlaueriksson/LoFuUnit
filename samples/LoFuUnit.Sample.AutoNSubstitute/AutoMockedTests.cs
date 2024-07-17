@@ -1,8 +1,4 @@
 ﻿using FluentAssertions;
-using LoFuUnit.AutoNSubstitute;
-using LoFuUnit.NUnit;
-using NSubstitute;
-using NUnit.Framework;
 
 namespace LoFuUnit.Sample.AutoNSubstitute
 {
