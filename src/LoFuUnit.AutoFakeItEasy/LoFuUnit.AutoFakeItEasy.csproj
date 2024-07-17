@@ -2,9 +2,18 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <Version>3.0.0</Version>
+    <Version>4.0.0-preview.1</Version>
     <PackageReleaseNotes>
-- Bump AutoFixture.AutoFakeItEasy to 4.18.1
+- Bump AutoFixture.AutoFakeItEasy to 5.0.0-preview0011
+- The&lt;TDependency&gt;() can now be used get auto-mocked dependencies after the Subject has been created
+  - Including FakeItEasy Fake&lt;&gt; dependencies
+- One&lt;T&gt; creates one fake
+- Some&lt;T&gt; creates some fakes
+- Packages added as transitive dependencies:
+  - FakeItEasy.Analyzer.CSharp
+- Namespaces globally included if ImplicitUsings are enabled:
+  - FakeItEasy
+  - LoFuUnit.AutoFakeItEasy
     </PackageReleaseNotes>
     <Authors>Henrik Lau Eriksson</Authors>
     <Description>Auto-mocked Unit Testing with Local Functions 🐯

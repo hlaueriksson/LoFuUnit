@@ -3,11 +3,18 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <IsPackable>true</IsPackable>
-    <Version>3.0.0</Version>
+    <Version>4.0.0-preview.1</Version>
     <PackageReleaseNotes>
-- Fix test method invocation bug that occurs on some TargetFrameworks
-- Add [CallerMemberName] parameter to Assert and AssertAsync methods
-- Bump xunit to 2.6.4
+- Bump xunit to 2.9.0
+- Packages added as transitive dependencies:
+  - Microsoft.NET.Test.Sdk
+  - xunit.runner.visualstudio
+  - xunit.analyzers
+- Namespaces globally included if ImplicitUsings are enabled:
+  - Xunit
+  - Xunit.Abstractions
+  - Xunit.Sdk
+  - LoFuUnit.Xunit
     </PackageReleaseNotes>
     <Authors>Henrik Lau Eriksson</Authors>
     <Description>Unit Testing with Local Functions 🐯

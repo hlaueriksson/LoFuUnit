@@ -2,9 +2,16 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <Version>3.0.0</Version>
+    <Version>4.0.0-preview.1</Version>
     <PackageReleaseNotes>
-- Bump MSTest.TestFramework to 3.1.1
+- Bump MSTest.TestFramework to 3.5.0
+- Packages added as transitive dependencies:
+  - Microsoft.NET.Test.Sdk
+  - MSTest.TestAdapter
+  - MSTest.Analyzers
+- Namespaces globally included if ImplicitUsings are enabled:
+  - Microsoft.VisualStudio.TestTools.UnitTesting
+  - LoFuUnit.MSTest
     </PackageReleaseNotes>
     <Authors>Henrik Lau Eriksson</Authors>
     <Description>Unit Testing with Local Functions 🐯

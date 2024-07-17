@@ -1,11 +1,17 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
-    <Version>3.0.0</Version>
+    <TargetFramework>net6.00</TargetFramework>
+    <Version>4.0.0-preview.1</Version>
     <PackageReleaseNotes>
-- Change TargetFramework to net6.0
-- Bump NUnit to 4.0.1
+- Bump NUnit to 4.1.0
+- Packages added as transitive dependencies:
+  - Microsoft.NET.Test.Sdk
+  - NUnit3TestAdapter
+  - NUnit.Analyzers
+- Namespaces globally included if ImplicitUsings are enabled:
+  - NUnit.Framework
+  - LoFuUnit.NUnit
     </PackageReleaseNotes>
     <Authors>Henrik Lau Eriksson</Authors>
     <Description>Unit Testing with Local Functions 🐯
