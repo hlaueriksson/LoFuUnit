@@ -33,7 +33,7 @@ Use MSTest to write TDD or BDD tests:
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="MSTest.TestFramework" Version="3.4.3" />
+    <PackageReference Include="MSTest.TestFramework" Version="3.5.0" />
   </ItemGroup>
 
   <ItemGroup>
