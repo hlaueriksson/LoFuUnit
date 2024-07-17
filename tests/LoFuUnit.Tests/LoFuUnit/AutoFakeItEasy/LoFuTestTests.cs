@@ -3,7 +3,6 @@ using FakeItEasy;
 using FluentAssertions;
 using LoFuUnit.AutoFakeItEasy;
 using LoFuUnit.Tests.Fakes;
-using Moq;
 using NUnit.Framework;
 
 namespace LoFuUnit.Tests.LoFuUnit.AutoFakeItEasy
