@@ -1,5 +1,23 @@
 # LoFuUnit<!-- omit in toc -->
 
+TODO:
+
+varför funkar inte dotnet test?
+
+UnsafeAccessorAttribute
+wait for AutoFixture 5.0.0
+the long-awaited attributes for MSTest and Xunit?
+
+Clear:
+[TestInitialize] // MSTest
+[SetUp] // NUnit
+Ctor // Xunit
+
+Skriv docs;
+ https://github.com/machine/machine.specifications/wiki/Best-Practices
+ https://github.com/machine/machine.specifications/wiki/Usage-Cheatsheet
+ https://github.com/machine/machine.specifications/wiki/EditorConfig
+
 [![build](https://github.com/hlaueriksson/LoFuUnit/actions/workflows/build.yml/badge.svg)](https://github.com/hlaueriksson/LoFuUnit/actions/workflows/build.yml)
 [![CodeFactor](https://www.codefactor.io/repository/github/hlaueriksson/lofuunit/badge)](https://www.codefactor.io/repository/github/hlaueriksson/lofuunit)
 
